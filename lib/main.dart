@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 import 'package:smartkit/Helper/HappyShopColor.dart';
 
 import 'Screen/HappyShopSplash.dart';
+
 void main() => runApp(GetMaterialApp(home: MyApp()));
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -16,9 +18,9 @@ class MyApp extends StatelessWidget {
           fontFamily: 'Open sans',
           textTheme: TextTheme(
               headline6: TextStyle(
-                color: primary,
-                fontWeight: FontWeight.w600,
-              ))),
+            color: primary,
+            fontWeight: FontWeight.w600,
+          ))),
       debugShowCheckedModeBanner: false,
       home: HappyShopSplash(),
     );

@@ -2,13 +2,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:smartkit/Helper/HappyShopColor.dart';
 import 'package:smartkit/Helper/HappyShopString.dart';
 import 'package:smartkit/Screen/HappyShopCatgories.dart';
 import 'package:smartkit/Screen/HappyShopProductDetail.dart';
 import 'package:smartkit/desktop/hometabdesktop.dart';
+import 'package:smartkit/models/product_model.dart';
 
+import '../controllers/product_controllers.dart';
 import 'HappyShopHome.dart';
 import 'HappyShopStaggeredList.dart';
 
@@ -17,34 +20,166 @@ List sectList = [
     'section': "Offers on men's Fashion",
     'style': "default",
     'productList': [
-      {'tag': "1", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_a.png", 'name': "Printed Men Round Neck Maroon T-Shirt", 'descprice': "2500", 'price': "3500", 'rating': "4.5", 'noOfRating': "90"},
-      {'tag': "2", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_b.png", 'name': "Printed Men Round Neck Yellow, Black T-Shirt", 'descprice': "1000", 'price': "1200", 'rating': "2.5", 'noOfRating': "50"},
-      {'tag': "3", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_c.png", 'name': "Solid Men Round Neck Grey T-Shirt", 'descprice': "1300", 'price': "1400", 'rating': "3.5", 'noOfRating': "45"},
-      {'tag': "4", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_d.png", 'name': "Men Regular Fit Solid Casual Shirt", 'descprice': "1700", 'price': "2000", 'rating': "4.5", 'noOfRating': "150"},
-      {'tag': "1", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_a.png", 'name': "Printed Men Round Neck Maroon T-Shirt", 'descprice': "2500", 'price': "3500", 'rating': "4.5", 'noOfRating': "90"},
-      {'tag': "2", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_b.png", 'name': "Printed Men Round Neck Yellow, Black T-Shirt", 'descprice': "1000", 'price': "1200", 'rating': "2.5", 'noOfRating': "50"},
-      {'tag': "3", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_c.png", 'name': "Solid Men Round Neck Grey T-Shirt", 'descprice': "1300", 'price': "1400", 'rating': "3.5", 'noOfRating': "45"},
-      {'tag': "4", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_d.png", 'name': "Men Regular Fit Solid Casual Shirt", 'descprice': "1700", 'price': "2000", 'rating': "4.5", 'noOfRating': "150"},
+      {
+        'tag': "1",
+        'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_a.png",
+        'name': "Printed Men Round Neck Maroon T-Shirt",
+        'descprice': "2500",
+        'price': "3500",
+        'rating': "4.5",
+        'noOfRating': "90"
+      },
+      {
+        'tag': "2",
+        'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_b.png",
+        'name': "Printed Men Round Neck Yellow, Black T-Shirt",
+        'descprice': "1000",
+        'price': "1200",
+        'rating': "2.5",
+        'noOfRating': "50"
+      },
+      {
+        'tag': "3",
+        'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_c.png",
+        'name': "Solid Men Round Neck Grey T-Shirt",
+        'descprice': "1300",
+        'price': "1400",
+        'rating': "3.5",
+        'noOfRating': "45"
+      },
+      {
+        'tag': "4",
+        'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_d.png",
+        'name': "Men Regular Fit Solid Casual Shirt",
+        'descprice': "1700",
+        'price': "2000",
+        'rating': "4.5",
+        'noOfRating': "150"
+      },
+      {
+        'tag': "1",
+        'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_a.png",
+        'name': "Printed Men Round Neck Maroon T-Shirt",
+        'descprice': "2500",
+        'price': "3500",
+        'rating': "4.5",
+        'noOfRating': "90"
+      },
+      {
+        'tag': "2",
+        'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_b.png",
+        'name': "Printed Men Round Neck Yellow, Black T-Shirt",
+        'descprice': "1000",
+        'price': "1200",
+        'rating': "2.5",
+        'noOfRating': "50"
+      },
+      {
+        'tag': "3",
+        'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_c.png",
+        'name': "Solid Men Round Neck Grey T-Shirt",
+        'descprice': "1300",
+        'price': "1400",
+        'rating': "3.5",
+        'noOfRating': "45"
+      },
+      {
+        'tag': "4",
+        'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_d.png",
+        'name': "Men Regular Fit Solid Casual Shirt",
+        'descprice': "1700",
+        'price': "2000",
+        'rating': "4.5",
+        'noOfRating': "150"
+      },
     ]
   },
   {
     'section': "Walk in Style",
     'style': "style_1",
     'productList': [
-      {'tag': "5", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/collections_a.png", 'name': "Nike", 'descprice': "2500", 'price': "3500", 'rating': "4.5", 'noOfRating': "90"},
-      {'tag': "6", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/collections_b.png", 'name': "Bag", 'descprice': "1000", 'price': "1200", 'rating': "2.5", 'noOfRating': "50"},
-      {'tag': "7", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/collections_c.png", 'name': "Puma Shoes", 'descprice': "1300", 'price': "1400", 'rating': "3.5", 'noOfRating': "45"},
-      {'tag': "8", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/collections_d.png", 'name': "NIkeShoes", 'descprice': "1700", 'price': "2000", 'rating': "4.5", 'noOfRating': "150"},
+      {
+        'tag': "5",
+        'img':
+            "https://smartkit.wrteam.in/smartkit/happyshop/collections_a.png",
+        'name': "Nike",
+        'descprice': "2500",
+        'price': "3500",
+        'rating': "4.5",
+        'noOfRating': "90"
+      },
+      {
+        'tag': "6",
+        'img':
+            "https://smartkit.wrteam.in/smartkit/happyshop/collections_b.png",
+        'name': "Bag",
+        'descprice': "1000",
+        'price': "1200",
+        'rating': "2.5",
+        'noOfRating': "50"
+      },
+      {
+        'tag': "7",
+        'img':
+            "https://smartkit.wrteam.in/smartkit/happyshop/collections_c.png",
+        'name': "Puma Shoes",
+        'descprice': "1300",
+        'price': "1400",
+        'rating': "3.5",
+        'noOfRating': "45"
+      },
+      {
+        'tag': "8",
+        'img':
+            "https://smartkit.wrteam.in/smartkit/happyshop/collections_d.png",
+        'name': "NIkeShoes",
+        'descprice': "1700",
+        'price': "2000",
+        'rating': "4.5",
+        'noOfRating': "150"
+      },
     ]
   },
   {
     'section': "Women's Fashion",
     'style': "style_2",
     'productList': [
-      {'tag': "9", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/woman_a.png", 'name': "Casual Roll-up Sleeve Solid Women Top", 'descprice': "2500", 'price': "3500", 'rating': "4.5", 'noOfRating': "90"},
-      {'tag': "10", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/woman_b.png", 'name': "Casual Sleeveless Solid Women Top", 'descprice': "1000", 'price': "1200", 'rating': "2.5", 'noOfRating': "50"},
-      {'tag': "11", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/woman_c.png", 'name': "Casual 3/4 Sleeve Solid Women Maroon Top", 'descprice': "1300", 'price': "1400", 'rating': "3.5", 'noOfRating': "45"},
-      {'tag': "12", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/woman_d.png", 'name': "Casual Petal Sleeve Solid Women Yellow Top", 'descprice': "1700", 'price': "2000", 'rating': "4.5", 'noOfRating': "150"},
+      {
+        'tag': "9",
+        'img': "https://smartkit.wrteam.in/smartkit/happyshop/woman_a.png",
+        'name': "Casual Roll-up Sleeve Solid Women Top",
+        'descprice': "2500",
+        'price': "3500",
+        'rating': "4.5",
+        'noOfRating': "90"
+      },
+      {
+        'tag': "10",
+        'img': "https://smartkit.wrteam.in/smartkit/happyshop/woman_b.png",
+        'name': "Casual Sleeveless Solid Women Top",
+        'descprice': "1000",
+        'price': "1200",
+        'rating': "2.5",
+        'noOfRating': "50"
+      },
+      {
+        'tag': "11",
+        'img': "https://smartkit.wrteam.in/smartkit/happyshop/woman_c.png",
+        'name': "Casual 3/4 Sleeve Solid Women Maroon Top",
+        'descprice': "1300",
+        'price': "1400",
+        'rating': "3.5",
+        'noOfRating': "45"
+      },
+      {
+        'tag': "12",
+        'img': "https://smartkit.wrteam.in/smartkit/happyshop/woman_d.png",
+        'name': "Casual Petal Sleeve Solid Women Yellow Top",
+        'descprice': "1700",
+        'price': "2000",
+        'rating': "4.5",
+        'noOfRating': "150"
+      },
     ]
   },
   {
@@ -201,25 +336,48 @@ class HappyShopHpmeTab extends StatefulWidget {
   _HappyShopHpmeTabState createState() => _HappyShopHpmeTabState();
 }
 
-class _HappyShopHpmeTabState extends State<HappyShopHpmeTab> with TickerProviderStateMixin {
+class _HappyShopHpmeTabState extends State<HappyShopHpmeTab>
+    with TickerProviderStateMixin {
   List catList = [
-    {'img': "https://smartkit.wrteam.in/smartkit/happyshop/cat_1.png", 'title': "Men's"},
-    {'img': "https://smartkit.wrteam.in/smartkit/happyshop/cat_2.png", 'title': "women's"},
-    {'img': "https://smartkit.wrteam.in/smartkit/happyshop/cat_3.png", 'title': "Man's Shoes"},
-    {'img': "https://smartkit.wrteam.in/smartkit/happyshop/cat_4.png", 'title': "Eyewear"},
-    {'img': "https://smartkit.wrteam.in/smartkit/happyshop/cat_5.png", 'title': "women's Shoes"},
-    {'img': "https://smartkit.wrteam.in/smartkit/happyshop/cat_6.png", 'title': "Bag's"},
+    {
+      'img': "https://smartkit.wrteam.in/smartkit/happyshop/cat_1.png",
+      'title': "Men's"
+    },
+    {
+      'img': "https://smartkit.wrteam.in/smartkit/happyshop/cat_2.png",
+      'title': "women's"
+    },
+    {
+      'img': "https://smartkit.wrteam.in/smartkit/happyshop/cat_3.png",
+      'title': "Man's Shoes"
+    },
+    {
+      'img': "https://smartkit.wrteam.in/smartkit/happyshop/cat_4.png",
+      'title': "Eyewear"
+    },
+    {
+      'img': "https://smartkit.wrteam.in/smartkit/happyshop/cat_5.png",
+      'title': "women's Shoes"
+    },
+    {
+      'img': "https://smartkit.wrteam.in/smartkit/happyshop/cat_6.png",
+      'title': "Bag's"
+    },
   ];
 
   final _controller = PageController();
+  final ProductController productController = Get.put(ProductController());
 
   Animation? buttonSqueezeanimation;
   late AnimationController buttonController;
+  ProductModel? productmodel;
+  // var productList = <ProductModel>[].obs;
 
   @override
   void initState() {
     super.initState();
-    buttonController = new AnimationController(duration: new Duration(milliseconds: 1000), vsync: this);
+    buttonController = new AnimationController(
+        duration: new Duration(milliseconds: 1000), vsync: this);
 
     WidgetsBinding.instance!.addPostFrameCallback((_) => _animateSlider());
   }
@@ -234,25 +392,38 @@ class _HappyShopHpmeTabState extends State<HappyShopHpmeTab> with TickerProvider
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        return Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => HappyShopHome()), (Route<dynamic> route) => false).then((value) => value as bool);
+        return Navigator.of(context)
+            .pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => HappyShopHome()),
+                (Route<dynamic> route) => false)
+            .then((value) => value as bool);
         //  Navigator.pushReplacement(
         //   context,
         //   MaterialPageRoute(
         //     builder: (context) => ,
         //   ),
         // );
-      },    child: Scaffold(
+      },
+      child: Scaffold(
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.only(bottom: 15.0),
             child: Column(
               children: [
-                Container(width: double.infinity, margin: EdgeInsets.only(bottom: 0, top: kToolbarHeight * 1.4, right: 0, left: 0), child: CarouselWithIndicator()),
+                Container(
+                    width: double.infinity,
+                    margin: EdgeInsets.only(
+                        bottom: 0,
+                        top: kToolbarHeight * 1.4,
+                        right: 0,
+                        left: 0),
+                    child: CarouselWithIndicator()),
                 Column(
                   children: [
                     // category //
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 15.0),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8.0, horizontal: 15.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
@@ -271,7 +442,9 @@ class _HappyShopHpmeTabState extends State<HappyShopHpmeTab> with TickerProvider
                             onTap: () async {
                               await Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => HappyShopCatogeryAll()),
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        HappyShopCatogeryAll()),
                               );
                             },
                           ),
@@ -295,7 +468,8 @@ class _HappyShopHpmeTabState extends State<HappyShopHpmeTab> with TickerProvider
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(vertical: 5.0),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 5.0),
                                     child: new ClipRRect(
                                       borderRadius: BorderRadius.circular(25.0),
                                       child: new CachedNetworkImage(
@@ -320,7 +494,10 @@ class _HappyShopHpmeTabState extends State<HappyShopHpmeTab> with TickerProvider
                             onTap: () {
                               Navigator.push(
                                 context,
-                                PageRouteBuilder(transitionDuration: Duration(seconds: 1), pageBuilder: (_, __, ___) => HappyShopStaggeredList()),
+                                PageRouteBuilder(
+                                    transitionDuration: Duration(seconds: 1),
+                                    pageBuilder: (_, __, ___) =>
+                                        HappyShopStaggeredList()),
                               );
                             },
                           );
@@ -330,61 +507,73 @@ class _HappyShopHpmeTabState extends State<HappyShopHpmeTab> with TickerProvider
                     // Most popular //
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                      child: _getHeading("Most popular"),
+                      child: _getHeading("Sản phẩm bán chạy"),
                     ),
-
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
                       child: ScreenTypeLayout(
                         mobile: Container(
-                          child: GridView.count(
+                          child: Obx(() => GridView.count(
                               padding: EdgeInsets.only(top: 5),
                               crossAxisCount: 2,
                               shrinkWrap: true,
                               childAspectRatio: 0.7,
                               physics: NeverScrollableScrollPhysics(),
                               children: List.generate(
-                                4,
+                                productController.productList.length,
                                 (index) {
                                   return ItemCard(
-                                    tag: "${index}2",
-                                    imagurl: sectList[0]['productList'][index]['img'],
-                                    itemname: sectList[0]['productList'][index]['name'],
-                                    descprice: sectList[0]['productList'][index]['descprice'],
-                                    price: sectList[0]['productList'][index]['price'],
-                                    rating: sectList[0]['productList'][index]['rating'],
+                                    tag: "cuong",
+                                    imagurl: "https://datn123.herokuapp.com/" +
+                                        productController
+                                            .productList[index].avatar,
+                                    itemname: productController
+                                        .productList[index].productName,
+                                    descprice: productController
+                                        .productList[index].priceProduct,
+                                    price: productController
+                                        .productList[index].priceDeposit,
+                                    rating: productController
+                                        .productList[index].amountProduct,
                                     shadow: false,
                                   );
                                 },
-                              )),
+                              ))),
                         ),
-                        desktop: MostpopularGridDesktop(
+                        desktop: WomenFashionDesktop(
                           widget: GridView.count(
-                              padding: EdgeInsets.only(top: 5),
-                              crossAxisCount: 4,
-                              shrinkWrap: true,
-                              childAspectRatio: MediaQuery.of(context).size.width / MediaQuery.of(context).size.width,
-                              // mainAxisSpacing: 10.0,
-                              // crossAxisSpacing: 10.0,
-                              physics: NeverScrollableScrollPhysics(),
-                              children: List.generate(
-                                8,
-                                (index) {
-                                  return ItemCard(
-                                    tag: "${index}2",
-                                    imagurl: sectList[0]['productList'][index]['img'],
-                                    itemname: sectList[0]['productList'][index]['name'],
-                                    descprice: sectList[0]['productList'][index]['descprice'],
-                                    price: sectList[0]['productList'][index]['price'],
-                                    rating: sectList[0]['productList'][index]['rating'],
-                                    shadow: false,
-                                  );
-                                },
-                              )),
+                            padding: EdgeInsets.only(top: 5),
+                            crossAxisCount: 4,
+                            shrinkWrap: true,
+                            childAspectRatio:
+                                MediaQuery.of(context).size.width /
+                                    MediaQuery.of(context).size.width,
+                            physics: NeverScrollableScrollPhysics(),
+                            children: List.generate(
+                              productController.productList.length,
+                              (index) {
+                                return ItemCard(
+                                  tag: "cuong",
+                                  // https://datn123.herokuapp.com/images/download.jpeg
+                                  imagurl: "https://datn123.herokuapp.com/" +
+                                      productController
+                                          .productList[index].avatar,
+                                  itemname: productController
+                                      .productList[index].productName,
+                                  descprice: productController
+                                      .productList[index].priceProduct,
+                                  price: productController
+                                      .productList[index].priceDeposit,
+                                  rating: productController
+                                      .productList[index].amountProduct,
+                                  shadow: false,
+                                );
+                              },
+                            ),
+                          ),
                         ),
                       ),
                     ),
-
                     // New arrival for men's //
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -400,7 +589,9 @@ class _HappyShopHpmeTabState extends State<HappyShopHpmeTab> with TickerProvider
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
                           return Card(
-                            margin: EdgeInsets.only(left: index == 0 ? 15.0 : 5.0, right: index == 9 ? 15.0 : 0.0),
+                            margin: EdgeInsets.only(
+                                left: index == 0 ? 15.0 : 5.0,
+                                right: index == 9 ? 15.0 : 0.0),
                             elevation: 0.0,
                             child: InkWell(
                               child: Container(
@@ -411,7 +602,8 @@ class _HappyShopHpmeTabState extends State<HappyShopHpmeTab> with TickerProvider
                                     image: DecorationImage(
                                       // colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.overlay),
                                       image: CachedNetworkImageProvider(
-                                        sectList[3]['productList'][index]['img'],
+                                        sectList[3]['productList'][index]
+                                            ['img'],
                                       ),
                                       fit: BoxFit.fill,
                                     )),
@@ -425,14 +617,22 @@ class _HappyShopHpmeTabState extends State<HappyShopHpmeTab> with TickerProvider
                                   child: Text(
                                     sectList[3]['productList'][index]['name'],
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(fontSize: 18.0, fontFamily: 'bold', fontWeight: FontWeight.bold, color: Color.fromRGBO(255, 255, 255, 1)),
+                                    style: TextStyle(
+                                        fontSize: 18.0,
+                                        fontFamily: 'bold',
+                                        fontWeight: FontWeight.bold,
+                                        color:
+                                            Color.fromRGBO(255, 255, 255, 1)),
                                   ),
                                 ),
                               ),
                               onTap: () {
                                 Navigator.push(
                                   context,
-                                  PageRouteBuilder(transitionDuration: Duration(seconds: 1), pageBuilder: (_, __, ___) => HappyShopStaggeredList()),
+                                  PageRouteBuilder(
+                                      transitionDuration: Duration(seconds: 1),
+                                      pageBuilder: (_, __, ___) =>
+                                          HappyShopStaggeredList()),
                                 );
                               },
                             ),
@@ -451,44 +651,59 @@ class _HappyShopHpmeTabState extends State<HappyShopHpmeTab> with TickerProvider
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
                       child: ScreenTypeLayout(
                         mobile: Container(
-                          child: GridView.count(
+                          child: Obx(() => GridView.count(
                               padding: EdgeInsets.only(top: 5),
                               crossAxisCount: 2,
                               shrinkWrap: true,
                               childAspectRatio: 0.7,
                               physics: NeverScrollableScrollPhysics(),
                               children: List.generate(
-                                4,
+                                productController.productList.length,
                                 (index) {
                                   return ItemCard(
-                                    tag: "${index}1",
-                                    imagurl: sectList[2]['productList'][index]['img'],
-                                    itemname: sectList[2]['productList'][index]['name'],
-                                    descprice: sectList[2]['productList'][index]['descprice'],
-                                    price: sectList[2]['productList'][index]['price'],
-                                    rating: sectList[2]['productList'][index]['rating'],
+                                    tag: "cuong",
+                                    imagurl: "https://datn123.herokuapp.com/" +
+                                        productController
+                                            .productList[index].avatar,
+                                    itemname: productController
+                                        .productList[index].productName,
+                                    descprice: productController
+                                        .productList[index].priceProduct,
+                                    price: productController
+                                        .productList[index].priceDeposit,
+                                    rating: productController
+                                        .productList[index].amountProduct,
                                     shadow: false,
                                   );
                                 },
-                              )),
+                              ))),
                         ),
                         desktop: WomenFashionDesktop(
                           widget: GridView.count(
                             padding: EdgeInsets.only(top: 5),
                             crossAxisCount: 4,
                             shrinkWrap: true,
-                            childAspectRatio: MediaQuery.of(context).size.width / MediaQuery.of(context).size.width,
+                            childAspectRatio:
+                                MediaQuery.of(context).size.width /
+                                    MediaQuery.of(context).size.width,
                             physics: NeverScrollableScrollPhysics(),
                             children: List.generate(
-                              4,
+                              productController.productList.length,
                               (index) {
                                 return ItemCard(
-                                  tag: "${index}1",
-                                  imagurl: sectList[2]['productList'][index]['img'],
-                                  itemname: sectList[2]['productList'][index]['name'],
-                                  descprice: sectList[2]['productList'][index]['descprice'],
-                                  price: sectList[2]['productList'][index]['price'],
-                                  rating: sectList[2]['productList'][index]['rating'],
+                                  tag: "cuong",
+                                  // https://datn123.herokuapp.com/images/download.jpeg
+                                  imagurl: "https://datn123.herokuapp.com/" +
+                                      productController
+                                          .productList[index].avatar,
+                                  itemname: productController
+                                      .productList[index].productName,
+                                  descprice: productController
+                                      .productList[index].priceProduct,
+                                  price: productController
+                                      .productList[index].priceDeposit,
+                                  rating: productController
+                                      .productList[index].amountProduct,
                                   shadow: false,
                                 );
                               },
@@ -513,17 +728,21 @@ class _HappyShopHpmeTabState extends State<HappyShopHpmeTab> with TickerProvider
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
                             return Card(
-                              margin: EdgeInsets.only(left: index == 0 ? 15.0 : 5.0, right: index == 3 ? 15.0 : 0.0),
+                              margin: EdgeInsets.only(
+                                  left: index == 0 ? 15.0 : 5.0,
+                                  right: index == 3 ? 15.0 : 0.0),
                               elevation: 0.0,
                               child: InkWell(
                                 child: Container(
                                   height: MediaQuery.of(context).size.width / 3,
-                                  width: MediaQuery.of(context).size.width / 2.8,
+                                  width:
+                                      MediaQuery.of(context).size.width / 2.8,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10.0),
                                       image: DecorationImage(
                                         image: CachedNetworkImageProvider(
-                                          sectList[1]['productList'][index]['img'],
+                                          sectList[1]['productList'][index]
+                                              ['img'],
                                         ),
                                         fit: BoxFit.fill,
                                       )),
@@ -532,7 +751,8 @@ class _HappyShopHpmeTabState extends State<HappyShopHpmeTab> with TickerProvider
                                   Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => HappyShopStaggeredList(),
+                                      builder: (context) =>
+                                          HappyShopStaggeredList(),
                                     ),
                                   );
                                   // Navigator.push(
@@ -553,17 +773,21 @@ class _HappyShopHpmeTabState extends State<HappyShopHpmeTab> with TickerProvider
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
                             return Card(
-                              margin: EdgeInsets.only(left: index == 0 ? 15.0 : 5.0, right: index == 3 ? 15.0 : 0.0),
+                              margin: EdgeInsets.only(
+                                  left: index == 0 ? 15.0 : 5.0,
+                                  right: index == 3 ? 15.0 : 0.0),
                               elevation: 0.0,
                               child: InkWell(
                                 child: Container(
                                   height: MediaQuery.of(context).size.width / 3,
-                                  width: MediaQuery.of(context).size.width / 4.2,
+                                  width:
+                                      MediaQuery.of(context).size.width / 4.2,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10.0),
                                       image: DecorationImage(
                                         image: CachedNetworkImageProvider(
-                                          sectList[1]['productList'][index]['img'],
+                                          sectList[1]['productList'][index]
+                                              ['img'],
                                         ),
                                         fit: BoxFit.fill,
                                       )),
@@ -572,7 +796,8 @@ class _HappyShopHpmeTabState extends State<HappyShopHpmeTab> with TickerProvider
                                   Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => HappyShopStaggeredList(),
+                                      builder: (context) =>
+                                          HappyShopStaggeredList(),
                                     ),
                                   );
                                 },
@@ -613,7 +838,9 @@ class _HappyShopHpmeTabState extends State<HappyShopHpmeTab> with TickerProvider
                 onTap: () {
                   Navigator.push(
                     context,
-                    PageRouteBuilder(transitionDuration: Duration(seconds: 1), pageBuilder: (_, __, ___) => HappyShopStaggeredList()),
+                    PageRouteBuilder(
+                        transitionDuration: Duration(seconds: 1),
+                        pageBuilder: (_, __, ___) => HappyShopStaggeredList()),
                   );
                 },
               ),
@@ -627,12 +854,18 @@ class _HappyShopHpmeTabState extends State<HappyShopHpmeTab> with TickerProvider
   void _animateSlider() {
     Future.delayed(Duration(seconds: 30)).then((_) {
       if (mounted) {
-        int nextPage = _controller.hasClients ? _controller.page!.round() + 1 : _controller.initialPage;
+        int nextPage = _controller.hasClients
+            ? _controller.page!.round() + 1
+            : _controller.initialPage;
 
         if (nextPage == homeSliderList.length) {
           nextPage = 0;
         }
-        if (_controller.hasClients) _controller.animateToPage(nextPage, duration: Duration(seconds: 1), curve: Curves.easeIn).then((_) => _animateSlider());
+        if (_controller.hasClients)
+          _controller
+              .animateToPage(nextPage,
+                  duration: Duration(seconds: 1), curve: Curves.easeIn)
+              .then((_) => _animateSlider());
       }
     });
   }
@@ -682,7 +915,9 @@ class ItemCardSmall extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 0.0),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.only(topLeft: Radius.circular(5), topRight: Radius.circular(5)),
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(5),
+                              topRight: Radius.circular(5)),
                           child: CachedNetworkImage(
                             imageUrl: imagurl!,
                             width: double.infinity,
@@ -703,7 +938,10 @@ class ItemCardSmall extends StatelessWidget {
                               ),
                               Text(
                                 rating!,
-                                style: Theme.of(context).textTheme.overline!.copyWith(letterSpacing: 0.2),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .overline!
+                                    .copyWith(letterSpacing: 0.2),
                               ),
                             ],
                           ),
@@ -716,7 +954,10 @@ class ItemCardSmall extends StatelessWidget {
                   padding: const EdgeInsets.all(5.0),
                   child: Text(
                     itemname!,
-                    style: Theme.of(context).textTheme.overline!.copyWith(color: Colors.black, fontSize: 16.0, letterSpacing: 0.5),
+                    style: Theme.of(context).textTheme.overline!.copyWith(
+                        color: Colors.black,
+                        fontSize: 16.0,
+                        letterSpacing: 0.5),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -731,7 +972,14 @@ class ItemCardSmall extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
-                            Text(CUR_CURRENCY + "" + descprice!, style: Theme.of(context).textTheme.overline!.copyWith(decoration: TextDecoration.lineThrough, letterSpacing: 1), textAlign: TextAlign.left),
+                            Text(CUR_CURRENCY + "" + descprice!,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .overline!
+                                    .copyWith(
+                                        decoration: TextDecoration.lineThrough,
+                                        letterSpacing: 1),
+                                textAlign: TextAlign.left),
                             Text(
                               CUR_CURRENCY + " " + price!,
                               style: TextStyle(color: primary),
@@ -742,7 +990,8 @@ class ItemCardSmall extends StatelessWidget {
                       ),
                       InkWell(
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 3),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0, vertical: 3),
                             child: Icon(
                               Icons.favorite,
                               size: 15,
@@ -775,8 +1024,9 @@ class ItemCard extends StatefulWidget {
     this.tag,
   }) : super(key: key);
 
-  final String? imagurl, rating, itemname, descprice, price, tag;
+  final String? imagurl, itemname, tag;
   final bool? shadow;
+  final int? descprice, price, rating;
 
   @override
   _ItemCardState createState() => _ItemCardState();
@@ -803,7 +1053,9 @@ class _ItemCardState extends State<ItemCard> {
                   alignment: Alignment.topRight,
                   children: [
                     ClipRRect(
-                      borderRadius: BorderRadius.only(topLeft: Radius.circular(5), topRight: Radius.circular(5)),
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(5),
+                          topRight: Radius.circular(5)),
                       child: Hero(
                           tag: widget.tag!,
                           child:
@@ -833,8 +1085,11 @@ class _ItemCardState extends State<ItemCard> {
                               size: 10,
                             ),
                             Text(
-                              widget.rating!,
-                              style: Theme.of(context).textTheme.overline!.copyWith(letterSpacing: 0.2),
+                              widget.rating!.toString(),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .overline!
+                                  .copyWith(letterSpacing: 0.2),
                             ),
                           ],
                         ),
@@ -854,7 +1109,10 @@ class _ItemCardState extends State<ItemCard> {
                     Expanded(
                       child: Text(
                         widget.itemname!,
-                        style: Theme.of(context).textTheme.overline!.copyWith(color: Colors.black, fontSize: 16.0, letterSpacing: 0.5),
+                        style: Theme.of(context).textTheme.overline!.copyWith(
+                            color: Colors.black,
+                            fontSize: 16.0,
+                            letterSpacing: 0.5),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -866,13 +1124,16 @@ class _ItemCardState extends State<ItemCard> {
                 padding: const EdgeInsets.only(left: 5.0, bottom: 5),
                 child: Row(
                   children: <Widget>[
-                    Text(" " + CUR_CURRENCY + " " + widget.price!, style: TextStyle(color: primary)),
+                    Text(" " + CUR_CURRENCY + " " + widget.price!.toString(),
+                        style: TextStyle(color: primary)),
                     SizedBox(
                       width: 5.0,
                     ),
                     Text(
-                      CUR_CURRENCY + "" + widget.descprice!,
-                      style: Theme.of(context).textTheme.overline!.copyWith(decoration: TextDecoration.lineThrough, letterSpacing: 1),
+                      CUR_CURRENCY + "" + widget.descprice!.toString(),
+                      style: Theme.of(context).textTheme.overline!.copyWith(
+                          decoration: TextDecoration.lineThrough,
+                          letterSpacing: 1),
                     ),
                   ],
                 ),
@@ -883,7 +1144,8 @@ class _ItemCardState extends State<ItemCard> {
             Navigator.of(context).push(
               PageRouteBuilder(
                 transitionDuration: Duration(milliseconds: 1000),
-                pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+                pageBuilder: (BuildContext context, Animation<double> animation,
+                    Animation<double> secondaryAnimation) {
                   return HappyShopProductDetail(
                     imgurl: widget.imagurl,
                     tag: widget.tag,
@@ -926,17 +1188,18 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
       ),
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: homeSliderList.map((item) =>Container(
-          width: _current == homeSliderList.indexOf(item) ? 30.0 : 10.0,
-          height: 8.0,
-          margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: _current == homeSliderList.indexOf(item)
-                  ? primary
-                  : Color.fromRGBO(0, 0, 0, 0.1)),
-        )
-        ).toList(),
+        children: homeSliderList
+            .map((item) => Container(
+                  width: _current == homeSliderList.indexOf(item) ? 30.0 : 10.0,
+                  height: 8.0,
+                  margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: _current == homeSliderList.indexOf(item)
+                          ? primary
+                          : Color.fromRGBO(0, 0, 0, 0.1)),
+                ))
+            .toList(),
       )
     ]);
   }
@@ -944,21 +1207,22 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
 
 final List<Widget> child = homeSliderList.map((item) {
   return Container(
-  margin: EdgeInsets.all(5.0),
-  child: ClipRRect(
-    borderRadius: BorderRadius.all(Radius.circular(5.0)),
-    child: Stack(children: <Widget>[
-      CachedNetworkImage(
-        imageUrl: item["img"],
-        fit: BoxFit.fill,
-        width: 1000.0,
-        height: double.infinity,
-      ),
-    ]),
-  ),
-);}
-  /*},*/
-).toList();
+    margin: EdgeInsets.all(5.0),
+    child: ClipRRect(
+      borderRadius: BorderRadius.all(Radius.circular(5.0)),
+      child: Stack(children: <Widget>[
+        CachedNetworkImage(
+          imageUrl: item["img"],
+          fit: BoxFit.fill,
+          width: 1000.0,
+          height: double.infinity,
+        ),
+      ]),
+    ),
+  );
+}
+    /*},*/
+    ).toList();
 /*CachedNetworkImage(
             imageUrl: i,
             fit: BoxFit.fill,
@@ -970,14 +1234,21 @@ List homeSliderList = [
     "img": "https://smartkit.wrteam.in/smartkit/happyshop/slider_a.png",
   },
   {
-  "img":"https://smartkit.wrteam.in/smartkit/happyshop/slider_b.png",
+    "img": "https://smartkit.wrteam.in/smartkit/happyshop/slider_b.png",
   },
-
-  { "img":"https://smartkit.wrteam.in/smartkit/happyshop/slider_c.png",},
-  {  "img":"https://smartkit.wrteam.in/smartkit/happyshop/slider_d.png",},
-  { "img":"https://smartkit.wrteam.in/smartkit/happyshop/slider_e.png",},
-  { "img":"https://smartkit.wrteam.in/smartkit/happyshop/slider_f.png",},
   {
-    "img":"https://smartkit.wrteam.in/smartkit/happyshop/slider_g.png",
+    "img": "https://smartkit.wrteam.in/smartkit/happyshop/slider_c.png",
+  },
+  {
+    "img": "https://smartkit.wrteam.in/smartkit/happyshop/slider_d.png",
+  },
+  {
+    "img": "https://smartkit.wrteam.in/smartkit/happyshop/slider_e.png",
+  },
+  {
+    "img": "https://smartkit.wrteam.in/smartkit/happyshop/slider_f.png",
+  },
+  {
+    "img": "https://smartkit.wrteam.in/smartkit/happyshop/slider_g.png",
   }
 ];

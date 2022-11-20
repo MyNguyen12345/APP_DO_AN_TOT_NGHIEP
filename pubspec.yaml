@@ -157,9 +157,6 @@ dependencies:
   #paystack
   flutter_paystack: ^1.0.5+1
 
-  #razorpay
-  razorpay_flutter: ^1.2.7
-
   #paytm
   paytm: ^3.0.1
 
