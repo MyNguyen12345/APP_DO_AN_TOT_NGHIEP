@@ -1,13 +1,20 @@
+// To parse this JSON data, do
+//
+//     final welcome = welcomeFromJson(jsonString);
+
 import 'dart:convert';
 
-// List<ProductModel> productFromJson(String str) => List<ProductModel>.from(
-//     json.decode(str).map((x) => ProductModel.fromJson(x)));
+// List<ProductDetailModel> productDetaiFromJson(String str) =>
+//     List<ProductDetailModel>.from(
+//         json.decode(str).map((x) => ProductDetailModel.fromJson(x)));
 
-// String productToJson(List<ProductModel> data) =>
+// // ProductDetailModel productDetaiFromJson(String str) =>
+// //     ProductDetailModel.fromJson(json.decode(str));
+// String productDetaiToJson(List<ProductDetailModel> data) =>
 //     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class ProductModel {
-  ProductModel({
+class ProductDetailModel {
+  ProductDetailModel({
     required this.productId,
     required this.userId,
     required this.categoryDetailId,
@@ -32,10 +39,9 @@ class ProductModel {
   double priceProduct;
   double priceDeposit;
   List<ListImage> listImage;
-  static List<ProductModel> fromJson(dynamic data) {
-    final _list = <ProductModel>[];
-    for (var json in data) {
-      _list.add(ProductModel(
+
+  factory ProductDetailModel.fromJson(Map<String, dynamic> json) =>
+      ProductDetailModel(
         productId: json["productId"],
         userId: json["userId"],
         categoryDetailId: json["categoryDetailId"],
@@ -48,26 +54,21 @@ class ProductModel {
         priceDeposit: json["priceDeposit"],
         listImage: List<ListImage>.from(
             json["listImage"].map((x) => ListImage.fromJson(x))),
-      ));
-    }
-    return _list;
-  }
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['productId'] = this.productId;
-    data['userId'] = this.userId;
-    data['categoryDetailId'] = this.categoryDetailId;
-    data['productName'] = this.productName;
-    data['productStatus'] = this.productStatus;
-    data['avatar'] = this.avatar;
-    data['description'] = this.description;
-    data['amountProduct'] = this.amountProduct;
-    data['priceProduct'] = this.priceProduct;
-    data['description'] = this.description;
-    data['priceDeposit'] = this.priceDeposit;
-    data['listImage'] = List<dynamic>.from(listImage.map((x) => x.toJson()));
-    return data;
-  }
+      );
+
+  Map<String, dynamic> toJson() => {
+        "productId": productId,
+        "userId": userId,
+        "categoryDetailId": categoryDetailId,
+        "productName": productName,
+        "productStatus": productStatus,
+        "avatar": avatar,
+        "description": description,
+        "amountProduct": amountProduct,
+        "priceProduct": priceProduct,
+        "priceDeposit": priceDeposit,
+        "listImage": List<dynamic>.from(listImage.map((x) => x.toJson())),
+      };
 }
 
 class ListImage {

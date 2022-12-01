@@ -3,14 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:smartkit/Helper/HappyShopColor.dart';
 import 'package:smartkit/Helper/HappyShopString.dart';
 import 'package:smartkit/Screen/HappyShopForgotPassword.dart';
 import 'package:smartkit/Screen/HappyShopHome.dart';
+import 'package:smartkit/Screen/HappyShopHomeTab.dart';
+import 'package:smartkit/controllers/login_controller.dart';
 import 'package:smartkit/desktop/logindesktop.dart';
 import 'package:smartkit/widget/HappyShopbtn.dart';
-
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import '../controllers/user_controller.dart';
 import 'HappyShopSingUp.dart';
 
 class HappyShopLogin extends StatefulWidget {
@@ -20,13 +24,35 @@ class HappyShopLogin extends StatefulWidget {
   _HappyShopLoginState createState() => _HappyShopLoginState();
 }
 
-class _HappyShopLoginState extends State<HappyShopLogin> with TickerProviderStateMixin {
-  String? password, mobile, username, email, id, countrycode, mobileno, city, area, pincode, address, latitude, longitude, image;
+class _HappyShopLoginState extends State<HappyShopLogin>
+    with TickerProviderStateMixin {
+  String? password,
+      mobile,
+      username,
+      email,
+      id,
+      countrycode,
+      mobileUser,
+      city,
+      area,
+      pincode,
+      address,
+      latitude,
+      longitude,
+      image;
   String? countryName;
-
+// my anh login
   final mobileController = TextEditingController();
   final passwordController = TextEditingController();
 
+  final storage = const FlutterSecureStorage();
+
+  final LoginController loginController = Get.put(LoginController());
+  final UserController userController = Get.put(UserController());
+
+  String get phone => mobileController.text;
+  String get password1 => passwordController.text;
+  // my anh login
   Animation? buttonSqueezeanimation;
 
   AnimationController? buttonController;
@@ -34,7 +60,8 @@ class _HappyShopLoginState extends State<HappyShopLogin> with TickerProviderStat
   @override
   void initState() {
     super.initState();
-    buttonController = new AnimationController(duration: new Duration(milliseconds: 2000), vsync: this);
+    buttonController = new AnimationController(
+        duration: new Duration(milliseconds: 2000), vsync: this);
 
     buttonSqueezeanimation = new Tween(
       begin: deviceWidth * 0.7,
@@ -89,15 +116,24 @@ class _HappyShopLoginState extends State<HappyShopLogin> with TickerProviderStat
                       children: <Widget>[
                         InkWell(
                           onTap: () {
-                            Future.delayed(Duration(milliseconds: 000)).then((_) {
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HappyShopHome()));
+                            Future.delayed(Duration(milliseconds: 000))
+                                .then((_) {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => HappyShopHome()));
                             });
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               SKIP,
-                              style: Theme.of(context).textTheme.subtitle1!.copyWith(color: white, decoration: TextDecoration.underline),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .subtitle1!
+                                  .copyWith(
+                                      color: white,
+                                      decoration: TextDecoration.underline),
                             ),
                           ),
                         ),
@@ -125,8 +161,11 @@ class _HappyShopLoginState extends State<HappyShopLogin> with TickerProviderStat
                                 child: Form(
                                   key: _formkey,
                                   child: Card(
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                                    margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
+                                    margin: EdgeInsets.only(
+                                        left: 20.0, right: 20.0, top: 10.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
@@ -171,9 +210,14 @@ class _HappyShopLoginState extends State<HappyShopLogin> with TickerProviderStat
 
   Future<void> validatanmation() async {
     await buttonController!.reverse();
-    Future.delayed(Duration(milliseconds: 500)).then((_) {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HappyShopHome()));
-    });
+    var bool = loginController.login(int.parse(phone), password1);
+    userController.fetchUser(int.parse(phone));
+    if (await bool) {
+      await storage.write(key: 'token', value: loginController.state!.token);
+      await storage.write(
+          key: 'userId', value: userController.state!.userId.toString());
+      Get.to(HappyShopHome());
+    }
   }
 
   bool validateAndSave() {
@@ -182,7 +226,11 @@ class _HappyShopLoginState extends State<HappyShopLogin> with TickerProviderStat
 
   back() {
     return BoxDecoration(
-      gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [primaryLight2, primaryLight3], stops: [0, 1]),
+      gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [primaryLight2, primaryLight3],
+          stops: [0, 1]),
     );
   }
 
@@ -193,7 +241,10 @@ class _HappyShopLoginState extends State<HappyShopLogin> with TickerProviderStat
           alignment: Alignment.centerLeft,
           child: new Text(
             WELCOME_HappyShop,
-            style: Theme.of(context).textTheme.headline6!.copyWith(color: lightblack, fontWeight: FontWeight.bold),
+            style: Theme.of(context)
+                .textTheme
+                .headline6!
+                .copyWith(color: lightblack, fontWeight: FontWeight.bold),
           ),
         ));
   }
@@ -205,7 +256,10 @@ class _HappyShopLoginState extends State<HappyShopLogin> with TickerProviderStat
           alignment: Alignment.centerLeft,
           child: new Text(
             ECOMMERCE_APP_FOR_ALL_BUSINESS,
-            style: Theme.of(context).textTheme.subtitle1!.copyWith(color: lightblack2),
+            style: Theme.of(context)
+                .textTheme
+                .subtitle1!
+                .copyWith(color: lightblack2),
           ),
         ));
   }
@@ -219,7 +273,9 @@ class _HappyShopLoginState extends State<HappyShopLogin> with TickerProviderStat
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           width: width,
           height: 50,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(7.0), border: Border.all(color: darkgrey)),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(7.0),
+              border: Border.all(color: darkgrey)),
           child: CountryCodePicker(
               showCountryOnly: false,
               searchDecoration: InputDecoration(
@@ -289,8 +345,8 @@ class _HappyShopLoginState extends State<HappyShopLogin> with TickerProviderStat
         controller: mobileController,
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         onSaved: (String? value) {
-          mobileno = value;
-          mobile = mobileno;
+          mobileUser = value;
+          mobile = mobileUser;
           print('Mobile no:$mobile');
         },
         decoration: InputDecoration(
@@ -301,7 +357,8 @@ class _HappyShopLoginState extends State<HappyShopLogin> with TickerProviderStat
             prefixIconConstraints: BoxConstraints(minWidth: 40, maxHeight: 20),
             isDense: true,
             contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(7.0))),
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(7.0))),
       ),
     );
   }
@@ -315,6 +372,13 @@ class _HappyShopLoginState extends State<HappyShopLogin> with TickerProviderStat
         controller: passwordController,
         onSaved: (String? value) {
           password = value;
+          // print(password);
+        },
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Please enter some text';
+          }
+          return null;
         },
         decoration: InputDecoration(
             prefixIcon: Icon(Icons.lock_outline),
@@ -322,22 +386,31 @@ class _HappyShopLoginState extends State<HappyShopLogin> with TickerProviderStat
             prefixIconConstraints: BoxConstraints(minWidth: 40, maxHeight: 20),
             isDense: true,
             contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(7.0))),
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(7.0))),
       ),
     );
   }
 
   forgetPass() {
     return Padding(
-        padding: EdgeInsets.only(bottom: 10.0, left: 30.0, right: 30.0, top: 20.0),
+        padding:
+            EdgeInsets.only(bottom: 10.0, left: 30.0, right: 30.0, top: 20.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             InkWell(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => HappyShopForgotPassword()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => HappyShopForgotPassword()));
               },
-              child: Text(FORGOT_PASSWORD_LBL, style: Theme.of(context).textTheme.subtitle1!.copyWith(color: lightblack)),
+              child: Text(FORGOT_PASSWORD_LBL,
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle1!
+                      .copyWith(color: lightblack)),
             ),
           ],
         ));
@@ -345,18 +418,25 @@ class _HappyShopLoginState extends State<HappyShopLogin> with TickerProviderStat
 
   accSignup() {
     return Padding(
-      padding: EdgeInsets.only(bottom: 30.0, left: 30.0, right: 30.0, top: 20.0),
+      padding:
+          EdgeInsets.only(bottom: 30.0, left: 30.0, right: 30.0, top: 20.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(DONT_HAVE_AN_ACC, style: Theme.of(context).textTheme.subtitle1!.copyWith(color: lightblack2, fontWeight: FontWeight.normal)),
+          Text(DONT_HAVE_AN_ACC,
+              style: Theme.of(context)
+                  .textTheme
+                  .subtitle1!
+                  .copyWith(color: lightblack2, fontWeight: FontWeight.normal)),
           InkWell(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => HappyShopSingUp()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HappyShopSingUp()));
               },
               child: Text(
                 SIGN_UP_LBL,
-                style: Theme.of(context).textTheme.subtitle1!.copyWith(color: primary, decoration: TextDecoration.underline),
+                style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                    color: primary, decoration: TextDecoration.underline),
               ))
         ],
       ),

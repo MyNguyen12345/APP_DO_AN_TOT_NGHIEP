@@ -8,8 +8,11 @@ import 'package:smartkit/Helper/HappyShopColor.dart';
 import 'package:smartkit/Helper/HappyShopString.dart';
 import 'package:smartkit/Screen/HappyShopCatgories.dart';
 import 'package:smartkit/Screen/HappyShopProductDetail.dart';
+import 'package:smartkit/controllers/category_controller.dart';
+import 'package:smartkit/controllers/user_controller.dart';
 import 'package:smartkit/desktop/hometabdesktop.dart';
 import 'package:smartkit/models/product_model.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import '../controllers/product_controllers.dart';
 import 'HappyShopHome.dart';
@@ -240,104 +243,8 @@ List sectList = [
   },
 ];
 
-// List sectList = [
-//   {
-//     'section': "Offers on men's Fashion",
-//     'style': "default",
-//     'productList': [
-//       {'tag': "1", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_a.png", 'name': "Printed Men Round Neck Maroon T-Shirt", 'descprice': "2500", 'price': "3500", 'rating': "4.5", 'noOfRating': "90"},
-//       {'tag': "2", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_b.png", 'name': "Printed Men Round Neck Yellow, Black T-Shirt", 'descprice': "1000", 'price': "1200", 'rating': "2.5", 'noOfRating': "50"},
-//       {'tag': "3", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_c.png", 'name': "Solid Men Round Neck Grey T-Shirt", 'descprice': "1300", 'price': "1400", 'rating': "3.5", 'noOfRating': "45"},
-//       {'tag': "4", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_d.png", 'name': "Men Regular Fit Solid Casual Shirt", 'descprice': "1700", 'price': "2000", 'rating': "4.5", 'noOfRating': "150"},
-//     ]
-//   },
-//   {
-//     'section': "Walk in Style",
-//     'style': "style_1",
-//     'productList': [
-//       {'tag': "5", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/collections_a.png", 'name': "Nike", 'descprice': "2500", 'price': "3500", 'rating': "4.5", 'noOfRating': "90"},
-//       {'tag': "6", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/collections_b.png", 'name': "Bag", 'descprice': "1000", 'price': "1200", 'rating': "2.5", 'noOfRating': "50"},
-//       {'tag': "7", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/collections_c.png", 'name': "Puma Shoes", 'descprice': "1300", 'price': "1400", 'rating': "3.5", 'noOfRating': "45"},
-//       {'tag': "8", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/collections_d.png", 'name': "NIkeShoes", 'descprice': "1700", 'price': "2000", 'rating': "4.5", 'noOfRating': "150"},
-//     ]
-//   },
-//   {
-//     'section': "Women's Fashion",
-//     'style': "style_2",
-//     'productList': [
-//       {'tag': "9", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/woman_a.png", 'name': "Casual Roll-up Sleeve Solid Women Top", 'descprice': "2500", 'price': "3500", 'rating': "4.5", 'noOfRating': "90"},
-//       {'tag': "10", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/woman_b.png", 'name': "Casual Sleeveless Solid Women Top", 'descprice': "1000", 'price': "1200", 'rating': "2.5", 'noOfRating': "50"},
-//       {'tag': "11", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/woman_c.png", 'name': "Casual 3/4 Sleeve Solid Women Maroon Top", 'descprice': "1300", 'price': "1400", 'rating': "3.5", 'noOfRating': "45"},
-//       {'tag': "12", 'img': "https://smartkit.wrteam.in/smartkit/happyshop/woman_d.png", 'name': "Casual Petal Sleeve Solid Women Yellow Top", 'descprice': "1700", 'price': "2000", 'rating': "4.5", 'noOfRating': "150"},
-//     ]
-//   },
-//   {
-//     'section': "Top Brands",
-//     'style': "style_3",
-//     'productList': [
-//       {
-//         'tag': "13",
-//         'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_1.png",
-//         'name': "Nike",
-//       },
-//       {
-//         'tag': "14",
-//         'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_2.png",
-//         'name': "Reebok",
-//       },
-//       {
-//         'tag': "15",
-//         'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_3.png",
-//         'name': "Tommy Hilfiger",
-//       },
-//       {
-//         'tag': "16",
-//         'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_4.png",
-//         'name': "Levi's",
-//       },
-//       {
-//         'tag': "17",
-//         'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_5.png",
-//         'name': "U.S.Polo",
-//       },
-//       {
-//         'tag': "18",
-//         'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_6.png",
-//         'name': "Fila",
-//       },
-//       {
-//         'tag': "19",
-//         'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_7.png",
-//         'name': "Vans",
-//       },
-//       {
-//         'tag': "20",
-//         'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_8.png",
-//         'name': "Polo",
-//       },
-//       {
-//         'tag': "21",
-//         'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_9.png",
-//         'name': "Calvin Klein",
-//       },
-//       {
-//         'tag': "22",
-//         'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_10.png",
-//         'name': "Superdry",
-//       },
-//     ]
-//   },
-// ];
-
-class HappyShopHpmeTab extends StatefulWidget {
-  HappyShopHpmeTab({Key? key}) : super(key: key);
-
-  @override
-  _HappyShopHpmeTabState createState() => _HappyShopHpmeTabState();
-}
-
-class _HappyShopHpmeTabState extends State<HappyShopHpmeTab>
-    with TickerProviderStateMixin {
+class HappyShopHomeTab extends GetView<ProductController> {
+  HappyShopHomeTab({Key? key}) : super(key: key);
   List catList = [
     {
       'img': "https://smartkit.wrteam.in/smartkit/happyshop/cat_1.png",
@@ -367,26 +274,14 @@ class _HappyShopHpmeTabState extends State<HappyShopHpmeTab>
 
   final _controller = PageController();
   final ProductController productController = Get.put(ProductController());
+  final CategoryController categoryController = Get.put(CategoryController());
+    final storage = const FlutterSecureStorage();
+
 
   Animation? buttonSqueezeanimation;
   late AnimationController buttonController;
-  ProductModel? productmodel;
+  // ProductModel? productmodel;
   // var productList = <ProductModel>[].obs;
-
-  @override
-  void initState() {
-    super.initState();
-    buttonController = new AnimationController(
-        duration: new Duration(milliseconds: 1000), vsync: this);
-
-    WidgetsBinding.instance!.addPostFrameCallback((_) => _animateSlider());
-  }
-
-  @override
-  void dispose() {
-    buttonController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -439,13 +334,8 @@ class _HappyShopHpmeTabState extends State<HappyShopHpmeTab>
                                 style: Theme.of(context).textTheme.caption,
                               ),
                             ),
-                            onTap: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        HappyShopCatogeryAll()),
-                              );
+                            onTap: () {
+                              Get.to(() => HappyShopCatogeryAll());
                             },
                           ),
                         ],
@@ -454,54 +344,55 @@ class _HappyShopHpmeTabState extends State<HappyShopHpmeTab>
 
                     Container(
                       height: 100,
-                      child: ListView.builder(
-                        itemCount: catList.length < 10 ? catList.length : 10,
-                        scrollDirection: Axis.horizontal,
-                        shrinkWrap: true,
-                        physics: BouncingScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return InkWell(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 5.0),
-                                    child: new ClipRRect(
-                                      borderRadius: BorderRadius.circular(25.0),
-                                      child: new CachedNetworkImage(
-                                        imageUrl: catList[index]['img'],
-                                        height: 50.0,
-                                        width: 50.0,
-                                        fit: BoxFit.cover,
+                      child: controller.obx(
+                        (state) => ListView.builder(
+                          itemCount: categoryController.state!.length,
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          physics: BouncingScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 5.0),
+                                      child: new ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
+                                        child: new CachedNetworkImage(
+                                          imageUrl:
+                                              "https://smartkit.wrteam.in/smartkit/happyshop/cat_1.png",
+                                          // " https://datn123.herokuapp.com/"+categoryController.state![index].categoryIcon,
+                                          height: 50.0,
+                                          width: 50.0,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      catList[index]['title'],
-                                      textAlign: TextAlign.center,
-                                      overflow: TextOverflow.ellipsis,
+                                    Container(
+                                      child: Text(
+                                        categoryController
+                                            .state![index].categoryName,
+                                        textAlign: TextAlign.center,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                      width: 50,
                                     ),
-                                    width: 50,
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                PageRouteBuilder(
-                                    transitionDuration: Duration(seconds: 1),
-                                    pageBuilder: (_, __, ___) =>
-                                        HappyShopStaggeredList()),
-                              );
-                            },
-                          );
-                        },
+                              onTap: () {
+                                Get.to(() => HappyShopStaggeredList(categoryModel: categoryController.state![index],));
+
+                              },
+                            );
+                          },
+                        ),
                       ),
                     ),
                     // Most popular //
@@ -513,64 +404,35 @@ class _HappyShopHpmeTabState extends State<HappyShopHpmeTab>
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
                       child: ScreenTypeLayout(
                         mobile: Container(
-                          child: Obx(() => GridView.count(
+                          //                   controller.obx(
+                          // (state) => ListView.separated(
+                          child: controller.obx((state) => GridView.count(
                               padding: EdgeInsets.only(top: 5),
                               crossAxisCount: 2,
                               shrinkWrap: true,
                               childAspectRatio: 0.7,
                               physics: NeverScrollableScrollPhysics(),
                               children: List.generate(
-                                productController.productList.length,
+                                productController.state!.length,
                                 (index) {
-                                  return ItemCard(
-                                    tag: "cuong",
-                                    imagurl: "https://datn123.herokuapp.com/" +
-                                        productController
-                                            .productList[index].avatar,
-                                    itemname: productController
-                                        .productList[index].productName,
-                                    descprice: productController
-                                        .productList[index].priceProduct,
-                                    price: productController
-                                        .productList[index].priceDeposit,
-                                    rating: productController
-                                        .productList[index].amountProduct,
-                                    shadow: false,
+                                  return InkWell(
+                                    onTap: () => Get.to(
+                                      HappyShopProductDetail(
+                                        productModel: state![index],
+                                      ),
+                                    ),
+                                    child: ItemCard(
+                                      imagurl:
+                                          "https://datn123.herokuapp.com/" +
+                                              state![index].avatar,
+                                      itemname: state[index].productName,
+                                      price: state[index].priceProduct,
+                                      rating: state[index].amountProduct,
+                                      shadow: false,
+                                    ),
                                   );
                                 },
                               ))),
-                        ),
-                        desktop: WomenFashionDesktop(
-                          widget: GridView.count(
-                            padding: EdgeInsets.only(top: 5),
-                            crossAxisCount: 4,
-                            shrinkWrap: true,
-                            childAspectRatio:
-                                MediaQuery.of(context).size.width /
-                                    MediaQuery.of(context).size.width,
-                            physics: NeverScrollableScrollPhysics(),
-                            children: List.generate(
-                              productController.productList.length,
-                              (index) {
-                                return ItemCard(
-                                  tag: "cuong",
-                                  // https://datn123.herokuapp.com/images/download.jpeg
-                                  imagurl: "https://datn123.herokuapp.com/" +
-                                      productController
-                                          .productList[index].avatar,
-                                  itemname: productController
-                                      .productList[index].productName,
-                                  descprice: productController
-                                      .productList[index].priceProduct,
-                                  price: productController
-                                      .productList[index].priceDeposit,
-                                  rating: productController
-                                      .productList[index].amountProduct,
-                                  shadow: false,
-                                );
-                              },
-                            ),
-                          ),
                         ),
                       ),
                     ),
@@ -578,139 +440,6 @@ class _HappyShopHpmeTabState extends State<HappyShopHpmeTab>
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
                       child: _getHeading("Top Brands"),
-                    ),
-
-                    Container(
-                      height: MediaQuery.of(context).size.width / 3.4,
-                      child: ListView.builder(
-                        itemCount: sectList[3]['productList'].length,
-                        shrinkWrap: true,
-                        physics: BouncingScrollPhysics(),
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          return Card(
-                            margin: EdgeInsets.only(
-                                left: index == 0 ? 15.0 : 5.0,
-                                right: index == 9 ? 15.0 : 0.0),
-                            elevation: 0.0,
-                            child: InkWell(
-                              child: Container(
-                                height: MediaQuery.of(context).size.width / 3.5,
-                                width: MediaQuery.of(context).size.width / 4,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    image: DecorationImage(
-                                      // colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.overlay),
-                                      image: CachedNetworkImageProvider(
-                                        sectList[3]['productList'][index]
-                                            ['img'],
-                                      ),
-                                      fit: BoxFit.fill,
-                                    )),
-                                child: Container(
-                                  padding: EdgeInsets.only(bottom: 10.0),
-                                  decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0.4),
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  alignment: Alignment.bottomCenter,
-                                  child: Text(
-                                    sectList[3]['productList'][index]['name'],
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 18.0,
-                                        fontFamily: 'bold',
-                                        fontWeight: FontWeight.bold,
-                                        color:
-                                            Color.fromRGBO(255, 255, 255, 1)),
-                                  ),
-                                ),
-                              ),
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  PageRouteBuilder(
-                                      transitionDuration: Duration(seconds: 1),
-                                      pageBuilder: (_, __, ___) =>
-                                          HappyShopStaggeredList()),
-                                );
-                              },
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-
-                    // Women's Fashion //
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                      child: _getHeading("Women's Fashion"),
-                    ),
-
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                      child: ScreenTypeLayout(
-                        mobile: Container(
-                          child: Obx(() => GridView.count(
-                              padding: EdgeInsets.only(top: 5),
-                              crossAxisCount: 2,
-                              shrinkWrap: true,
-                              childAspectRatio: 0.7,
-                              physics: NeverScrollableScrollPhysics(),
-                              children: List.generate(
-                                productController.productList.length,
-                                (index) {
-                                  return ItemCard(
-                                    tag: "cuong",
-                                    imagurl: "https://datn123.herokuapp.com/" +
-                                        productController
-                                            .productList[index].avatar,
-                                    itemname: productController
-                                        .productList[index].productName,
-                                    descprice: productController
-                                        .productList[index].priceProduct,
-                                    price: productController
-                                        .productList[index].priceDeposit,
-                                    rating: productController
-                                        .productList[index].amountProduct,
-                                    shadow: false,
-                                  );
-                                },
-                              ))),
-                        ),
-                        desktop: WomenFashionDesktop(
-                          widget: GridView.count(
-                            padding: EdgeInsets.only(top: 5),
-                            crossAxisCount: 4,
-                            shrinkWrap: true,
-                            childAspectRatio:
-                                MediaQuery.of(context).size.width /
-                                    MediaQuery.of(context).size.width,
-                            physics: NeverScrollableScrollPhysics(),
-                            children: List.generate(
-                              productController.productList.length,
-                              (index) {
-                                return ItemCard(
-                                  tag: "cuong",
-                                  // https://datn123.herokuapp.com/images/download.jpeg
-                                  imagurl: "https://datn123.herokuapp.com/" +
-                                      productController
-                                          .productList[index].avatar,
-                                  itemname: productController
-                                      .productList[index].productName,
-                                  descprice: productController
-                                      .productList[index].priceProduct,
-                                  price: productController
-                                      .productList[index].priceDeposit,
-                                  rating: productController
-                                      .productList[index].amountProduct,
-                                  shadow: false,
-                                );
-                              },
-                            ),
-                          ),
-                        ),
-                      ),
                     ),
 
                     // Collections //
@@ -748,13 +477,13 @@ class _HappyShopHpmeTabState extends State<HappyShopHpmeTab>
                                       )),
                                 ),
                                 onTap: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          HappyShopStaggeredList(),
-                                    ),
-                                  );
+                                  // Navigator.pushReplacement(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //     builder: (context) =>
+                                  //         HappyShopStaggeredList(),
+                                  //   ),
+                                  // );
                                   // Navigator.push(
                                   //   context,
                                   //   PageRouteBuilder(transitionDuration: Duration(seconds: 1), pageBuilder: (_, __, ___) => HappyShopStaggeredList()),
@@ -793,13 +522,13 @@ class _HappyShopHpmeTabState extends State<HappyShopHpmeTab>
                                       )),
                                 ),
                                 onTap: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          HappyShopStaggeredList(),
-                                    ),
-                                  );
+                                  // Navigator.pushReplacement(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //     builder: (context) =>
+                                  //         HappyShopStaggeredList(),
+                                  //   ),
+                                  // );
                                 },
                               ),
                             );
@@ -828,20 +557,19 @@ class _HappyShopHpmeTabState extends State<HappyShopHpmeTab>
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text(title, style: Theme.of(context).textTheme.headline6),
+              Text(title),
               InkWell(
                 child: Text(
                   seeAll,
-                  style: Theme.of(context).textTheme.caption,
                 ),
                 splashColor: primary.withOpacity(0.2),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    PageRouteBuilder(
-                        transitionDuration: Duration(seconds: 1),
-                        pageBuilder: (_, __, ___) => HappyShopStaggeredList()),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   PageRouteBuilder(
+                  //       transitionDuration: Duration(seconds: 1),
+                  //       pageBuilder: (_, __, ___) => HappyShopStaggeredList()),
+                  // );
                 },
               ),
             ],
@@ -851,24 +579,24 @@ class _HappyShopHpmeTabState extends State<HappyShopHpmeTab>
     );
   }
 
-  void _animateSlider() {
-    Future.delayed(Duration(seconds: 30)).then((_) {
-      if (mounted) {
-        int nextPage = _controller.hasClients
-            ? _controller.page!.round() + 1
-            : _controller.initialPage;
+  // void _animateSlider() {
+  //   Future.delayed(Duration(seconds: 30)).then((_) {
+  //     if (mounted) {
+  //       int nextPage = _controller.hasClients
+  //           ? _controller.page!.round() + 1
+  //           : _controller.initialPage;
 
-        if (nextPage == homeSliderList.length) {
-          nextPage = 0;
-        }
-        if (_controller.hasClients)
-          _controller
-              .animateToPage(nextPage,
-                  duration: Duration(seconds: 1), curve: Curves.easeIn)
-              .then((_) => _animateSlider());
-      }
-    });
-  }
+  //       if (nextPage == homeSliderList.length) {
+  //         nextPage = 0;
+  //       }
+  //       if (_controller.hasClients)
+  //         _controller
+  //             .animateToPage(nextPage,
+  //                 duration: Duration(seconds: 1), curve: Curves.easeIn)
+  //             .then((_) => _animateSlider());
+  //     }
+  //   });
+  // }
 
   List<T?> map<T>(List homeSliderList, Function handler) {
     List<T?> result = [];
@@ -880,137 +608,137 @@ class _HappyShopHpmeTabState extends State<HappyShopHpmeTab>
   }
 }
 
-class ItemCardSmall extends StatelessWidget {
-  const ItemCardSmall({
-    Key? key,
-    this.imagurl,
-    this.rating,
-    this.itemname,
-    this.descprice,
-    this.price,
-    this.shadow,
-  }) : super(key: key);
-  final String? imagurl, rating, itemname, descprice, price;
-  final bool? shadow;
+// class ItemCardSmall extends StatelessWidget {
+//   const ItemCardSmall({
+//     Key? key,
+//     this.imagurl,
+//     this.rating,
+//     this.itemname,
+//     this.descprice,
+//     this.price,
+//     this.shadow,
+//   }) : super(key: key);
+//   final String? imagurl, rating, itemname, descprice, price;
+//   final bool? shadow;
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        boxShadow: [BoxShadow(color: happyshopcolor5, blurRadius: 10)],
-      ),
-      child: Card(
-        elevation: 0.0,
-        child: InkWell(
-          child: Container(
-            height: MediaQuery.of(context).size.height * 0.2,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Expanded(
-                  child: Stack(
-                    alignment: Alignment.topRight,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 0.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(5),
-                              topRight: Radius.circular(5)),
-                          child: CachedNetworkImage(
-                            imageUrl: imagurl!,
-                            width: double.infinity,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                      Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(1.5),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(
-                                Icons.star,
-                                color: Colors.yellow,
-                                size: 10,
-                              ),
-                              Text(
-                                rating!,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .overline!
-                                    .copyWith(letterSpacing: 0.2),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: Text(
-                    itemname!,
-                    style: Theme.of(context).textTheme.overline!.copyWith(
-                        color: Colors.black,
-                        fontSize: 16.0,
-                        letterSpacing: 0.5),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 5, left: 5),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Text(CUR_CURRENCY + "" + descprice!,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .overline!
-                                    .copyWith(
-                                        decoration: TextDecoration.lineThrough,
-                                        letterSpacing: 1),
-                                textAlign: TextAlign.left),
-                            Text(
-                              CUR_CURRENCY + " " + price!,
-                              style: TextStyle(color: primary),
-                              textAlign: TextAlign.left,
-                            ),
-                          ],
-                        ),
-                      ),
-                      InkWell(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 8.0, vertical: 3),
-                            child: Icon(
-                              Icons.favorite,
-                              size: 15,
-                              color: primary,
-                            ),
-                          ),
-                          onTap: () {})
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-          onTap: () {},
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       decoration: BoxDecoration(
+//         boxShadow: [BoxShadow(color: happyshopcolor5, blurRadius: 10)],
+//       ),
+//       child: Card(
+//         elevation: 0.0,
+//         child: InkWell(
+//           child: Container(
+//             height: MediaQuery.of(context).size.height * 0.2,
+//             child: Column(
+//               mainAxisSize: MainAxisSize.min,
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               children: <Widget>[
+//                 Expanded(
+//                   child: Stack(
+//                     alignment: Alignment.topRight,
+//                     children: [
+//                       Padding(
+//                         padding: const EdgeInsets.only(top: 0.0),
+//                         child: ClipRRect(
+//                           borderRadius: BorderRadius.only(
+//                               topLeft: Radius.circular(5),
+//                               topRight: Radius.circular(5)),
+//                           child: CachedNetworkImage(
+//                             imageUrl: imagurl!,
+//                             width: double.infinity,
+//                             fit: BoxFit.fill,
+//                           ),
+//                         ),
+//                       ),
+//                       Card(
+//                         child: Padding(
+//                           padding: const EdgeInsets.all(1.5),
+//                           child: Row(
+//                             mainAxisSize: MainAxisSize.min,
+//                             children: [
+//                               Icon(
+//                                 Icons.star,
+//                                 color: Colors.yellow,
+//                                 size: 10,
+//                               ),
+//                               Text(
+//                                 rating!,
+//                                 style: Theme.of(context)
+//                                     .textTheme
+//                                     .overline!
+//                                     .copyWith(letterSpacing: 0.2),
+//                               ),
+//                             ],
+//                           ),
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                 ),
+//                 Padding(
+//                   padding: const EdgeInsets.all(5.0),
+//                   child: Text(
+//                     itemname!,
+//                     style: Theme.of(context).textTheme.overline!.copyWith(
+//                         color: Colors.black,
+//                         fontSize: 16.0,
+//                         letterSpacing: 0.5),
+//                     maxLines: 1,
+//                     overflow: TextOverflow.ellipsis,
+//                   ),
+//                 ),
+//                 Padding(
+//                   padding: const EdgeInsets.only(bottom: 5, left: 5),
+//                   child: Row(
+//                     children: [
+//                       Expanded(
+//                         child: Column(
+//                           mainAxisSize: MainAxisSize.min,
+//                           crossAxisAlignment: CrossAxisAlignment.start,
+//                           mainAxisAlignment: MainAxisAlignment.start,
+//                           children: <Widget>[
+//                             Text(CUR_CURRENCY + "" + descprice!,
+//                                 style: Theme.of(context)
+//                                     .textTheme
+//                                     .overline!
+//                                     .copyWith(
+//                                         decoration: TextDecoration.lineThrough,
+//                                         letterSpacing: 1),
+//                                 textAlign: TextAlign.left),
+//                             Text(
+//                               CUR_CURRENCY + " " + price!,
+//                               style: TextStyle(color: primary),
+//                               textAlign: TextAlign.left,
+//                             ),
+//                           ],
+//                         ),
+//                       ),
+//                       InkWell(
+//                           child: Padding(
+//                             padding: const EdgeInsets.symmetric(
+//                                 horizontal: 8.0, vertical: 3),
+//                             child: Icon(
+//                               Icons.favorite,
+//                               size: 15,
+//                               color: primary,
+//                             ),
+//                           ),
+//                           onTap: () {})
+//                     ],
+//                   ),
+//                 )
+//               ],
+//             ),
+//           ),
+//           onTap: () {},
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 class ItemCard extends StatefulWidget {
   const ItemCard({
@@ -1018,15 +746,14 @@ class ItemCard extends StatefulWidget {
     this.imagurl,
     this.rating,
     this.itemname,
-    this.descprice,
     this.price,
     this.shadow,
-    this.tag,
   }) : super(key: key);
 
-  final String? imagurl, itemname, tag;
+  final String? imagurl, itemname;
   final bool? shadow;
-  final int? descprice, price, rating;
+  final int? rating;
+  final double? price;
 
   @override
   _ItemCardState createState() => _ItemCardState();
@@ -1056,22 +783,11 @@ class _ItemCardState extends State<ItemCard> {
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(5),
                           topRight: Radius.circular(5)),
-                      child: Hero(
-                          tag: widget.tag!,
-                          child:
-                              //  Image.network(
-                              //   widget.imagurl,
-
-                              //   fit: BoxFit.fill,
-                              //   width: double.infinity,
-                              //   //   // width: double.infinity,)
-                              CachedNetworkImage(
-                            imageUrl: widget.imagurl!,
-                            fit: BoxFit.fill,
-                            width: double.infinity,
-                          )
-                          // ),
-                          ),
+                      child: CachedNetworkImage(
+                        imageUrl: widget.imagurl!,
+                        fit: BoxFit.fill,
+                        width: double.infinity,
+                      ),
                     ),
                     Card(
                       child: Padding(
@@ -1129,32 +845,26 @@ class _ItemCardState extends State<ItemCard> {
                     SizedBox(
                       width: 5.0,
                     ),
-                    Text(
-                      CUR_CURRENCY + "" + widget.descprice!.toString(),
-                      style: Theme.of(context).textTheme.overline!.copyWith(
-                          decoration: TextDecoration.lineThrough,
-                          letterSpacing: 1),
-                    ),
                   ],
                 ),
               )
             ],
           ),
-          onTap: () {
-            Navigator.of(context).push(
-              PageRouteBuilder(
-                transitionDuration: Duration(milliseconds: 1000),
-                pageBuilder: (BuildContext context, Animation<double> animation,
-                    Animation<double> secondaryAnimation) {
-                  return HappyShopProductDetail(
-                    imgurl: widget.imagurl,
-                    tag: widget.tag,
-                  );
-                },
-                reverseTransitionDuration: Duration(milliseconds: 800),
-              ),
-            );
-          },
+          // onTap: () {
+          //   Navigator.of(context).push(
+          //     PageRouteBuilder(
+          //       transitionDuration: Duration(milliseconds: 1000),
+          //       pageBuilder: (BuildContext context, Animation<double> animation,
+          //           Animation<double> secondaryAnimation) {
+          //         return HappyShopProductDetail(
+          //           imgurl: widget.imagurl,
+          //           tag: widget.tag,
+          //         );
+          //       },
+          //       reverseTransitionDuration: Duration(milliseconds: 800),
+          //     ),
+          //   );
+          // },
         ),
       ),
     );

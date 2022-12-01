@@ -8,6 +8,7 @@ import 'package:smartkit/Screen/HappyShopNotification.dart';
 import 'package:smartkit/Screen/HappyShopTrackOrder.dart';
 import 'package:smartkit/widget/HappyShopAppBar.dart';
 import 'package:smartkit/widget/HappyShopDrawer.dart';
+import 'package:get/get.dart';
 
 class HappyShopHome extends StatefulWidget {
   HappyShopHome({Key? key}) : super(key: key);
@@ -25,7 +26,7 @@ class _HappyShopHomeState extends State<HappyShopHome> {
     super.initState();
     _curSelected = 0;
     happyShopBottomeTab = [
-      HappyShopHpmeTab(),
+      HappyShopHomeTab(),
       HappyShopFavrite(
         appbar: false,
       ),
@@ -77,7 +78,8 @@ class _HappyShopHomeState extends State<HappyShopHome> {
                       onTap: (bool isLiked) {
                         return onNavigationTap(isLiked, 0);
                       },
-                      circleColor: CircleColor(start: primary, end: primary.withOpacity(0.1)),
+                      circleColor: CircleColor(
+                          start: primary, end: primary.withOpacity(0.1)),
                       bubblesColor: BubblesColor(
                         dotPrimaryColor: primary,
                         dotSecondaryColor: primary.withOpacity(0.1),
@@ -95,7 +97,8 @@ class _HappyShopHomeState extends State<HappyShopHome> {
                       onTap: (bool isLiked) {
                         return onNavigationTap(isLiked, 0);
                       },
-                      circleColor: CircleColor(start: primary, end: primary.withOpacity(0.1)),
+                      circleColor: CircleColor(
+                          start: primary, end: primary.withOpacity(0.1)),
                       bubblesColor: BubblesColor(
                         dotPrimaryColor: primary,
                         dotSecondaryColor: primary.withOpacity(0.1),
@@ -116,7 +119,8 @@ class _HappyShopHomeState extends State<HappyShopHome> {
                       onTap: (bool isLiked) {
                         return onNavigationTap(isLiked, 1);
                       },
-                      circleColor: CircleColor(start: primary, end: primary.withOpacity(0.1)),
+                      circleColor: CircleColor(
+                          start: primary, end: primary.withOpacity(0.1)),
                       bubblesColor: BubblesColor(
                         dotPrimaryColor: primary,
                         dotSecondaryColor: primary.withOpacity(0.1),
@@ -134,7 +138,8 @@ class _HappyShopHomeState extends State<HappyShopHome> {
                       onTap: (bool isLiked) {
                         return onNavigationTap(isLiked, 1);
                       },
-                      circleColor: CircleColor(start: primary, end: primary.withOpacity(0.1)),
+                      circleColor: CircleColor(
+                          start: primary, end: primary.withOpacity(0.1)),
                       bubblesColor: BubblesColor(
                         dotPrimaryColor: primary,
                         dotSecondaryColor: primary.withOpacity(0.1),
@@ -155,7 +160,8 @@ class _HappyShopHomeState extends State<HappyShopHome> {
                       onTap: (bool isLiked) {
                         return onNavigationTap(isLiked, 2);
                       },
-                      circleColor: CircleColor(start: primary, end: primary.withOpacity(0.1)),
+                      circleColor: CircleColor(
+                          start: primary, end: primary.withOpacity(0.1)),
                       bubblesColor: BubblesColor(
                         dotPrimaryColor: primary,
                         dotSecondaryColor: primary.withOpacity(0.1),
@@ -173,7 +179,8 @@ class _HappyShopHomeState extends State<HappyShopHome> {
                       onTap: (bool isLiked) {
                         return onNavigationTap(isLiked, 2);
                       },
-                      circleColor: CircleColor(start: primary, end: primary.withOpacity(0.1)),
+                      circleColor: CircleColor(
+                          start: primary, end: primary.withOpacity(0.1)),
                       bubblesColor: BubblesColor(
                         dotPrimaryColor: primary,
                         dotSecondaryColor: primary.withOpacity(0.1),
@@ -194,7 +201,8 @@ class _HappyShopHomeState extends State<HappyShopHome> {
                       onTap: (bool isLiked) {
                         return onNavigationTap(isLiked, 3);
                       },
-                      circleColor: CircleColor(start: primary, end: primary.withOpacity(0.1)),
+                      circleColor: CircleColor(
+                          start: primary, end: primary.withOpacity(0.1)),
                       bubblesColor: BubblesColor(
                         dotPrimaryColor: primary,
                         dotSecondaryColor: primary.withOpacity(0.1),
@@ -211,7 +219,8 @@ class _HappyShopHomeState extends State<HappyShopHome> {
                       onTap: (bool isLiked) {
                         return onNavigationTap(isLiked, 3);
                       },
-                      circleColor: CircleColor(start: primary, end: primary.withOpacity(0.1)),
+                      circleColor: CircleColor(
+                          start: primary, end: primary.withOpacity(0.1)),
                       bubblesColor: BubblesColor(
                         dotPrimaryColor: primary,
                         dotSecondaryColor: primary.withOpacity(0.1),

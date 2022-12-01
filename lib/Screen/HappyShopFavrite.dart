@@ -16,7 +16,8 @@ class HappyShopFavrite extends StatefulWidget {
   _HappyShopFavriteState createState() => _HappyShopFavriteState();
 }
 
-class _HappyShopFavriteState extends State<HappyShopFavrite> with TickerProviderStateMixin {
+class _HappyShopFavriteState extends State<HappyShopFavrite>
+    with TickerProviderStateMixin {
   ScrollController controller = new ScrollController();
   List tempList = [];
   String msg = noFav;
@@ -26,11 +27,36 @@ class _HappyShopFavriteState extends State<HappyShopFavrite> with TickerProvider
   int total = 0;
   bool isLoadingmore = true;
   List favList = [
-    {'img': "https://smartkit.wrteam.in/smartkit/images/Nikereak4.jpg", 'name': "Nike", 'cartCount': "1", 'descprice': "2500", 'price': "3500", 'rating': "4.5", 'noOfRating': "90"},
-    {'img': "https://smartkit.wrteam.in/smartkit/images/1573810839.322.jpeg", 'name': "Bag", 'cartCount': "1", 'descprice': "1000", 'price': "1200", 'rating': "2.5", 'noOfRating': "50"},
-    {'img': "https://smartkit.wrteam.in/smartkit/images/Nikereak3.jpg", 'name': "Puma Shoes", 'cartCount': "1", 'descprice': "1300", 'price': "1400", 'rating': "3.5", 'noOfRating': "45"},
     {
-      'img': "https://smartkit.wrteam.in/smartkit/images/Plus-Size-52-Classic-Black-Men-s-Footwear-Comfortable-Ultra-Light-Shoes-Men-Shoes-No-Yeezie.jpg_640x640.jpg",
+      'img': "https://smartkit.wrteam.in/smartkit/images/Nikereak4.jpg",
+      'name': "Nike",
+      'cartCount': "1",
+      'descprice': "2500",
+      'price': "3500",
+      'rating': "4.5",
+      'noOfRating': "90"
+    },
+    {
+      'img': "https://smartkit.wrteam.in/smartkit/images/1573810839.322.jpeg",
+      'name': "Bag",
+      'cartCount': "1",
+      'descprice': "1000",
+      'price': "1200",
+      'rating': "2.5",
+      'noOfRating': "50"
+    },
+    {
+      'img': "https://smartkit.wrteam.in/smartkit/images/Nikereak3.jpg",
+      'name': "Puma Shoes",
+      'cartCount': "1",
+      'descprice': "1300",
+      'price': "1400",
+      'rating': "3.5",
+      'noOfRating': "45"
+    },
+    {
+      'img':
+          "https://smartkit.wrteam.in/smartkit/images/Plus-Size-52-Classic-Black-Men-s-Footwear-Comfortable-Ultra-Light-Shoes-Men-Shoes-No-Yeezie.jpg_640x640.jpg",
       'name': "NIkeShoes",
       'cartCount': "1",
       'descprice': "1700",
@@ -38,12 +64,45 @@ class _HappyShopFavriteState extends State<HappyShopFavrite> with TickerProvider
       'rating': "4.5",
       'noOfRating': "150"
     },
-    {'img': "https://smartkit.wrteam.in/smartkit/images/goggle2.jpg", 'name': "Bag", 'cartCount': "1", 'descprice': "", 'price': "2200", 'rating': "2.5", 'noOfRating': "10"},
-    {'img': "https://smartkit.wrteam.in/smartkit/images/Nikereak4.jpg", 'name': "Nike", 'cartCount': "1", 'descprice': "2500", 'price': "3500", 'rating': "4.5", 'noOfRating': "90"},
-    {'img': "https://smartkit.wrteam.in/smartkit/images/1573810839.322.jpeg", 'name': "Bag", 'cartCount': "1", 'descprice': "1000", 'price': "1200", 'rating': "2.5", 'noOfRating': "50"},
-    {'img': "https://smartkit.wrteam.in/smartkit/images/Nikereak3.jpg", 'name': "Puma Shoes", 'cartCount': "1", 'descprice': "1300", 'price': "1400", 'rating': "3.5", 'noOfRating': "45"},
     {
-      'img': "https://smartkit.wrteam.in/smartkit/images/Plus-Size-52-Classic-Black-Men-s-Footwear-Comfortable-Ultra-Light-Shoes-Men-Shoes-No-Yeezie.jpg_640x640.jpg",
+      'img': "https://smartkit.wrteam.in/smartkit/images/goggle2.jpg",
+      'name': "Bag",
+      'cartCount': "1",
+      'descprice': "",
+      'price': "2200",
+      'rating': "2.5",
+      'noOfRating': "10"
+    },
+    {
+      'img': "https://smartkit.wrteam.in/smartkit/images/Nikereak4.jpg",
+      'name': "Nike",
+      'cartCount': "1",
+      'descprice': "2500",
+      'price': "3500",
+      'rating': "4.5",
+      'noOfRating': "90"
+    },
+    {
+      'img': "https://smartkit.wrteam.in/smartkit/images/1573810839.322.jpeg",
+      'name': "Bag",
+      'cartCount': "1",
+      'descprice': "1000",
+      'price': "1200",
+      'rating': "2.5",
+      'noOfRating': "50"
+    },
+    {
+      'img': "https://smartkit.wrteam.in/smartkit/images/Nikereak3.jpg",
+      'name': "Puma Shoes",
+      'cartCount': "1",
+      'descprice': "1300",
+      'price': "1400",
+      'rating': "3.5",
+      'noOfRating': "45"
+    },
+    {
+      'img':
+          "https://smartkit.wrteam.in/smartkit/images/Plus-Size-52-Classic-Black-Men-s-Footwear-Comfortable-Ultra-Light-Shoes-Men-Shoes-No-Yeezie.jpg_640x640.jpg",
       'name': "NIkeShoes",
       'cartCount': "1",
       'descprice': "1700",
@@ -51,12 +110,45 @@ class _HappyShopFavriteState extends State<HappyShopFavrite> with TickerProvider
       'rating': "4.5",
       'noOfRating': "150"
     },
-    {'img': "https://smartkit.wrteam.in/smartkit/images/goggle2.jpg", 'name': "Bag", 'cartCount': "1", 'descprice': "", 'price': "2200", 'rating': "2.5", 'noOfRating': "10"},
-    {'img': "https://smartkit.wrteam.in/smartkit/images/Nikereak4.jpg", 'name': "Nike", 'cartCount': "1", 'descprice': "2500", 'price': "3500", 'rating': "4.5", 'noOfRating': "90"},
-    {'img': "https://smartkit.wrteam.in/smartkit/images/1573810839.322.jpeg", 'name': "Bag", 'cartCount': "1", 'descprice': "1000", 'price': "1200", 'rating': "2.5", 'noOfRating': "50"},
-    {'img': "https://smartkit.wrteam.in/smartkit/images/Nikereak3.jpg", 'name': "Puma Shoes", 'cartCount': "1", 'descprice': "1300", 'price': "1400", 'rating': "3.5", 'noOfRating': "45"},
     {
-      'img': "https://smartkit.wrteam.in/smartkit/images/Plus-Size-52-Classic-Black-Men-s-Footwear-Comfortable-Ultra-Light-Shoes-Men-Shoes-No-Yeezie.jpg_640x640.jpg",
+      'img': "https://smartkit.wrteam.in/smartkit/images/goggle2.jpg",
+      'name': "Bag",
+      'cartCount': "1",
+      'descprice': "",
+      'price': "2200",
+      'rating': "2.5",
+      'noOfRating': "10"
+    },
+    {
+      'img': "https://smartkit.wrteam.in/smartkit/images/Nikereak4.jpg",
+      'name': "Nike",
+      'cartCount': "1",
+      'descprice': "2500",
+      'price': "3500",
+      'rating': "4.5",
+      'noOfRating': "90"
+    },
+    {
+      'img': "https://smartkit.wrteam.in/smartkit/images/1573810839.322.jpeg",
+      'name': "Bag",
+      'cartCount': "1",
+      'descprice': "1000",
+      'price': "1200",
+      'rating': "2.5",
+      'noOfRating': "50"
+    },
+    {
+      'img': "https://smartkit.wrteam.in/smartkit/images/Nikereak3.jpg",
+      'name': "Puma Shoes",
+      'cartCount': "1",
+      'descprice': "1300",
+      'price': "1400",
+      'rating': "3.5",
+      'noOfRating': "45"
+    },
+    {
+      'img':
+          "https://smartkit.wrteam.in/smartkit/images/Plus-Size-52-Classic-Black-Men-s-Footwear-Comfortable-Ultra-Light-Shoes-Men-Shoes-No-Yeezie.jpg_640x640.jpg",
       'name': "NIkeShoes",
       'cartCount': "1",
       'descprice': "1700",
@@ -64,7 +156,15 @@ class _HappyShopFavriteState extends State<HappyShopFavrite> with TickerProvider
       'rating': "4.5",
       'noOfRating': "150"
     },
-    {'img': "https://smartkit.wrteam.in/smartkit/images/goggle2.jpg", 'name': "Bag", 'cartCount': "1", 'descprice': "", 'price': "2200", 'rating': "2.5", 'noOfRating': "10"},
+    {
+      'img': "https://smartkit.wrteam.in/smartkit/images/goggle2.jpg",
+      'name': "Bag",
+      'cartCount': "1",
+      'descprice': "",
+      'price': "2200",
+      'rating': "2.5",
+      'noOfRating': "10"
+    },
   ];
 
   @override
@@ -74,7 +174,8 @@ class _HappyShopFavriteState extends State<HappyShopFavrite> with TickerProvider
     offset = 0;
     total = 0;
 
-    buttonController = new AnimationController(duration: new Duration(milliseconds: 2000), vsync: this);
+    buttonController = new AnimationController(
+        duration: new Duration(milliseconds: 2000), vsync: this);
 
     buttonSqueezeanimation = new Tween(
       begin: deviceWidth * 0.7,
@@ -107,7 +208,8 @@ class _HappyShopFavriteState extends State<HappyShopFavrite> with TickerProvider
               itemCount: favList.length,
               physics: BouncingScrollPhysics(),
               itemBuilder: (context, index) {
-                print("load more****$offset***$total***${favList.length}***$isLoadingmore**$index");
+                print(
+                    "load more****$offset***$total***${favList.length}***$isLoadingmore**$index");
                 return listItem(index);
               },
             ),
@@ -155,7 +257,10 @@ class _HappyShopFavriteState extends State<HappyShopFavrite> with TickerProvider
                             padding: const EdgeInsets.only(top: 5.0),
                             child: Text(
                               favList[index]['name'],
-                              style: Theme.of(context).textTheme.subtitle1!.copyWith(color: Colors.black),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .subtitle1!
+                                  .copyWith(color: Colors.black),
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -163,7 +268,8 @@ class _HappyShopFavriteState extends State<HappyShopFavrite> with TickerProvider
                         ),
                         InkWell(
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 8.0, right: 8, bottom: 8),
+                            padding: const EdgeInsets.only(
+                                left: 8.0, right: 8, bottom: 8),
                             child: Icon(
                               Icons.close,
                               size: 13,
@@ -203,13 +309,17 @@ class _HappyShopFavriteState extends State<HappyShopFavrite> with TickerProvider
                           children: <Widget>[
                             InkWell(
                               child: Container(
-                                margin: EdgeInsets.only(right: 8, top: 8, bottom: 8),
+                                margin: EdgeInsets.only(
+                                    right: 8, top: 8, bottom: 8),
                                 child: Icon(
                                   Icons.remove,
                                   size: 12,
                                   color: Colors.grey,
                                 ),
-                                decoration: BoxDecoration(border: Border.all(color: Colors.grey), borderRadius: BorderRadius.all(Radius.circular(5))),
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.grey),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5))),
                               ),
                               onTap: () {},
                             ),
@@ -225,7 +335,10 @@ class _HappyShopFavriteState extends State<HappyShopFavrite> with TickerProvider
                                   size: 12,
                                   color: Colors.grey,
                                 ),
-                                decoration: BoxDecoration(border: Border.all(color: Colors.grey), borderRadius: BorderRadius.all(Radius.circular(5))),
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.grey),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5))),
                               ),
                               onTap: () {},
                             )
@@ -236,9 +349,15 @@ class _HappyShopFavriteState extends State<HappyShopFavrite> with TickerProvider
                           children: <Widget>[
                             Text(
                               favList[index]['descprice'],
-                              style: Theme.of(context).textTheme.overline!.copyWith(decoration: TextDecoration.lineThrough, letterSpacing: 0.7),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .overline!
+                                  .copyWith(
+                                      decoration: TextDecoration.lineThrough,
+                                      letterSpacing: 0.7),
                             ),
-                            Text(favList[index]['price'], style: Theme.of(context).textTheme.headline6),
+                            Text(favList[index]['price'],
+                                style: Theme.of(context).textTheme.headline6),
                           ],
                         )
                       ],
@@ -251,15 +370,14 @@ class _HappyShopFavriteState extends State<HappyShopFavrite> with TickerProvider
         ),
         splashColor: primary.withOpacity(0.2),
         onTap: () {
-          Navigator.push(
-            context,
-            PageRouteBuilder(
-                transitionDuration: Duration(seconds: 1),
-                pageBuilder: (_, __, ___) => HappyShopProductDetail(
-                      imgurl: favList[index]['img'],
-                      tag: "${favList[index]}1",
-                    )),
-          );
+          // Navigator.push(
+          //   context,
+          //   PageRouteBuilder(
+          //       transitionDuration: Duration(seconds: 1),
+          //       pageBuilder: (_, __, ___) => HappyShopProductDetail(
+          //             productId: 1,
+          //           )),
+          // );
         },
       ),
     );
