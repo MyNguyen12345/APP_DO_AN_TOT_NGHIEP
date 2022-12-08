@@ -275,16 +275,21 @@ class HappyShopHomeTab extends GetView<ProductController> {
   final _controller = PageController();
   final ProductController productController = Get.put(ProductController());
   final CategoryController categoryController = Get.put(CategoryController());
-    final storage = const FlutterSecureStorage();
-
+  final storage = const FlutterSecureStorage();
 
   Animation? buttonSqueezeanimation;
   late AnimationController buttonController;
   // ProductModel? productmodel;
   // var productList = <ProductModel>[].obs;
 
+  Future<void> listProduct() async {
+    var phone = await storage.read(key: 'phone');
+    await productController.fetchList(int.parse(phone!));
+  }
+
   @override
   Widget build(BuildContext context) {
+    listProduct();
     return WillPopScope(
       onWillPop: () {
         return Navigator.of(context)
@@ -341,12 +346,26 @@ class HappyShopHomeTab extends GetView<ProductController> {
                         ],
                       ),
                     ),
+                    Container(
+                      width: 360,
+                      height: 40,
+                      child: TextField(
+                        decoration: InputDecoration(
+                            prefixIcon: Icon(
+                              Icons.search,
+                              size: 15,
+                            ),
+                            border: OutlineInputBorder(),
+                            hintText: 'Search Tech Talk',
+                            hintStyle: TextStyle(fontSize: 10)),
+                      ),
+                    ),
 
                     Container(
-                      height: 100,
+                      height: 150,
                       child: controller.obx(
                         (state) => ListView.builder(
-                          itemCount: categoryController.state!.length,
+                          itemCount: categoryController.state?.length,
                           scrollDirection: Axis.horizontal,
                           shrinkWrap: true,
                           physics: BouncingScrollPhysics(),
@@ -362,33 +381,49 @@ class HappyShopHomeTab extends GetView<ProductController> {
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 5.0),
                                       child: new ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(25.0),
-                                        child: new CachedNetworkImage(
-                                          imageUrl:
-                                              "https://smartkit.wrteam.in/smartkit/happyshop/cat_1.png",
-                                          // " https://datn123.herokuapp.com/"+categoryController.state![index].categoryIcon,
-                                          height: 50.0,
-                                          width: 50.0,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
+                                          borderRadius:
+                                              BorderRadius.circular(25.0),
+                                          child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                              child: CachedNetworkImage(
+                                                imageUrl:
+                                                    "https://happyshop1233.herokuapp.com/" +
+                                                        categoryController
+                                                            .state![index]
+                                                            .categoryIcon,
+                                                fit: BoxFit.fill,
+                                                width: 50,
+                                                height: 50,
+                                              ))
+                                          //  new CachedNetworkImage(
+                                          //   imageUrl:
+                                          //       "https://smartkit.wrteam.in/smartkit/happyshop/cat_1.png",
+                                          //   // " https://datn123.herokuapp.com/"+categoryController.state![index].categoryIcon,
+                                          //   height: 50.0,
+                                          //   width: 50.0,
+                                          //   fit: BoxFit.cover,
+                                          // ),
+                                          ),
                                     ),
                                     Container(
                                       child: Text(
                                         categoryController
                                             .state![index].categoryName,
                                         textAlign: TextAlign.center,
-                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(fontSize: 15),
+                                        // overflow: TextOverflow.ellipsis,
                                       ),
-                                      width: 50,
+                                      width: 65,
                                     ),
                                   ],
                                 ),
                               ),
                               onTap: () {
-                                Get.to(() => HappyShopStaggeredList(categoryModel: categoryController.state![index],));
-
+                                Get.to(() => HappyShopStaggeredList(
+                                      categoryModel:
+                                          categoryController.state![index],
+                                    ));
                               },
                             );
                           },
@@ -422,12 +457,15 @@ class HappyShopHomeTab extends GetView<ProductController> {
                                       ),
                                     ),
                                     child: ItemCard(
+                                      voucher:
+                                          state![index].priceDeposit.toInt(),
+                                      status: state[index].productStatus,
                                       imagurl:
-                                          "https://datn123.herokuapp.com/" +
-                                              state![index].avatar,
+                                          "https://happyshop1233.herokuapp.com/" +
+                                              state[index].avatar,
                                       itemname: state[index].productName,
                                       price: state[index].priceProduct,
-                                      rating: state[index].amountProduct,
+                                      rating: state[index].rating,
                                       shadow: false,
                                     ),
                                   );
@@ -608,138 +646,6 @@ class HappyShopHomeTab extends GetView<ProductController> {
   }
 }
 
-// class ItemCardSmall extends StatelessWidget {
-//   const ItemCardSmall({
-//     Key? key,
-//     this.imagurl,
-//     this.rating,
-//     this.itemname,
-//     this.descprice,
-//     this.price,
-//     this.shadow,
-//   }) : super(key: key);
-//   final String? imagurl, rating, itemname, descprice, price;
-//   final bool? shadow;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       decoration: BoxDecoration(
-//         boxShadow: [BoxShadow(color: happyshopcolor5, blurRadius: 10)],
-//       ),
-//       child: Card(
-//         elevation: 0.0,
-//         child: InkWell(
-//           child: Container(
-//             height: MediaQuery.of(context).size.height * 0.2,
-//             child: Column(
-//               mainAxisSize: MainAxisSize.min,
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               children: <Widget>[
-//                 Expanded(
-//                   child: Stack(
-//                     alignment: Alignment.topRight,
-//                     children: [
-//                       Padding(
-//                         padding: const EdgeInsets.only(top: 0.0),
-//                         child: ClipRRect(
-//                           borderRadius: BorderRadius.only(
-//                               topLeft: Radius.circular(5),
-//                               topRight: Radius.circular(5)),
-//                           child: CachedNetworkImage(
-//                             imageUrl: imagurl!,
-//                             width: double.infinity,
-//                             fit: BoxFit.fill,
-//                           ),
-//                         ),
-//                       ),
-//                       Card(
-//                         child: Padding(
-//                           padding: const EdgeInsets.all(1.5),
-//                           child: Row(
-//                             mainAxisSize: MainAxisSize.min,
-//                             children: [
-//                               Icon(
-//                                 Icons.star,
-//                                 color: Colors.yellow,
-//                                 size: 10,
-//                               ),
-//                               Text(
-//                                 rating!,
-//                                 style: Theme.of(context)
-//                                     .textTheme
-//                                     .overline!
-//                                     .copyWith(letterSpacing: 0.2),
-//                               ),
-//                             ],
-//                           ),
-//                         ),
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//                 Padding(
-//                   padding: const EdgeInsets.all(5.0),
-//                   child: Text(
-//                     itemname!,
-//                     style: Theme.of(context).textTheme.overline!.copyWith(
-//                         color: Colors.black,
-//                         fontSize: 16.0,
-//                         letterSpacing: 0.5),
-//                     maxLines: 1,
-//                     overflow: TextOverflow.ellipsis,
-//                   ),
-//                 ),
-//                 Padding(
-//                   padding: const EdgeInsets.only(bottom: 5, left: 5),
-//                   child: Row(
-//                     children: [
-//                       Expanded(
-//                         child: Column(
-//                           mainAxisSize: MainAxisSize.min,
-//                           crossAxisAlignment: CrossAxisAlignment.start,
-//                           mainAxisAlignment: MainAxisAlignment.start,
-//                           children: <Widget>[
-//                             Text(CUR_CURRENCY + "" + descprice!,
-//                                 style: Theme.of(context)
-//                                     .textTheme
-//                                     .overline!
-//                                     .copyWith(
-//                                         decoration: TextDecoration.lineThrough,
-//                                         letterSpacing: 1),
-//                                 textAlign: TextAlign.left),
-//                             Text(
-//                               CUR_CURRENCY + " " + price!,
-//                               style: TextStyle(color: primary),
-//                               textAlign: TextAlign.left,
-//                             ),
-//                           ],
-//                         ),
-//                       ),
-//                       InkWell(
-//                           child: Padding(
-//                             padding: const EdgeInsets.symmetric(
-//                                 horizontal: 8.0, vertical: 3),
-//                             child: Icon(
-//                               Icons.favorite,
-//                               size: 15,
-//                               color: primary,
-//                             ),
-//                           ),
-//                           onTap: () {})
-//                     ],
-//                   ),
-//                 )
-//               ],
-//             ),
-//           ),
-//           onTap: () {},
-//         ),
-//       ),
-//     );
-//   }
-// }
-
 class ItemCard extends StatefulWidget {
   const ItemCard({
     Key? key,
@@ -748,12 +654,16 @@ class ItemCard extends StatefulWidget {
     this.itemname,
     this.price,
     this.shadow,
+    this.status,
+    this.voucher,
   }) : super(key: key);
 
   final String? imagurl, itemname;
   final bool? shadow;
-  final int? rating;
+  final double? rating;
   final double? price;
+  final String? status;
+  final int? voucher;
 
   @override
   _ItemCardState createState() => _ItemCardState();
@@ -814,11 +724,64 @@ class _ItemCardState extends State<ItemCard> {
                   ],
                 ),
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.width / 60,
+              // SizedBox(
+              //   height: MediaQuery.of(context).size.width / 60,
+              // ),
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Expanded(
+                          flex: 5,
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 255, 15, 7),
+                                borderRadius: BorderRadius.circular(20)),
+                            child: Text(
+                              widget.status!.toString(),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .overline!
+                                  .copyWith(
+                                      color: Color.fromARGB(255, 255, 255, 255),
+                                      fontSize: 16.0,
+                                      letterSpacing: 0.5),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 50),
+                        Expanded(
+                          flex: 2,
+                          child: Text(
+                            widget.voucher!.toString() + '%',
+                            style: Theme.of(context)
+                                .textTheme
+                                .overline!
+                                .copyWith(
+                                    color: Color.fromARGB(255, 250, 51, 20),
+                                    fontSize: 16.0,
+                                    letterSpacing: 0.5,
+                                    fontWeight: FontWeight.bold),
+
+                            maxLines: 1,
+
+                            // overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
+
               Padding(
-                padding: const EdgeInsets.all(0.0),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[

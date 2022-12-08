@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       //   Get.put(ProductModelProvider());
       //   Get.put(ProductController());
       // }),
-        initialBinding: BindingsBuilder(() {
+      initialBinding: BindingsBuilder(() {
         Get.put(LoginProvider());
         Get.put(LoginController());
       }),

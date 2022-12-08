@@ -1,27 +1,25 @@
 import 'package:get/get.dart';
 import 'package:smartkit/Constant/api_url_constant.dart';
+import 'package:smartkit/models/pay_model.dart';
 // import 'package:smartkit/models/product_detail_model.dart';
 import 'package:smartkit/widget/Image_Slider.dart';
 
+import '../models/product_detail_model.dart';
 import '../models/product_model.dart';
 // import 'package:smartkit/models/product_model.dart';
 
 // import '../api_service/api_service.dart';
 
-class ProductModelProvider extends GetConnect {
+class PayProvider extends GetConnect {
   @override
   void onInit() {
     super.onInit();
-    httpClient.defaultDecoder = (map) => ProductModel.fromJson(map);
+    httpClient.defaultDecoder = (list) => List<PayModel>.from(list.map((x) => PayModel.fromJson(x)));
     httpClient.baseUrl = APIADDRESS;
   }
 
-  Future<Response<List<ProductModel>>> getProductsModel(int phone) async {
-    return await get('product/phone/$phone');
-  }
+  Future<Response<List<PayModel>>> getListPay() async {
    
-    Future<Response<List<ProductModel>>> getProductsCategory(int categoryDetailId) async {
-    return await get('product/list/cate?cateDetailId=$categoryDetailId');
+    return await get('pay');
   }
-
 }

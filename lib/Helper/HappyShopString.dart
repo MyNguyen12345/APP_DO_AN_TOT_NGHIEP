@@ -149,7 +149,8 @@ const String ACTIVE_STATUS = 'active_status';
 const String WAITING = 'awaiting';
 
 final String internetMsg = 'Check Internet Connection';
-final String somethingMSg = 'Something went wrong. Please try again after some time';
+final String somethingMSg =
+    'Something went wrong. Please try again after some time';
 final String profileCom = 'Please complete your profile to place the order';
 
 final String category = 'Categories';
@@ -189,9 +190,12 @@ const String BUYNOW = 'Buy Now';
 const String TITLE1_LBL = 'Search Items';
 const String TITLE2_LBL = 'Order it';
 const String TITLE3_LBL = 'You Got it';
-const String DISCRIPTION1 = 'Lorem ipsum dolor sit amet,venenatis sollicitudin, mi odio libero.Nulla phasellus mauris.';
-const String DISCRIPTION2 = 'Lorem ipsum dolor sit amet,venenatis sollicitudin, mi odio libero.Nulla phasellus mauris.';
-const String DISCRIPTION3 = 'Lorem ipsum dolor sit amet,venenatis sollicitudin, mi odio libero.Nulla phasellus mauris.';
+const String DISCRIPTION1 =
+    'Lorem ipsum dolor sit amet,venenatis sollicitudin, mi odio libero.Nulla phasellus mauris.';
+const String DISCRIPTION2 =
+    'Lorem ipsum dolor sit amet,venenatis sollicitudin, mi odio libero.Nulla phasellus mauris.';
+const String DISCRIPTION3 =
+    'Lorem ipsum dolor sit amet,venenatis sollicitudin, mi odio libero.Nulla phasellus mauris.';
 const String GET_STARTED = 'Get Started';
 const String WELCOME_HappyShop = 'Welcome to HappyShop';
 const String ECOMMERCE_APP_FOR_ALL_BUSINESS = 'Buy and sell goods online';
@@ -277,7 +281,7 @@ const String PAYUMONEY_LBL = 'PayUMoney';
 const String RAZORPAY_LBL = 'RazorPay';
 const String PAYSTACK_LBL = 'Paystack';
 const String FLUTTERWAVE_LBL = 'Flutterwave';
-const String PROCEED = 'Proceed';
+const String PROCEED = 'Thanh toán';
 //const String TOTAL="Total";
 const String CONFIRM_ORDER = 'Confirm Order';
 const String CONFIRM = 'Confirm';
@@ -311,10 +315,12 @@ const String RETURN_ORDER = 'Return Order';
 const String ORDER_CNCLE_SUCC = 'Order Cancled Successfully..!!';
 
 const String NO_CART = 'Your Cart Is Empty';
-const String CART_DESC = "Looking like you haven't added anything to your cart yet";
+const String CART_DESC =
+    "Looking like you haven't added anything to your cart yet";
 
 const String NO_INTERNET = "No Internet";
-const String NO_INTERNET_DISC = "Please check your connection again, or connect to Wi-Fi";
+const String NO_INTERNET_DISC =
+    "Please check your connection again, or connect to Wi-Fi";
 const String TRY_AGAIN_INT_LBL = "Try Again";
 const String SHOP_NOW = 'Shop Now';
 const String OUT_OF_STOCK_LBL = "Out Of Stock";

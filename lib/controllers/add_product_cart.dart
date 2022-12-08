@@ -26,12 +26,14 @@ class GetProductCartController extends GetxController
     with StateMixin<List<CartModel>> {
   final provider = Get.put(ListProductCartProvider());
 
-  Future<void> listCart(int userId) async {
+  Future<bool> listCart(int userId) async {
     final Response res = await provider.listcart(userId);
     if (res.hasError) {
       change(null, status: RxStatus.error(res.statusText));
+      return false;
     } else {
       change(res.body, status: RxStatus.success());
+      return true;
     }
   }
 }

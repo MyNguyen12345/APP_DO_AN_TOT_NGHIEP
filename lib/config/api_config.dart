@@ -1,4 +1,4 @@
 class Config {
-  static String apiUrl = "https://datn123.herokuapp.com/";
+  static String apiUrl = "https://happyshop1233.herokuapp.com/";
   static String productUrl = "product";
 }

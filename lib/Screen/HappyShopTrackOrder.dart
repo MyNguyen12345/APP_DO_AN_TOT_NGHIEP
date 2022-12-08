@@ -118,7 +118,8 @@ class _HappyShopTreackOrderState extends State<HappyShopTreackOrder> with Ticker
                                 context,
                                 MaterialPageRoute(builder: (context) => HappyShopOrderDetails()),
                               );
-                            })
+                            }
+                            )
                       ],
                     ),
                     Divider(),

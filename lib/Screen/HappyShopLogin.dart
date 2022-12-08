@@ -211,11 +211,13 @@ class _HappyShopLoginState extends State<HappyShopLogin>
   Future<void> validatanmation() async {
     await buttonController!.reverse();
     var bool = loginController.login(int.parse(phone), password1);
-    userController.fetchUser(int.parse(phone));
+     await userController.fetchUser(int.parse(phone));
     if (await bool) {
       await storage.write(key: 'token', value: loginController.state!.token);
       await storage.write(
           key: 'userId', value: userController.state!.userId.toString());
+      await storage.write(
+          key: 'phone', value: phone.toString());
       Get.to(HappyShopHome());
     }
   }
@@ -344,11 +346,11 @@ class _HappyShopLoginState extends State<HappyShopLogin>
         keyboardType: TextInputType.number,
         controller: mobileController,
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-        onSaved: (String? value) {
-          mobileUser = value;
-          mobile = mobileUser;
-          print('Mobile no:$mobile');
-        },
+        // onSaved: (String? value) {
+        //   mobileUser = value;
+        //   mobile = mobileUser;
+        //   print('Mobile no:$mobile');
+        // },
         decoration: InputDecoration(
             prefixIcon: Icon(
               Icons.call_outlined,

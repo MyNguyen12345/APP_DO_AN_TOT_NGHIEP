@@ -7,20 +7,22 @@ import '../provider/product_model_provider.dart';
 class ProductController extends GetxController
     with StateMixin<List<ProductModel>> {
   final provider = Get.put(ProductModelProvider());
-  void fetchList() async {
-    final Response res = await provider.getProductsModel();
+  Future<bool> fetchList(int phone) async {
+    final Response res = await provider.getProductsModel(phone);
     if (res.hasError) {
       change(null, status: RxStatus.error(res.statusText));
+      return false;
     } else {
       change(res.body, status: RxStatus.success());
+      return true;
     }
   }
 
-  @override
-  void onInit() {
-    fetchList();
-    super.onInit();
-  }
+  // @override
+  // void onInit() {
+  //   fetchList();
+  //   super.onInit();
+  // }
 }
 
 class ProductCategoryController extends GetxController

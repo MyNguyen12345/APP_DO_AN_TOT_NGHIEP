@@ -102,8 +102,9 @@ class HappyShopCatogeryAll extends GetView<CategoryController> {
                 borderRadius: BorderRadius.circular(25.0),
                 child: CachedNetworkImage(
                   imageUrl:
-                      "https://smartkit.wrteam.in/smartkit/happyshop/cat_1.png",
-                  // "https://datn123.herokuapp.com/"+categoryController.state![index].categoryIcon,
+                      // "https://smartkit.wrteam.in/smartkit/happyshop/cat_1.png",
+                      "https://happyshop1233.herokuapp.com/" +
+                          categoryController.state![index].categoryIcon,
                   height: 50,
                   width: 50,
                   fit: BoxFit.fill,
@@ -124,7 +125,9 @@ class HappyShopCatogeryAll extends GetView<CategoryController> {
           ],
         ),
         onTap: () {
-          Get.to(() => HappyShopStaggeredList(categoryModel: categoryController.state![index],));
+          Get.to(() => HappyShopStaggeredList(
+                categoryModel: categoryController.state![index],
+              ));
         });
   }
 }

@@ -294,11 +294,13 @@ class HappyShopStaggeredList extends GetView<ProductCategoryController> {
             child: Column(
               children: [
                 Container(
-                  width: double.infinity,
-                  margin: EdgeInsets.only(
-                      bottom: 0, top: kToolbarHeight * 1.4, right: 0, left: 0),
-                  // child: CarouselWithIndicator()
-                ),
+                    width: double.infinity,
+                    // margin: EdgeInsets.only(
+                    //     bottom: 0,
+                    //     top: kToolbarHeight * 1.4,
+                    //     right: 0,
+                    //     left: 0),
+                    child: CarouselWithIndicator()),
                 Column(
                   children: [
                     // category //
@@ -348,14 +350,40 @@ class HappyShopStaggeredList extends GetView<ProductCategoryController> {
                                       child: new ClipRRect(
                                         borderRadius:
                                             BorderRadius.circular(25.0),
-                                        child: new CachedNetworkImage(
-                                          imageUrl:
-                                              "https://smartkit.wrteam.in/smartkit/happyshop/cat_1.png",
-                                          // " https://datn123.herokuapp.com/"+categoryController.state![index].categoryIcon,
-                                          height: 50.0,
-                                          width: 50.0,
-                                          fit: BoxFit.cover,
-                                        ),
+                                        child: new ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(25.0),
+                                            child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                child: CachedNetworkImage(
+                                                  imageUrl:
+                                                      "https://happyshop1233.herokuapp.com/" +
+                                                          categoryModel!
+                                                              .categoryDetail[
+                                                                  index]
+                                                              .categoryDetailIcon,
+                                                  fit: BoxFit.fill,
+                                                  width: 50,
+                                                  height: 50,
+                                                ))
+                                            //  new CachedNetworkImage(
+                                            //   imageUrl:
+                                            //       "https://smartkit.wrteam.in/smartkit/happyshop/cat_1.png",
+                                            //   // " https://datn123.herokuapp.com/"+categoryController.state![index].categoryIcon,
+                                            //   height: 50.0,
+                                            //   width: 50.0,
+                                            //   fit: BoxFit.cover,
+                                            // ),
+                                            ),
+                                        // new CachedNetworkImage(
+                                        //   imageUrl:
+                                        //       "https://smartkit.wrteam.in/smartkit/happyshop/cat_1.png",
+                                        //   // " https://datn123.herokuapp.com/"+categoryController.state![index].categoryIcon,
+                                        //   height: 50.0,
+                                        //   width: 50.0,
+                                        //   fit: BoxFit.cover,
+                                        // ),
                                       ),
                                     ),
                                     Container(
@@ -387,46 +415,44 @@ class HappyShopStaggeredList extends GetView<ProductCategoryController> {
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
                       child: ScreenTypeLayout(
                         mobile: Container(
-                            //                   controller.obx(
-                            // (state) => ListView.separated(
-                            child: 
-                            // Obx(() =>
-                            controller.obx((state) => GridView.count(
-                              padding: EdgeInsets.only(top: 5),
-                              crossAxisCount: 2,
-                              shrinkWrap: true,
-                              childAspectRatio: 0.7,
-                              physics: NeverScrollableScrollPhysics(),
-                              children: List.generate(
-                                productCategoryController.state!.length,
-                                (index) {
-                                  return InkWell(
-                                    onTap: () => Get.to(
-                                      HappyShopProductDetail(
-                                        productModel: productCategoryController
-                                            .state![index],
-                                      ),
-                                    ),
-                                    child: ItemCard(
-                                      imagurl:
-                                          "https://datn123.herokuapp.com/" +
-                                              productCategoryController
-                                                  .state![index].avatar,
-                                      itemname: productCategoryController
-                                          .state![index].productName,
-                                      price: productCategoryController
-                                          .state![index].priceProduct,
-                                      rating: productCategoryController
-                                          .state![index].amountProduct,
-                                      shadow: false,
-                                    ),
-                                  );
-                                },
-                              )
-                              ))
-                            
-                           ,
-                        // )
+                          //                   controller.obx(
+                          // (state) => ListView.separated(
+                          child:
+                              // Obx(() =>
+                              controller.obx((state) => GridView.count(
+                                  padding: EdgeInsets.only(top: 5),
+                                  crossAxisCount: 2,
+                                  shrinkWrap: true,
+                                  childAspectRatio: 0.7,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  children: List.generate(
+                                    productCategoryController.state!.length,
+                                    (index) {
+                                      return InkWell(
+                                        onTap: () => Get.to(
+                                          HappyShopProductDetail(
+                                            productModel:
+                                                productCategoryController
+                                                    .state![index],
+                                          ),
+                                        ),
+                                        child: ItemCard(
+                                          imagurl:
+                                              "https://happyshop1233.herokuapp.com/" +
+                                                  productCategoryController
+                                                      .state![index].avatar,
+                                          itemname: productCategoryController
+                                              .state![index].productName,
+                                          price: productCategoryController
+                                              .state![index].priceProduct,
+                                          rating: productCategoryController
+                                              .state![index].amountProduct,
+                                          shadow: false,
+                                        ),
+                                      );
+                                    },
+                                  ))),
+                          // )
                         ),
                       ),
                     ),
@@ -436,6 +462,9 @@ class HappyShopStaggeredList extends GetView<ProductCategoryController> {
               ],
             ),
           ),
+        ),
+        appBar: AppBar(
+          title: Text("All category details"),
         ),
       ),
     );
@@ -766,94 +795,94 @@ class _ItemCardState extends State<ItemCard> {
   }
 }
 
-// class CarouselWithIndicator extends StatefulWidget {
-//   @override
-//   _CarouselWithIndicatorState createState() => _CarouselWithIndicatorState();
-// }
+class CarouselWithIndicator extends StatefulWidget {
+  @override
+  _CarouselWithIndicatorState createState() => _CarouselWithIndicatorState();
+}
 
-// class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
-//   int _current = 0;
+class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
+  int _current = 0;
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(children: [
-//       CarouselSlider(
-//         items: child as List<Widget>?,
-//         options: CarouselOptions(
-//           autoPlay: true,
-//           enlargeCenterPage: false,
-//           viewportFraction: 1.0,
-//           aspectRatio: 2.0,
-//           onPageChanged: (index, reason) {
-//             setState(() {
-//               _current = index;
-//             });
-//           },
-//         ),
-//       ),
-//       Row(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         children: homeSliderList
-//             .map((item) => Container(
-//                   width: _current == homeSliderList.indexOf(item) ? 30.0 : 10.0,
-//                   height: 8.0,
-//                   margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-//                   decoration: BoxDecoration(
-//                       borderRadius: BorderRadius.circular(20),
-//                       color: _current == homeSliderList.indexOf(item)
-//                           ? primary
-//                           : Color.fromRGBO(0, 0, 0, 0.1)),
-//                 ))
-//             .toList(),
-//       )
-//     ]);
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: [
+      CarouselSlider(
+        items: child as List<Widget>?,
+        options: CarouselOptions(
+          autoPlay: true,
+          enlargeCenterPage: false,
+          viewportFraction: 1.0,
+          aspectRatio: 2.0,
+          onPageChanged: (index, reason) {
+            setState(() {
+              _current = index;
+            });
+          },
+        ),
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: homeSliderList
+            .map((item) => Container(
+                  width: _current == homeSliderList.indexOf(item) ? 30.0 : 10.0,
+                  height: 8.0,
+                  margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: _current == homeSliderList.indexOf(item)
+                          ? primary
+                          : Color.fromRGBO(0, 0, 0, 0.1)),
+                ))
+            .toList(),
+      )
+    ]);
+  }
+}
 
-// final List<Widget> child = homeSliderList.map((item) {
-//   return Container(
-//     margin: EdgeInsets.all(5.0),
-//     child: ClipRRect(
-//       borderRadius: BorderRadius.all(Radius.circular(5.0)),
-//       child: Stack(children: <Widget>[
-//         CachedNetworkImage(
-//           imageUrl: item["img"],
-//           fit: BoxFit.fill,
-//           width: 1000.0,
-//           height: double.infinity,
-//         ),
-//       ]),
-//     ),
-//   );
-// }
-//     /*},*/
-//     ).toList();
-// /*CachedNetworkImage(
-//             imageUrl: i,
-//             fit: BoxFit.fill,
-//             width: 1000.0,
-//             height: double.infinity,
-//           ),*/
-// List homeSliderList = [
-//   {
-//     "img": "https://smartkit.wrteam.in/smartkit/happyshop/slider_a.png",
-//   },
-//   {
-//     "img": "https://smartkit.wrteam.in/smartkit/happyshop/slider_b.png",
-//   },
-//   {
-//     "img": "https://smartkit.wrteam.in/smartkit/happyshop/slider_c.png",
-//   },
-//   {
-//     "img": "https://smartkit.wrteam.in/smartkit/happyshop/slider_d.png",
-//   },
-//   {
-//     "img": "https://smartkit.wrteam.in/smartkit/happyshop/slider_e.png",
-//   },
-//   {
-//     "img": "https://smartkit.wrteam.in/smartkit/happyshop/slider_f.png",
-//   },
-//   {
-//     "img": "https://smartkit.wrteam.in/smartkit/happyshop/slider_g.png",
-//   }
-// ];
+final List<Widget> child = homeSliderList.map((item) {
+  return Container(
+    margin: EdgeInsets.all(5.0),
+    child: ClipRRect(
+      borderRadius: BorderRadius.all(Radius.circular(5.0)),
+      child: Stack(children: <Widget>[
+        CachedNetworkImage(
+          imageUrl: item["img"],
+          fit: BoxFit.fill,
+          width: 1000.0,
+          height: double.infinity,
+        ),
+      ]),
+    ),
+  );
+}
+    /*},*/
+    ).toList();
+/*CachedNetworkImage(
+            imageUrl: i,
+            fit: BoxFit.fill,
+            width: 1000.0,
+            height: double.infinity,
+          ),*/
+List homeSliderList = [
+  {
+    "img": "https://smartkit.wrteam.in/smartkit/happyshop/slider_a.png",
+  },
+  {
+    "img": "https://smartkit.wrteam.in/smartkit/happyshop/slider_b.png",
+  },
+  {
+    "img": "https://smartkit.wrteam.in/smartkit/happyshop/slider_c.png",
+  },
+  {
+    "img": "https://smartkit.wrteam.in/smartkit/happyshop/slider_d.png",
+  },
+  {
+    "img": "https://smartkit.wrteam.in/smartkit/happyshop/slider_e.png",
+  },
+  {
+    "img": "https://smartkit.wrteam.in/smartkit/happyshop/slider_f.png",
+  },
+  {
+    "img": "https://smartkit.wrteam.in/smartkit/happyshop/slider_g.png",
+  }
+];

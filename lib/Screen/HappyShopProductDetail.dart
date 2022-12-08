@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -26,8 +27,28 @@ import 'dart:convert';
 
 class AddcouterprocutController extends GetxController {
   var count = 0.obs;
-  increment() => count++;
-  increment1() => count--;
+  RxInt cong(int amount) {
+    if (count >= amount) {
+      count.value = amount;
+      return count;
+    } else {
+      count = count + 1;
+      return count;
+    }
+  }
+
+  RxInt tru() {
+    if (count <= 0) {
+      count.value = 0;
+      return count;
+    } else {
+      count = count - 1;
+      return count;
+    }
+  }
+
+  // cong() => count++;
+  // tru() => count--;
   @override
   void onClose() {
     super.onClose();
@@ -53,7 +74,7 @@ class HappyShopProductDetail extends StatelessWidget {
     var userId = await storage.read(key: 'userId');
     print("productDetailId" + productModel.productId.toString());
     var bool = addProductCartController.addProduct(
-        int.parse(userId!), productModel.productId, 1);
+        int.parse(userId!), productModel.productId, addcouter.count.value);
     if (await bool) {
       Get.to(() => HappyShopCart());
     }
@@ -157,6 +178,7 @@ class HappyShopProductDetail extends StatelessWidget {
                                             : Container()
                                       ]),
                                       onTap: () async {
+                                        Get.to(HappyShopCart());
                                         // Navigator.push(
                                         //     context,
                                         //     MaterialPageRoute(
@@ -252,13 +274,13 @@ class HappyShopProductDetail extends StatelessWidget {
                   color: Colors.yellow,
                   size: 15,
                 ),
-                Text("")
+                Text(productModel.rating.toString())
               ],
             ),
           ),
         ),
         Text(
-          " " + "150" + " Ratings",
+          "/ " + productModel.userRating.toString() + " Ratings",
           // style: Theme.of(context).textTheme.caption,
         ),
         SizedBox(
@@ -266,15 +288,17 @@ class HappyShopProductDetail extends StatelessWidget {
         ),
         Container(
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10), color: Colors.yellow),
+              borderRadius: BorderRadius.circular(10),
+              color: Color.fromARGB(255, 239, 26, 7)),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
               productModel.productStatus,
-              style: TextStyle(color: Colors.red, fontSize: 15),
+              style: TextStyle(
+                  color: Color.fromARGB(255, 255, 255, 255), fontSize: 15),
             ),
           ),
-        )
+        ),
       ],
     );
   }
@@ -282,8 +306,27 @@ class HappyShopProductDetail extends StatelessWidget {
   _price() {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5),
-        child: Text(
-          CUR_CURRENCY + " " + productModel.priceProduct.toString(),
+        child: Row(
+          children: [
+            Text(
+              CUR_CURRENCY + " " + productModel.priceProduct.toString(),
+              style: TextStyle(color: Colors.pink, fontSize: 18),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Text(productModel.priceDeposit.toString() + '%',
+                style: TextStyle(
+                    color: Color.fromARGB(255, 250, 51, 20),
+                    fontSize: 16.0,
+                    letterSpacing: 0.5,
+                    fontWeight: FontWeight.bold)
+
+                // maxLines: 1,
+
+                // overflow: TextOverflow.ellipsis,
+                ),
+          ],
         )
         // productDetailController.productdetail[0].priceProduct.toString(),
         // style: Theme.of(context).textTheme.headline6),
@@ -291,10 +334,11 @@ class HappyShopProductDetail extends StatelessWidget {
   }
 
   _image() {
+    // return listimageproductdetail();
     return Container(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5),
         child: Image.network(
-          "https://datn123.herokuapp.com/" + productModel.avatar,
+          "https://happyshop1233.herokuapp.com/" + productModel.avatar,
         )
         // productDetailController.productdetail[0].priceProduct.toString(),
         // style: Theme.of(context).textTheme.headline6),
@@ -344,7 +388,7 @@ class HappyShopProductDetail extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(50))),
             ),
             onTap: () {
-              addcouter.increment1();
+              addcouter.tru();
             },
           ),
           SizedBox(
@@ -352,7 +396,10 @@ class HappyShopProductDetail extends StatelessWidget {
           ),
           Obx(() => Text(
                 addcouter.count.toString(),
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.pink),
               )),
           SizedBox(
             width: 20,
@@ -370,7 +417,7 @@ class HappyShopProductDetail extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(50))),
             ),
             onTap: () {
-              addcouter.increment();
+              addcouter.cong(productModel.amountProduct);
             },
           )
         ],
@@ -395,3 +442,79 @@ class HappyShopProductDetail extends StatelessWidget {
     ));
   }
 }
+
+// class listimageproductdetail extends StatelessWidget {
+//   listimageproductdetail({
+//     Key? key,
+//     required this.productModel,
+//   }) : super(key: key);
+//   final ProductModel productModel;
+//   List homeSliderList = [];
+//   int _current = 0;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     homeSliderList.add(productModel.avatar);
+//     for(int i=0;i<productModel.listImage.length;i++){
+//       homeSliderList.add(productModel.listImage[i].imageUrl);
+//     }
+//     // homeSliderList.addAll(productModel.listImage);
+//     return Column(children: [
+//       CarouselSlider(
+//         items: child as List<Widget>?,
+//         options: CarouselOptions(
+//           autoPlay: true,
+//           enlargeCenterPage: false,
+//           viewportFraction: 1.0,
+//           aspectRatio: 2.0,
+//           onPageChanged: (index, reason) {
+//             // setState(() {
+//             //   _current = index;
+//             // });
+//           },
+//         ),
+//       ),
+//       Row(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: homeSliderList
+//             .map((item) => Container(
+//                   width: _current == homeSliderList.indexOf(item) ? 30.0 : 10.0,
+//                   height: 8.0,
+//                   margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+//                   decoration: BoxDecoration(
+//                       borderRadius: BorderRadius.circular(20),
+//                       color: _current == homeSliderList.indexOf(item)
+//                           ? primary
+//                           : Color.fromRGBO(0, 0, 0, 0.1)),
+//                 ))
+//             .toList(),
+//       )
+//     ]);
+//   }
+// }
+
+// final List<Widget> child = homeSliderList.map((item) {
+//   return Container(
+//     margin: EdgeInsets.all(5.0),
+//     child: ClipRRect(
+//       borderRadius: BorderRadius.all(Radius.circular(5.0)),
+//       child: Stack(children: <Widget>[
+//         CachedNetworkImage(
+//           imageUrl: item["img"],
+//           fit: BoxFit.fill,
+//           width: 1000.0,
+//           height: double.infinity,
+//         ),
+//       ]),
+//     ),
+//   );
+// }
+    /*},*/
+    // ).toList();
+/*CachedNetworkImage(
+            imageUrl: i,
+            fit: BoxFit.fill,
+            width: 1000.0,
+            height: double.infinity,
+          ),*/
+

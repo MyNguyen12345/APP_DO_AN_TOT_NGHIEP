@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:smartkit/models/product_detail_model.dart';
+
 // List<ProductModel> productFromJson(String str) => List<ProductModel>.from(
 //     json.decode(str).map((x) => ProductModel.fromJson(x)));
 
@@ -19,6 +21,8 @@ class ProductModel {
     required this.priceProduct,
     required this.priceDeposit,
     required this.listImage,
+     required this.rating,
+    required this.userRating,
   });
 
   int productId;
@@ -31,6 +35,8 @@ class ProductModel {
   int amountProduct;
   double priceProduct;
   double priceDeposit;
+  double rating;
+  int userRating;
   List<ListImage> listImage;
   static List<ProductModel> fromJson(dynamic data) {
     final _list = <ProductModel>[];
@@ -46,12 +52,15 @@ class ProductModel {
         amountProduct: json["amountProduct"],
         priceProduct: json["priceProduct"],
         priceDeposit: json["priceDeposit"],
+            rating: json["rating"],
+        userRating: json["userRating"],
         listImage: List<ListImage>.from(
             json["listImage"].map((x) => ListImage.fromJson(x))),
       ));
     }
     return _list;
   }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['productId'] = this.productId;
@@ -65,9 +74,13 @@ class ProductModel {
     data['priceProduct'] = this.priceProduct;
     data['description'] = this.description;
     data['priceDeposit'] = this.priceDeposit;
+      data['userRating'] = this.userRating;
+    data['rating'] = this.rating;
     data['listImage'] = List<dynamic>.from(listImage.map((x) => x.toJson()));
     return data;
   }
+
+  void add(ProductDetailModel productDetailModel) {}
 }
 
 class ListImage {
