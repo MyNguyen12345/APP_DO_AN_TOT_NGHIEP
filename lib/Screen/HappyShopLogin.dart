@@ -41,7 +41,6 @@ class _HappyShopLoginState extends State<HappyShopLogin>
       longitude,
       image;
   String? countryName;
-// my anh login
   final mobileController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -52,7 +51,7 @@ class _HappyShopLoginState extends State<HappyShopLogin>
 
   String get phone => mobileController.text;
   String get password1 => passwordController.text;
-  // my anh login
+
   Animation? buttonSqueezeanimation;
 
   AnimationController? buttonController;
@@ -171,7 +170,7 @@ class _HappyShopLoginState extends State<HappyShopLogin>
                                       children: [
                                         welcomeHappyShopTxt(),
                                         eCommerceforBusinessTxt(),
-                                        setCountryCode(),
+                                        // setCountryCode(),
                                         setMobileNo(),
                                         setPass(),
                                         forgetPass(),
@@ -186,19 +185,6 @@ class _HappyShopLoginState extends State<HappyShopLogin>
                           ),
                         ),
                       ),
-                      desktop: LoginDesktop(
-                        fromkey: _formkey,
-                        listwidget: [
-                          welcomeHappyShopTxt(),
-                          eCommerceforBusinessTxt(),
-                          setCountryCode(),
-                          setMobileNo(),
-                          setPass(),
-                          forgetPass(),
-                          loginBtn(),
-                          accSignup(),
-                        ],
-                      ),
                     ),
                   ),
                 ],
@@ -211,13 +197,12 @@ class _HappyShopLoginState extends State<HappyShopLogin>
   Future<void> validatanmation() async {
     await buttonController!.reverse();
     var bool = loginController.login(int.parse(phone), password1);
-     await userController.fetchUser(int.parse(phone));
+    await userController.fetchUser(int.parse(phone));
     if (await bool) {
       await storage.write(key: 'token', value: loginController.state!.token);
       await storage.write(
           key: 'userId', value: userController.state!.userId.toString());
-      await storage.write(
-          key: 'phone', value: phone.toString());
+      await storage.write(key: 'phone', value: phone.toString());
       Get.to(HappyShopHome());
     }
   }
@@ -242,11 +227,11 @@ class _HappyShopLoginState extends State<HappyShopLogin>
         child: Align(
           alignment: Alignment.centerLeft,
           child: new Text(
-            WELCOME_HappyShop,
+            "Chào mừng bạn đến với HappyShop",
             style: Theme.of(context)
                 .textTheme
                 .headline6!
-                .copyWith(color: lightblack, fontWeight: FontWeight.bold),
+                .copyWith(color: pink, fontWeight: FontWeight.bold),
           ),
         ));
   }
@@ -257,87 +242,84 @@ class _HappyShopLoginState extends State<HappyShopLogin>
         child: Align(
           alignment: Alignment.centerLeft,
           child: new Text(
-            ECOMMERCE_APP_FOR_ALL_BUSINESS,
-            style: Theme.of(context)
-                .textTheme
-                .subtitle1!
-                .copyWith(color: lightblack2),
+            "Mua và bán mọi thứ bạn muốn tại đây",
+            style: Theme.of(context).textTheme.subtitle1!.copyWith(color: pink),
           ),
         ));
   }
 
-  setCountryCode() {
-    double height = MediaQuery.of(context).size.height * 0.9;
-    double width = MediaQuery.of(context).size.width;
-    return Padding(
-        padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          width: width,
-          height: 50,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(7.0),
-              border: Border.all(color: darkgrey)),
-          child: CountryCodePicker(
-              showCountryOnly: false,
-              searchDecoration: InputDecoration(
-                hintText: COUNTRY_CODE_LBL,
-                fillColor: primary,
-              ),
-              showOnlyCountryWhenClosed: false,
-              initialSelection: 'IN',
-              alignLeft: true,
-              dialogSize: Size(width, height),
-              builder: _buildCountryPicker,
-              onChanged: (CountryCode countryCode) {
-                countrycode = countryCode.toString().replaceFirst("+", "");
-                print("New Country selected: " + countryCode.toString());
-                countryName = countryCode.name;
-              },
-              onInit: (code) {
-                print("on init ${code!.name} ${code.dialCode} ${code.name}");
-                countrycode = code.toString().replaceFirst("+", "");
-                print("New Country selected: " + code.toString());
-              }),
-        ));
-  }
+  // setCountryCode() {
+  //   double height = MediaQuery.of(context).size.height * 0.9;
+  //   double width = MediaQuery.of(context).size.width;
+  //   return Padding(
+  //       padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
+  //       child: Container(
+  //         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+  //         width: width,
+  //         height: 50,
+  //         decoration: BoxDecoration(
+  //             borderRadius: BorderRadius.circular(7.0),
+  //             border: Border.all(color: darkgrey)),
+  //         child: CountryCodePicker(
+  //             showCountryOnly: false,
+  //             searchDecoration: InputDecoration(
+  //               hintText: COUNTRY_CODE_LBL,
+  //               fillColor: primary,
+  //             ),
+  //             showOnlyCountryWhenClosed: false,
+  //             initialSelection: 'IN',
+  //             alignLeft: true,
+  //             dialogSize: Size(width, height),
+  //             builder: _buildCountryPicker,
+  //             onChanged: (CountryCode countryCode) {
+  //               countrycode = countryCode.toString().replaceFirst("+", "");
+  //               print("New Country selected: " + countryCode.toString());
+  //               countryName = countryCode.name;
+  //             },
+  //             onInit: (code) {
+  //               print("on init ${code!.name} ${code.dialCode} ${code.name}");
+  //               countrycode = code.toString().replaceFirst("+", "");
+  //               print("New Country selected: " + code.toString());
+  //             }),
+  //       ));
+  // }
 
-  Widget _buildCountryPicker(CountryCode? country) => Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          new Flexible(
-            child: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: new Image.asset(
-                country!.flagUri!,
-                package: 'country_code_picker',
-                height: 40,
-                width: 20,
-              ),
-            ),
-          ),
-          new Flexible(
-            child: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: new Text(
-                country.dialCode!,
-                style: TextStyle(fontSize: 12),
-              ),
-            ),
-          ),
-          new Flexible(
-            child: Padding(
-              padding: const EdgeInsets.all(2.0),
-              child: new Text(
-                country.name!,
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-          ),
-        ],
-      );
+  // Widget _buildCountryPicker(CountryCode? country) => Row(
+  //       mainAxisAlignment: MainAxisAlignment.start,
+  //       mainAxisSize: MainAxisSize.min,
+  //       children: <Widget>[
+  //         new Flexible(
+  //           child: Padding(
+  //             padding: const EdgeInsets.all(5.0),
+  //             child: new Image.asset(
+  //               country!.flagUri!,
+  //               package: 'country_code_picker',
+  //               height: 40,
+  //               width: 20,
+  //             ),
+  //           ),
+  //         ),
+  //         new Flexible(
+  //           child: Padding(
+  //             padding: const EdgeInsets.all(5.0),
+  //             child: new Text(
+  //               country.dialCode!,
+  //               style: TextStyle(fontSize: 12),
+  //             ),
+  //           ),
+  //         ),
+  //         new Flexible(
+  //           child: Padding(
+  //             padding: const EdgeInsets.all(2.0),
+  //             child: new Text(
+  //               country.name!,
+  //               maxLines: 3,
+  //               overflow: TextOverflow.ellipsis,
+  //             ),
+  //           ),
+  //         ),
+  //       ],
+  //     );
 
   setMobileNo() {
     return Padding(
@@ -355,7 +337,7 @@ class _HappyShopLoginState extends State<HappyShopLogin>
             prefixIcon: Icon(
               Icons.call_outlined,
             ),
-            hintText: MOBILEHINT_LBL,
+            hintText: "Số điện thoại",
             prefixIconConstraints: BoxConstraints(minWidth: 40, maxHeight: 20),
             isDense: true,
             contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
@@ -384,7 +366,7 @@ class _HappyShopLoginState extends State<HappyShopLogin>
         },
         decoration: InputDecoration(
             prefixIcon: Icon(Icons.lock_outline),
-            hintText: PASSHINT_LBL,
+            hintText: "Mật Khẩu",
             prefixIconConstraints: BoxConstraints(minWidth: 40, maxHeight: 20),
             isDense: true,
             contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
@@ -408,7 +390,7 @@ class _HappyShopLoginState extends State<HappyShopLogin>
                     MaterialPageRoute(
                         builder: (context) => HappyShopForgotPassword()));
               },
-              child: Text(FORGOT_PASSWORD_LBL,
+              child: Text("Quên mật khẩu?",
                   style: Theme.of(context)
                       .textTheme
                       .subtitle1!
@@ -425,7 +407,7 @@ class _HappyShopLoginState extends State<HappyShopLogin>
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(DONT_HAVE_AN_ACC,
+          Text("Bạn muốn tạo một tài khoản?",
               style: Theme.of(context)
                   .textTheme
                   .subtitle1!
@@ -436,7 +418,7 @@ class _HappyShopLoginState extends State<HappyShopLogin>
                     MaterialPageRoute(builder: (context) => HappyShopSingUp()));
               },
               child: Text(
-                SIGN_UP_LBL,
+                "Đăng Ký",
                 style: Theme.of(context).textTheme.subtitle1!.copyWith(
                     color: primary, decoration: TextDecoration.underline),
               ))
@@ -447,7 +429,7 @@ class _HappyShopLoginState extends State<HappyShopLogin>
 
   loginBtn() {
     return AppBtn(
-      title: LOGIN_LBL,
+      title: "Đăng nhập",
       btnAnim: buttonSqueezeanimation,
       btnCntrl: buttonController,
       onBtnSelected: () async {

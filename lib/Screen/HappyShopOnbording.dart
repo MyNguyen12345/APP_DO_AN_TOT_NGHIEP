@@ -34,7 +34,8 @@ class _HappyShopOnbordingState extends State<HappyShopOnbording> {
   List<Widget> indicators = [];
   void onAddButtonTapped(int index) {
     // use this to animate to the page
-    _pageController!.animateToPage(index, duration: Duration(milliseconds: 1000), curve: Curves.elasticInOut);
+    _pageController!.animateToPage(index,
+        duration: Duration(milliseconds: 1000), curve: Curves.elasticInOut);
 
     // or this to jump to it without animating
     _pageController!.jumpToPage(index);
@@ -79,21 +80,27 @@ class _HappyShopOnbordingState extends State<HappyShopOnbording> {
             children: <Widget>[
               IntroPage(
                 // imgurl: "https://smartkit.wrteam.in/smartkit/happyshop/intro-1.svg",
-                imgurl: "https://smartkit.wrteam.in/smartkit/happyshop/intro-1.svg",
-                titletext: "Choose \nYour Products",
-                subtext: "Discover New Spring Collection \nEveryday with Happyshop",
+                imgurl:
+                    "https://smartkit.wrteam.in/smartkit/happyshop/intro-1.svg",
+                titletext: "Chọn vật phẩm \n Mà bạn yêu thích",
+                subtext:
+                    "Cùng nhau khám phá và trải nghiệm \n Mỗi ngày cùng HappyShop",
               ),
               IntroPage(
                 // imgurl: "https://smartkit.wrteam.in/smartkit/happyshop/intro-2.svg",
-                imgurl: "https://smartkit.wrteam.in/smartkit/happyshop/intro-2.svg",
-                titletext: "Easy Payment \nMethod",
-                subtext: "We connect you to your favourite online brands \nso let's browse it with Happyshop",
+                imgurl:
+                    "https://smartkit.wrteam.in/smartkit/happyshop/intro-2.svg",
+                titletext: "Thanh toán\n Dễ dàng",
+                subtext:
+                    "Bạn có thể mua mọi thứ tùy thích \n Chỉ có tại Happyshop",
               ),
               IntroPage(
                 // imgurl: "https://smartkit.wrteam.in/smartkit/happyshop/intro-3.svg",
-                imgurl: "https://smartkit.wrteam.in/smartkit/happyshop/intro-3.svg",
-                titletext: "Get Your Delivery \nat Home",
-                subtext: "We offers best comfort product \nfor you and your family",
+                imgurl:
+                    "https://smartkit.wrteam.in/smartkit/happyshop/intro-3.svg",
+                titletext: "Nhận và giao hàng  \n tận tay bạn",
+                subtext:
+                    "Chúng tôi mang đến sản phẩm tiện nghi tốt nhất \n Cho bạn và gia đình",
               ),
             ],
           ),
@@ -130,14 +137,22 @@ class _HappyShopOnbordingState extends State<HappyShopOnbording> {
                 child: Center(
                   child: Text(
                     currentIndex == 0
-                        ? "Next"
+                        ? "Tiếp theo"
                         : currentIndex == 1
-                            ? "Next"
-                            : "Start Now",
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
+                            ? "Tiếp theo"
+                            : "Bắt đầu",
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
                 ),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(30.0), gradient: LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [happyshopcolor3, happyshopcolor2])),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30.0),
+                    gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [happyshopcolor3, happyshopcolor2])),
               ),
             ),
           )
@@ -169,13 +184,15 @@ class _IntroPageState extends State<IntroPage> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    _animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 400));
+    _animationController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 400));
     animationController = AnimationController(
       duration: Duration(seconds: 1),
       vsync: this,
     );
 
-    animation = Tween(begin: -1.0, end: 0.0).animate(CurvedAnimation(parent: animationController!, curve: Curves.fastOutSlowIn));
+    animation = Tween(begin: -1.0, end: 0.0).animate(CurvedAnimation(
+        parent: animationController!, curve: Curves.fastOutSlowIn));
     animationController!.forward();
     setState(() {});
     super.initState();
@@ -210,12 +227,16 @@ class _IntroPageState extends State<IntroPage> with TickerProviderStateMixin {
                 ],
               ),
               FadeTransition(
-                opacity: animationController!.drive(CurveTween(curve: Curves.easeIn)),
+                opacity: animationController!
+                    .drive(CurveTween(curve: Curves.easeIn)),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 8.0),
                   child: Text(
                     widget.titletext,
-                    style: TextStyle(color: Color(0xFF656565), fontSize: 24, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: Color(0xFF656565),
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -224,7 +245,8 @@ class _IntroPageState extends State<IntroPage> with TickerProviderStateMixin {
                 height: 10,
               ),
               FadeTransition(
-                opacity: animationController!.drive(CurveTween(curve: Curves.easeIn)),
+                opacity: animationController!
+                    .drive(CurveTween(curve: Curves.easeIn)),
                 child: Container(
                   alignment: Alignment.center,
                   child: Text(

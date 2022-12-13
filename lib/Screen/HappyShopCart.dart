@@ -40,59 +40,7 @@ class HappyShopCart extends GetView<GetProductCartController> {
   var promotion = 0.0.obs;
   var price = 0.0.obs;
 
-  List cartList = [
-    {
-      'img': "https://smartkit.wrteam.in/smartkit/images/Nikereak4.jpg",
-      'name': "Nike",
-      'descprice': "2500",
-      'price': "3500",
-      'rating': "4.5",
-      'noOfRating': "90",
-      'qty': "1",
-      'totle': '2500'
-    },
-    {
-      'img': "https://smartkit.wrteam.in/smartkit/images/1573810839.322.jpeg",
-      'name': "Bag",
-      'descprice': "1000",
-      'price': "1200",
-      'rating': "2.5",
-      'noOfRating': "50",
-      'qty': "1",
-      'totle': '1000'
-    },
-    {
-      'img': "https://smartkit.wrteam.in/smartkit/images/Nikereak3.jpg",
-      'name': "Puma Shoes",
-      'descprice': "1300",
-      'price': "1400",
-      'rating': "3.5",
-      'noOfRating': "45",
-      'qty': "1",
-      'totle': '1300'
-    },
-    {
-      'img':
-          "https://smartkit.wrteam.in/smartkit/images/Plus-Size-52-Classic-Black-Men-s-Footwear-Comfortable-Ultra-Light-Shoes-Men-Shoes-No-Yeezie.jpg_640x640.jpg",
-      'name': "NIkeShoes",
-      'descprice': "1700",
-      'price': "2000",
-      'rating': "4.5",
-      'noOfRating': "150",
-      'qty': "1",
-      'totle': '1700'
-    },
-    {
-      'img': "https://smartkit.wrteam.in/smartkit/images/goggle2.jpg",
-      'name': "Bag",
-      'descprice': "2000",
-      'price': "2200",
-      'rating': "2.5",
-      'noOfRating': "10",
-      'qty': "1",
-      'totle': '2000'
-    },
-  ];
+  
   Future<void> cong(int count, int amount) async {
     if (count > amount) {
       count = amount;
@@ -129,6 +77,7 @@ class HappyShopCart extends GetView<GetProductCartController> {
   }
 
   final listCount1 = [].obs;
+  var bool = false.obs;
 //my
   Future<void> listproductcart() async {
     var userId = await storage.read(key: 'userId');
@@ -172,6 +121,7 @@ class HappyShopCart extends GetView<GetProductCartController> {
   }
 
   Future<void> payPrice() async {
+    bool.value = false;
     listProductId = [];
     listAmount = [];
     price.value = 0.0;
@@ -182,6 +132,7 @@ class HappyShopCart extends GetView<GetProductCartController> {
           i < getProductCartController.state![j].listCart.length;
           i++) {
         if (list[j][i].seleted.value) {
+          bool.value = true;
           totalPrice.value = totalPrice.value +
               getProductCartController
                       .state![j].listCart[i].product.priceProduct *
@@ -292,7 +243,7 @@ class HappyShopCart extends GetView<GetProductCartController> {
                                           ),
                                         ),
                                         onTap: (() {
-                                          Get.to(HappyShopUser());
+                                          Get.to(HappyShopUser(getProductCartController.state![index].user.userId));
                                         }),
                                       ),
                                     ],
@@ -367,25 +318,27 @@ class HappyShopCart extends GetView<GetProductCartController> {
                         ],
                       ),
                     ),
-                    InkWell(
-                      splashColor: Colors.white,
-                      onTap: () {
-                        Get.to(HappyShopCheckout());
-                      },
-                      child: Container(
-                        height: 55,
-                        decoration: back(),
-                        width: double.infinity,
-                        child: Center(
-                            child: Text(
-                          "Đặt hàng",
-                          // style: Theme.of(context)
-                          //     .textTheme
-                          //     .subtitle1!
-                          //     .copyWith(color: Colors.white),
-                        )),
-                      ),
-                    ),
+                    Obx(() {
+                      if (bool.value) {
+                        return InkWell(
+                          splashColor: Colors.white,
+                          onTap: () {
+                            Get.to(HappyShopCheckout());
+                          },
+                          child: Container(
+                            height: 55,
+                            decoration: back(),
+                            width: double.infinity,
+                            child: Center(
+                                child: Text(
+                              "Đặt hàng",
+                            )),
+                          ),
+                        );
+                      } else {
+                        return Container();
+                      }
+                    }),
                   ],
                 ),
               ));
@@ -407,16 +360,10 @@ class HappyShopCart extends GetView<GetProductCartController> {
                   activeColor: Colors.pink,
                   value: list[index][indexCart].seleted.value,
                   onChanged: (val) {
-                    // val == true
-                    //     ? checkeditem.selected.value = false
-                    //     : checkeditem.selected.value = true;
-                    // for(int i=0;i<dateList.length-1;i++){
-                    // if(dateList[i].title==getProductCartController.state![index].listCart[indexCart].cartId.toString()){
                     list[index][indexCart].seleted.value = val ?? false;
                     list[index].refresh();
                     payPrice();
-                    // }
-                    // }
+                
                   },
                 ),
               ),
@@ -457,8 +404,7 @@ class HappyShopCart extends GetView<GetProductCartController> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 5.0),
-                      child: 
-                      Row(
+                      child: Row(
                         children: [
                           Icon(
                             Icons.star,
@@ -613,24 +559,24 @@ class HappyShopCart extends GetView<GetProductCartController> {
 
   noCartText(BuildContext context) {
     return Container(
-        child: Text(NO_CART,
+        child: Text("Giỏ hàng của bạn rỗng",
             style: Theme.of(context)
                 .textTheme
                 .headline5!
                 .copyWith(color: primary, fontWeight: FontWeight.normal)));
   }
 
-  noCartDec(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(top: 30.0, left: 30.0, right: 30.0),
-      child: Text(CART_DESC,
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.headline6!.copyWith(
-                color: lightblack,
-                fontWeight: FontWeight.normal,
-              )),
-    );
-  }
+  // noCartDec(BuildContext context) {
+  //   return Container(
+  //     padding: EdgeInsets.only(top: 30.0, left: 30.0, right: 30.0),
+  //     child: Text(CART_DESC,
+  //         textAlign: TextAlign.center,
+  //         style: Theme.of(context).textTheme.headline6!.copyWith(
+  //               color: lightblack,
+  //               fontWeight: FontWeight.normal,
+  //             )),
+  //   );
+  // }
 
   shopNow() {
     return Padding(

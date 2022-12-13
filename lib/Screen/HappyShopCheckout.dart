@@ -34,7 +34,7 @@ class _HappyShopCheckoutState extends State<HappyShopCheckout>
   final data = Get.put(Data());
   final UpdateBillController updateBillController =
       Get.put(UpdateBillController());
-      final storage = const FlutterSecureStorage();
+  final storage = const FlutterSecureStorage();
   Animation? buttonSqueezeanimation;
   late AnimationController buttonController;
 
@@ -104,7 +104,7 @@ class _HappyShopCheckoutState extends State<HappyShopCheckout>
                     ),
                   ),
                 ),
-                Text("  " + DELIVERY + "  ",
+                Text("  " + "Hóa đơn" + "  ",
                     style: TextStyle(color: _curIndex == 0 ? primary : null)),
               ],
             ),
@@ -132,7 +132,7 @@ class _HappyShopCheckoutState extends State<HappyShopCheckout>
                     ),
                   ),
                 ),
-                Text("  " + ADDRESS_LBL + "  ",
+                Text("  " + "Địa chỉ" + "  ",
                     style: TextStyle(color: _curIndex == 1 ? primary : null)),
               ],
             ),
@@ -160,7 +160,7 @@ class _HappyShopCheckoutState extends State<HappyShopCheckout>
                     ),
                   ),
                 ),
-                Text("  " + PAYMENT + "  ",
+                Text("  " + "Thanh toán" + "  ",
                     style: TextStyle(color: _curIndex == 2 ? primary : null)),
               ],
             ),
@@ -182,8 +182,8 @@ class _HappyShopCheckoutState extends State<HappyShopCheckout>
 
   Future<void> payBill() async {
     var userId = await storage.read(key: 'userId');
-    await updateBillController.updateBill(data.listProductId!,
-        data.listAmount!, data.address.value, 1, int.parse(userId!), data.price!);
+    await updateBillController.updateBill(data.listProductId!, data.listAmount!,
+        data.address.value, 1, int.parse(userId!));
   }
 
   @override
@@ -213,7 +213,7 @@ class _HappyShopCheckoutState extends State<HappyShopCheckout>
               ),
             ),
             ElevatedButton(
-              onPressed: () async{
+              onPressed: () async {
                 if (_curIndex == 0) {
                   setState(() {
                     _curIndex = _curIndex + 1;
@@ -245,7 +245,7 @@ class _HappyShopCheckoutState extends State<HappyShopCheckout>
                   padding: EdgeInsets.only(left: 15.0, right: 15.0),
                   alignment: Alignment.center,
                   child: Text(
-                    _curIndex == 2 ? PROCEED : CONTINUE,
+                    _curIndex == 2 ? "Thanh toán" : "Tiếp theo",
                     style: TextStyle(color: Colors.white),
                     textAlign: TextAlign.center,
                   ),
@@ -530,71 +530,73 @@ class StateAddress extends State<Address> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            gradient: happyshopgradient,
-          ),
-          child: Expanded(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Column(
-                  children: <Widget>[
-                    setUserName(),
-                    setPincode(),
-                    setEmail(),
-                    setAddress(),
-                  ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              gradient: happyshopgradient,
+            ),
+            child: Expanded(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: Column(
+                    children: <Widget>[
+                      setUserName(),
+                      setPincode(),
+                      setEmail(),
+                      setAddress(),
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-        SizedBox(
-          height: 30,
-        ),
-        Center(
-          child: ElevatedButton(
-            onPressed: () async {
-              updateAddress();
-            },
-            style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.all(0.0),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0.0)),
-            ),
-            child: Ink(
-              decoration: BoxDecoration(
-                gradient: happyshopgradient,
+          SizedBox(
+            height: 30,
+          ),
+          Center(
+            child: ElevatedButton(
+              onPressed: () async {
+                updateAddress();
+              },
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.all(0.0),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0.0)),
               ),
-              child: Container(
-                height: 40.0,
-                width: MediaQuery.of(context).size.width / 2,
-                padding: EdgeInsets.only(left: 15.0, right: 15.0),
+              child: Ink(
+                decoration: BoxDecoration(
+                  gradient: happyshopgradient,
+                ),
+                child: Container(
+                  height: 40.0,
+                  width: MediaQuery.of(context).size.width / 2,
+                  padding: EdgeInsets.only(left: 15.0, right: 15.0),
 
-                // min sizes for Material buttons
-                alignment: Alignment.center,
-                child: Text(
-                  "Sửa địa chỉ",
-                  style: TextStyle(color: Colors.white),
-                  textAlign: TextAlign.center,
+                  // min sizes for Material buttons
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Sửa địa chỉ",
+                    style: TextStyle(color: Colors.white),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-        SizedBox(
-          height: 30,
-        ),
-        Obx((() => Text(
-              data.address.value,
-              style: TextStyle(color: Color.fromARGB(255, 167, 11, 11)),
-              textAlign: TextAlign.center,
-            ))),
-      ],
+          SizedBox(
+            height: 30,
+          ),
+          Obx((() => Text(
+                data.address.value,
+                style: TextStyle(color: Color.fromARGB(255, 167, 11, 11)),
+                textAlign: TextAlign.center,
+              ))),
+        ],
+      ),
     );
   }
 

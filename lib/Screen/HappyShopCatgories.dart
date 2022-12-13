@@ -16,43 +16,6 @@ class HappyShopCatogeryAll extends GetView<CategoryController> {
   int total = 0;
   ScrollController scrollController = new ScrollController();
   final CategoryController categoryController = Get.put(CategoryController());
-  List tempList = [];
-
-  List catList = [
-    {
-      'img': "https://smartkit.wrteam.in/smartkit/images/Electronic.png",
-      'title': "Electronics"
-    },
-    {
-      'img': "https://smartkit.wrteam.in/smartkit/images/Household.png",
-      'title': "Household"
-    },
-    {
-      'img': "https://smartkit.wrteam.in/smartkit/images/Vegetables.png",
-      'title': "Vegetables"
-    },
-    {
-      'img': "https://smartkit.wrteam.in/smartkit/images/fashion.png",
-      'title': "fashion"
-    },
-    {
-      'img': "https://smartkit.wrteam.in/smartkit/images/Grocery.png",
-      'title': "Grocery"
-    },
-    {
-      'img': "https://smartkit.wrteam.in/smartkit/images/phone2.jpg",
-      'title': "Phone"
-    },
-    {
-      'img': "https://smartkit.wrteam.in/smartkit/images/Nikereak4.jpg",
-      'title': "Shoes"
-    },
-    {
-      'img': "https://smartkit.wrteam.in/smartkit/images/1573810839.322.jpeg",
-      'title': "Bag"
-    },
-  ];
-
   getAppBar(String title, BuildContext context) {
     return AppBar(
       leading: IconButton(

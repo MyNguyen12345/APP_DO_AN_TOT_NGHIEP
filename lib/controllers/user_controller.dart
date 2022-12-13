@@ -18,6 +18,16 @@ class UserController extends GetxController with StateMixin<UserModel> {
       return true;
     }
   }
+    Future<bool> fetchUserId(int userId) async {
+    final Response res = await provider.getUserId(userId);
+    if (res.hasError) {
+      change(null, status: RxStatus.error(res.statusText));
+      return false;
+    } else {
+      change(res.body, status: RxStatus.success());
+      return true;
+    }
+  }
 }
 
 class UpdateAddressController extends GetxController with StateMixin<bool> {
@@ -29,6 +39,19 @@ class UpdateAddressController extends GetxController with StateMixin<bool> {
       return false;
     } else {
       change(null, status: RxStatus.success());
+      return true;
+    }
+  }
+}
+class GetUserIdController extends GetxController with StateMixin<UserModel> {
+  final provider = Get.put(UserProvider());
+    Future<bool> fetchUserId(int userId) async {
+    final Response res = await provider.getUserId(userId);
+    if (res.hasError) {
+      change(null, status: RxStatus.error(res.statusText));
+      return false;
+    } else {
+      change(res.body, status: RxStatus.success());
       return true;
     }
   }

@@ -70,71 +70,48 @@ class _HappyShopHomeState extends State<HappyShopHome> {
                           topLeft: Radius.circular(30),
                           topRight: Radius.circular(30))),
                   context: context,
-                  builder: (context) {
-                    return Container(
-                      // MediaQuery.of(context).size.height * 0.9
-                      height: MediaQuery.of(context).size.height,
+                  builder: (builder) {
+                    return SingleChildScrollView(
                       child: Column(
                         children: [
                           const SizedBox(
                             height: 10,
                           ),
                           const Text(
-                            'Đăng tin',
+                            'Chọn danh mục',
                             style: TextStyle(
                                 color: Colors.deepOrange,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold),
                           ),
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              ListTile(
-                                // leading: const Icon(Icons.photo),
-                                title: const Text(
-                                  'Chọn danh mục',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                onTap: () {
-                                  danhmucsanphambottomshet();
-                                },
-                                // trailing: Icon(Icons.arrow_forward_ios),
-                              ),
-                              ListTile(
-                                leading: const Icon(Icons.photo),
-                                title: const Text('Bất đống sản'),
-                                onTap: () {
-                                  danhmucsanphambottomshet();
-                                },
-                                trailing: Icon(Icons.arrow_forward_ios),
-                              ),
-                              ListTile(
-                                leading: new Icon(Icons.music_note),
-                                title: new Text(' Xe cộ'),
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                trailing: Icon(Icons.arrow_forward_ios),
-                              ),
-                              ListTile(
-                                leading: new Icon(Icons.videocam),
-                                title: new Text('Đồ điện tử'),
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                trailing: Icon(Icons.arrow_forward_ios),
-                              ),
-                              ListTile(
-                                leading: new Icon(Icons.share),
-                                title: new Text('Thú Cưng'),
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                trailing: Icon(Icons.arrow_forward_ios),
-                              ),
-                            ],
+                          new Container(
+                            height: 500,
+                            color: Colors
+                                .transparent, //could change this to Color(0xFF737373),
+                            //so you don't have to change MaterialApp canvasColor
+                            child: new Container(
+                                decoration: new BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: new BorderRadius.only(
+                                        topLeft: const Radius.circular(10.0),
+                                        topRight: const Radius.circular(10.0))),
+                                child: new Center(
+                                  child: new ListView.builder(
+                                      padding: const EdgeInsets.all(8),
+                                      itemCount: 10,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        return ListTile(
+                                          leading: const Icon(Icons.photo),
+                                          title: const Text('Bất đống sản'),
+                                          onTap: () {
+                                            danhmucsanphambottomshet();
+                                          },
+                                          trailing:
+                                              Icon(Icons.arrow_forward_ios),
+                                        );
+                                      }),
+                                )),
                           ),
                         ],
                       ),
@@ -167,7 +144,7 @@ class _HappyShopHomeState extends State<HappyShopHome> {
           type: BottomNavigationBarType.fixed,
           items: [
             BottomNavigationBarItem(
-              label: 'Home',
+              label: 'Trang chủ',
               icon: LikeButton(
                 size: 24.0,
                 onTap: (bool isLiked) {
@@ -208,7 +185,7 @@ class _HappyShopHomeState extends State<HappyShopHome> {
               ),
             ),
             BottomNavigationBarItem(
-              label: 'Favorite',
+              label: 'Yêu thích',
               icon: LikeButton(
                 size: 24.0,
                 onTap: (bool isLiked) {
@@ -249,7 +226,7 @@ class _HappyShopHomeState extends State<HappyShopHome> {
               ),
             ),
             BottomNavigationBarItem(
-              label: 'Notifications',
+              label: 'Thông báo',
               icon: LikeButton(
                 size: 24.0,
                 onTap: (bool isLiked) {
@@ -290,7 +267,7 @@ class _HappyShopHomeState extends State<HappyShopHome> {
               ),
             ),
             BottomNavigationBarItem(
-              label: 'Track Order',
+              label: 'Hóa đơn',
               icon: LikeButton(
                 size: 24.0,
                 onTap: (bool isLiked) {
@@ -341,62 +318,51 @@ class _HappyShopHomeState extends State<HappyShopHome> {
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(30), topRight: Radius.circular(30))),
         context: context,
-        builder: (context) {
-          return Container(
-            // MediaQuery.of(context).size.height * 0.9
-            height: MediaQuery.of(context).size.height,
+        builder: (builder) {
+          return SingleChildScrollView(
             child: Column(
               children: [
                 const SizedBox(
                   height: 10,
                 ),
                 const Text(
-                  'Chọn danh mục',
+                  'Chọn chi tiết danh mục',
                   style: TextStyle(
                       color: Colors.deepOrange,
                       fontSize: 20,
                       fontWeight: FontWeight.bold),
                 ),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    ListTile(
-                      leading: const Icon(Icons.photo),
-                      title: const Text('gà chó mèo...'),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const DangTinScreen()),
-                        );
-                      },
-                      trailing: Icon(Icons.arrow_forward_ios),
-                    ),
-                    ListTile(
-                      leading: new Icon(Icons.music_note),
-                      title: new Text(' Xe cộ'),
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      trailing: Icon(Icons.arrow_forward_ios),
-                    ),
-                    ListTile(
-                      leading: new Icon(Icons.videocam),
-                      title: new Text('Đồ điện tử'),
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      trailing: Icon(Icons.arrow_forward_ios),
-                    ),
-                    ListTile(
-                      leading: new Icon(Icons.share),
-                      title: new Text('Thú Cưng'),
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      trailing: Icon(Icons.arrow_forward_ios),
-                    ),
-                  ],
+                new Container(
+                  height: 500,
+                  color: Colors
+                      .transparent, //could change this to Color(0xFF737373),
+                  //so you don't have to change MaterialApp canvasColor
+                  child: new Container(
+                      decoration: new BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: new BorderRadius.only(
+                              topLeft: const Radius.circular(10.0),
+                              topRight: const Radius.circular(10.0))),
+                      child: new Center(
+                        child: new ListView.builder(
+                            padding: const EdgeInsets.all(8),
+                            itemCount: 10,
+                            itemBuilder: (BuildContext context, int index) {
+                              return ListTile(
+                                leading: const Icon(Icons.photo),
+                                title: const Text('Bất đống sản'),
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const DangTinScreen()),
+                                  );
+                                },
+                                trailing: Icon(Icons.arrow_forward_ios),
+                              );
+                            }),
+                      )),
                 ),
               ],
             ),

@@ -18,259 +18,8 @@ import '../controllers/product_controllers.dart';
 import 'HappyShopHome.dart';
 import 'HappyShopStaggeredList.dart';
 
-List sectList = [
-  {
-    'section': "Offers on men's Fashion",
-    'style': "default",
-    'productList': [
-      {
-        'tag': "1",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_a.png",
-        'name': "Printed Men Round Neck Maroon T-Shirt",
-        'descprice': "2500",
-        'price': "3500",
-        'rating': "4.5",
-        'noOfRating': "90"
-      },
-      {
-        'tag': "2",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_b.png",
-        'name': "Printed Men Round Neck Yellow, Black T-Shirt",
-        'descprice': "1000",
-        'price': "1200",
-        'rating': "2.5",
-        'noOfRating': "50"
-      },
-      {
-        'tag': "3",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_c.png",
-        'name': "Solid Men Round Neck Grey T-Shirt",
-        'descprice': "1300",
-        'price': "1400",
-        'rating': "3.5",
-        'noOfRating': "45"
-      },
-      {
-        'tag': "4",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_d.png",
-        'name': "Men Regular Fit Solid Casual Shirt",
-        'descprice': "1700",
-        'price': "2000",
-        'rating': "4.5",
-        'noOfRating': "150"
-      },
-      {
-        'tag': "1",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_a.png",
-        'name': "Printed Men Round Neck Maroon T-Shirt",
-        'descprice': "2500",
-        'price': "3500",
-        'rating': "4.5",
-        'noOfRating': "90"
-      },
-      {
-        'tag': "2",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_b.png",
-        'name': "Printed Men Round Neck Yellow, Black T-Shirt",
-        'descprice': "1000",
-        'price': "1200",
-        'rating': "2.5",
-        'noOfRating': "50"
-      },
-      {
-        'tag': "3",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_c.png",
-        'name': "Solid Men Round Neck Grey T-Shirt",
-        'descprice': "1300",
-        'price': "1400",
-        'rating': "3.5",
-        'noOfRating': "45"
-      },
-      {
-        'tag': "4",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_d.png",
-        'name': "Men Regular Fit Solid Casual Shirt",
-        'descprice': "1700",
-        'price': "2000",
-        'rating': "4.5",
-        'noOfRating': "150"
-      },
-    ]
-  },
-  {
-    'section': "Walk in Style",
-    'style': "style_1",
-    'productList': [
-      {
-        'tag': "5",
-        'img':
-            "https://smartkit.wrteam.in/smartkit/happyshop/collections_a.png",
-        'name': "Nike",
-        'descprice': "2500",
-        'price': "3500",
-        'rating': "4.5",
-        'noOfRating': "90"
-      },
-      {
-        'tag': "6",
-        'img':
-            "https://smartkit.wrteam.in/smartkit/happyshop/collections_b.png",
-        'name': "Bag",
-        'descprice': "1000",
-        'price': "1200",
-        'rating': "2.5",
-        'noOfRating': "50"
-      },
-      {
-        'tag': "7",
-        'img':
-            "https://smartkit.wrteam.in/smartkit/happyshop/collections_c.png",
-        'name': "Puma Shoes",
-        'descprice': "1300",
-        'price': "1400",
-        'rating': "3.5",
-        'noOfRating': "45"
-      },
-      {
-        'tag': "8",
-        'img':
-            "https://smartkit.wrteam.in/smartkit/happyshop/collections_d.png",
-        'name': "NIkeShoes",
-        'descprice': "1700",
-        'price': "2000",
-        'rating': "4.5",
-        'noOfRating': "150"
-      },
-    ]
-  },
-  {
-    'section': "Women's Fashion",
-    'style': "style_2",
-    'productList': [
-      {
-        'tag': "9",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/woman_a.png",
-        'name': "Casual Roll-up Sleeve Solid Women Top",
-        'descprice': "2500",
-        'price': "3500",
-        'rating': "4.5",
-        'noOfRating': "90"
-      },
-      {
-        'tag': "10",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/woman_b.png",
-        'name': "Casual Sleeveless Solid Women Top",
-        'descprice': "1000",
-        'price': "1200",
-        'rating': "2.5",
-        'noOfRating': "50"
-      },
-      {
-        'tag': "11",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/woman_c.png",
-        'name': "Casual 3/4 Sleeve Solid Women Maroon Top",
-        'descprice': "1300",
-        'price': "1400",
-        'rating': "3.5",
-        'noOfRating': "45"
-      },
-      {
-        'tag': "12",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/woman_d.png",
-        'name': "Casual Petal Sleeve Solid Women Yellow Top",
-        'descprice': "1700",
-        'price': "2000",
-        'rating': "4.5",
-        'noOfRating': "150"
-      },
-    ]
-  },
-  {
-    'section': "Top Brands",
-    'style': "style_3",
-    'productList': [
-      {
-        'tag': "13",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_1.png",
-        'name': "Nike",
-      },
-      {
-        'tag': "14",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_2.png",
-        'name': "Reebok",
-      },
-      {
-        'tag': "15",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_3.png",
-        'name': "Tommy Hilfiger",
-      },
-      {
-        'tag': "16",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_4.png",
-        'name': "Levi's",
-      },
-      {
-        'tag': "17",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_5.png",
-        'name': "U.S.Polo",
-      },
-      {
-        'tag': "18",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_6.png",
-        'name': "Fila",
-      },
-      {
-        'tag': "19",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_7.png",
-        'name': "Vans",
-      },
-      {
-        'tag': "20",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_8.png",
-        'name': "Polo",
-      },
-      {
-        'tag': "21",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_9.png",
-        'name': "Calvin Klein",
-      },
-      {
-        'tag': "22",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_10.png",
-        'name': "Superdry",
-      },
-    ]
-  },
-];
-
 class HappyShopHomeTab extends GetView<ProductController> {
   HappyShopHomeTab({Key? key}) : super(key: key);
-  List catList = [
-    {
-      'img': "https://smartkit.wrteam.in/smartkit/happyshop/cat_1.png",
-      'title': "Men's"
-    },
-    {
-      'img': "https://smartkit.wrteam.in/smartkit/happyshop/cat_2.png",
-      'title': "women's"
-    },
-    {
-      'img': "https://smartkit.wrteam.in/smartkit/happyshop/cat_3.png",
-      'title': "Man's Shoes"
-    },
-    {
-      'img': "https://smartkit.wrteam.in/smartkit/happyshop/cat_4.png",
-      'title': "Eyewear"
-    },
-    {
-      'img': "https://smartkit.wrteam.in/smartkit/happyshop/cat_5.png",
-      'title': "women's Shoes"
-    },
-    {
-      'img': "https://smartkit.wrteam.in/smartkit/happyshop/cat_6.png",
-      'title': "Bag's"
-    },
-  ];
 
   final _controller = PageController();
   final ProductController productController = Get.put(ProductController());
@@ -297,12 +46,6 @@ class HappyShopHomeTab extends GetView<ProductController> {
                 MaterialPageRoute(builder: (context) => HappyShopHome()),
                 (Route<dynamic> route) => false)
             .then((value) => value as bool);
-        //  Navigator.pushReplacement(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (context) => ,
-        //   ),
-        // );
       },
       child: Scaffold(
         body: SingleChildScrollView(
@@ -320,6 +63,20 @@ class HappyShopHomeTab extends GetView<ProductController> {
                     child: CarouselWithIndicator()),
                 Column(
                   children: [
+                    Container(
+                      width: 360,
+                      height: 40,
+                      child: TextField(
+                        decoration: InputDecoration(
+                            prefixIcon: Icon(
+                              Icons.search,
+                              size: 15,
+                            ),
+                            border: OutlineInputBorder(),
+                            hintText: 'Nhập tên vật phẩm ',
+                            hintStyle: TextStyle(fontSize: 10)),
+                      ),
+                    ),
                     // category //
                     Padding(
                       padding: const EdgeInsets.symmetric(
@@ -328,7 +85,7 @@ class HappyShopHomeTab extends GetView<ProductController> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text(
-                            category,
+                            "Danh mục",
                             style: Theme.of(context).textTheme.headline6,
                           ),
                           InkWell(
@@ -344,20 +101,6 @@ class HappyShopHomeTab extends GetView<ProductController> {
                             },
                           ),
                         ],
-                      ),
-                    ),
-                    Container(
-                      width: 360,
-                      height: 40,
-                      child: TextField(
-                        decoration: InputDecoration(
-                            prefixIcon: Icon(
-                              Icons.search,
-                              size: 15,
-                            ),
-                            border: OutlineInputBorder(),
-                            hintText: 'Search Tech Talk',
-                            hintStyle: TextStyle(fontSize: 10)),
                       ),
                     ),
 
@@ -617,24 +360,6 @@ class HappyShopHomeTab extends GetView<ProductController> {
     );
   }
 
-  // void _animateSlider() {
-  //   Future.delayed(Duration(seconds: 30)).then((_) {
-  //     if (mounted) {
-  //       int nextPage = _controller.hasClients
-  //           ? _controller.page!.round() + 1
-  //           : _controller.initialPage;
-
-  //       if (nextPage == homeSliderList.length) {
-  //         nextPage = 0;
-  //       }
-  //       if (_controller.hasClients)
-  //         _controller
-  //             .animateToPage(nextPage,
-  //                 duration: Duration(seconds: 1), curve: Curves.easeIn)
-  //             .then((_) => _animateSlider());
-  //     }
-  //   });
-  // }
 
   List<T?> map<T>(List homeSliderList, Function handler) {
     List<T?> result = [];
@@ -813,21 +538,6 @@ class _ItemCardState extends State<ItemCard> {
               )
             ],
           ),
-          // onTap: () {
-          //   Navigator.of(context).push(
-          //     PageRouteBuilder(
-          //       transitionDuration: Duration(milliseconds: 1000),
-          //       pageBuilder: (BuildContext context, Animation<double> animation,
-          //           Animation<double> secondaryAnimation) {
-          //         return HappyShopProductDetail(
-          //           imgurl: widget.imagurl,
-          //           tag: widget.tag,
-          //         );
-          //       },
-          //       reverseTransitionDuration: Duration(milliseconds: 800),
-          //     ),
-          //   );
-          // },
         ),
       ),
     );
@@ -896,12 +606,6 @@ final List<Widget> child = homeSliderList.map((item) {
 }
     /*},*/
     ).toList();
-/*CachedNetworkImage(
-            imageUrl: i,
-            fit: BoxFit.fill,
-            width: 1000.0,
-            height: double.infinity,
-          ),*/
 List homeSliderList = [
   {
     "img": "https://smartkit.wrteam.in/smartkit/happyshop/slider_a.png",

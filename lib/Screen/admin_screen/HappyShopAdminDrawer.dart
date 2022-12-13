@@ -13,8 +13,8 @@ import 'package:smartkit/Screen/HappyShopSingUp.dart';
 import 'package:smartkit/Screen/HappyShopTrackOrder.dart';
 import 'package:smartkit/Screen/HappyShopProfile.dart';
 
-class HappyShopDrawer extends StatelessWidget {
-  const HappyShopDrawer({
+class HappyShopAdminDrawer extends StatelessWidget {
+  const HappyShopAdminDrawer({
     Key? key,
   }) : super(key: key);
 
@@ -28,7 +28,7 @@ class HappyShopDrawer extends StatelessWidget {
         children: <Widget>[
           HappyShopDrawerHeader(),
           HappyShopDrawerListTile(
-            title: "Trang chủ",
+            title: "Dashboard",
             icon: Icons.home,
             route: () {
               Navigator.of(context).pop();
@@ -40,44 +40,12 @@ class HappyShopDrawer extends StatelessWidget {
               );
             },
           ),
-          _getDivider(),
-          HappyShopDrawerListTile(
-            title: "Giỏ hàng",
-            icon: Icons.add_shopping_cart,
-            route: () {
-              Navigator.of(context).pop();
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HappyShopCart(),
-                ),
-              );
-            },
-          ),
-          _getDivider(),
-          HappyShopDrawerListTile(
-            img: true,
-            imgurl:
-                "https://smartkit.wrteam.in/smartkit/happyshop/pro_trackorder.svg",
-            title: "Hóa đơn mua",
-            icon: Icons.bike_scooter,
-            route: () {
-              Navigator.of(context).pop();
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HappyShopTreackOrder(
-                    appbar: true,
-                  ),
-                ),
-              );
-            },
-          ),
+
           _getDivider(),
           HappyShopDrawerListTile(
             img: true,
             imgurl: "https://smartkit.wrteam.in/smartkit/happyshop/profile.svg",
-            title: "Thông tin cá nhân",
+            title: "Quản lý khách hàng",
             icon: Icons.person,
             route: () {
               Navigator.of(context).pop();
@@ -92,25 +60,9 @@ class HappyShopDrawer extends StatelessWidget {
           _getDivider(),
           HappyShopDrawerListTile(
             img: true,
-            imgurl: "https://smartkit.wrteam.in/smartkit/happyshop/pro_od.svg",
-            title: "Hóa đơn bán",
-            icon: Icons.content_paste_sharp,
-            route: () {
-              Navigator.of(context).pop();
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HappyShopOrderUser(),
-                ),
-              );
-            },
-          ),
-          _getDivider(),
-          HappyShopDrawerListTile(
-            img: true,
             imgurl:
                 "https://smartkit.wrteam.in/smartkit/happyshop/pro_notification.svg",
-            title: "Thông báo",
+            title: "Duyệt bài đăng",
             icon: Icons.notification_important,
             route: () {
               Navigator.of(context).pop();
@@ -124,25 +76,7 @@ class HappyShopDrawer extends StatelessWidget {
               );
             },
           ),
-          _getDivider(),
-          HappyShopDrawerListTile(
-            img: true,
-            imgurl:
-                "https://smartkit.wrteam.in/smartkit/happyshop/pro_favourite.svg",
-            title: "Yêu thích",
-            icon: Icons.favorite,
-            route: () {
-              Navigator.of(context).pop();
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HappyShopFavrite(
-                    appbar: true,
-                  ),
-                ),
-              );
-            },
-          ),
+
           _getDivider(),
           HappyShopDrawerListTile(
             title: "Đăng Xuất",

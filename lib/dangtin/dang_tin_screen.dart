@@ -6,6 +6,9 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:multiple_images_picker/multiple_images_picker.dart';
 
+import '../Helper/HappyShopColor.dart';
+import 'dang_tin_chi_tiet.dart';
+
 class DangTinScreen extends StatefulWidget {
   const DangTinScreen({Key? key}) : super(key: key);
 
@@ -111,16 +114,71 @@ class _DangTinScreenState extends State<DangTinScreen> {
         body: Column(
           children: [
             InkWell(
-              child: Text('cccccc'),
+              child: DottedBorder(
+                color: Colors.black,
+                strokeWidth: 1,
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  decoration: const BoxDecoration(
+                    color: Color.fromARGB(168, 159, 170, 174),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    child: Column(children: [
+                      Icon(
+                        Icons.add_a_photo,
+                        size: 50,
+                        color: Colors.deepOrange[500],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Text('Đăng từ 01 ảnh đến 10 ảnh')
+                    ]),
+                  ),
+                ),
+              ),
               onTap: (() {
                 loadAssets();
               }),
             ),
-             Expanded(child: buildGridView())
+            const SizedBox(
+              height: 20,
+            ),
+            Expanded(child: buildGridView()),
+            ElevatedButton(
+              onPressed: () async {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => DangTinScreenChiTiet()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(0.0)),
+                  ),
+                  primary: Colors.transparent,
+                  padding: EdgeInsets.all(0.0)),
+              child: Ink(
+                decoration: BoxDecoration(
+                  gradient: happyshopgradient,
+                ),
+                child: Container(
+                  height: 40.0,
+                  padding: EdgeInsets.only(left: 15.0, right: 15.0),
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Tiếp theo",
+                    style: TextStyle(color: Colors.white),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+            ),
           ],
         ));
   }
-
 
   Future chondiachibottomshet() {
     return showModalBottomSheet(

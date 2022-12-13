@@ -24,4 +24,8 @@ class ProductModelProvider extends GetConnect {
     return await get('product/list/cate?cateDetailId=$categoryDetailId');
   }
 
+   Future<Response<List<ProductModel>>> getProductsUserId(int userId) async {
+    return await get('product/list?userId=$userId');
+  }
+
 }

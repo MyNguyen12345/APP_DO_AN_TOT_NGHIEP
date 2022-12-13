@@ -63,16 +63,12 @@ class HappyShopProductDetail extends StatelessWidget {
   final ProductModel productModel;
   final storage = const FlutterSecureStorage();
   final addcouter = Get.put(AddcouterprocutController());
-
-  // bool isRelod;
-  // final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   ScrollController controller = new ScrollController();
   final AddProductCartController addProductCartController =
       Get.put(AddProductCartController());
 
   Future<void> addproductcart() async {
     var userId = await storage.read(key: 'userId');
-    print("productDetailId" + productModel.productId.toString());
     var bool = addProductCartController.addProduct(
         int.parse(userId!), productModel.productId, addcouter.count.value);
     if (await bool) {
@@ -207,28 +203,8 @@ class HappyShopProductDetail extends StatelessWidget {
                   // _offPrice(),
                   _title(),
                   _desc(),
-
-                  // _selectVarientTitle(),
-                  // _getVarient(_selVarient),
-                  // _otherDetailsTitle(),
-                  // _madeIn(),
-                  // _cancleable(),
-                  // _ratingReview(),
-                  // _review(),
-                  // _rating(),
-                  // _writeReview()
                 ],
               ),
-              // desktop: ProductDetailsDesktop(
-              //   imgurl: widget.imgurl,
-              //   tag: widget.tag,
-              //   listwidget: [
-              //     _price(),
-              //     _offPrice(),
-              //     _title(),
-              //     _desc(),
-              //   ],
-              // ),
             ),
           ),
         ),
@@ -246,11 +222,7 @@ class HappyShopProductDetail extends StatelessWidget {
             ),
             child: Center(
                 child: Text(
-              "Add to Cart",
-              // style: Theme.of(context)
-              //     .textTheme
-              //     .button!
-              //     .copyWith(fontWeight: FontWeight.bold, color: Colors.white),
+              "Thêm vào giỏ hàng",
             )),
           ),
         ),
@@ -280,7 +252,7 @@ class HappyShopProductDetail extends StatelessWidget {
           ),
         ),
         Text(
-          "/ " + productModel.userRating.toString() + " Ratings",
+          "/ " + productModel.userRating.toString() + " Đánh giá",
           // style: Theme.of(context).textTheme.caption,
         ),
         SizedBox(
@@ -320,17 +292,9 @@ class HappyShopProductDetail extends StatelessWidget {
                     color: Color.fromARGB(255, 250, 51, 20),
                     fontSize: 16.0,
                     letterSpacing: 0.5,
-                    fontWeight: FontWeight.bold)
-
-                // maxLines: 1,
-
-                // overflow: TextOverflow.ellipsis,
-                ),
+                    fontWeight: FontWeight.bold)),
           ],
-        )
-        // productDetailController.productdetail[0].priceProduct.toString(),
-        // style: Theme.of(context).textTheme.headline6),
-        );
+        ));
   }
 
   _image() {

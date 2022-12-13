@@ -4,12 +4,14 @@ import 'package:get/get.dart';
 import 'package:smartkit/Helper/HappyShopColor.dart';
 import 'package:smartkit/Screen/HappyShopHomeTab.dart';
 import 'package:smartkit/Screen/HappyShopLogin.dart';
+import 'package:smartkit/Screen/HappyShopTrackOrder.dart';
 import 'package:smartkit/controllers/login_controller.dart';
 import 'package:smartkit/controllers/product_controllers.dart';
 import 'package:smartkit/provider/login_provider.dart';
 import 'package:smartkit/provider/product_model_provider.dart';
 
 import 'Screen/HappyShopSplash.dart';
+import 'Screen/admin_screen/HappyShopAdminHome.dart';
 
 void main() => runApp(MyApp());
 
@@ -36,7 +38,9 @@ class MyApp extends StatelessWidget {
         Get.put(LoginProvider());
         Get.put(LoginController());
       }),
-      home: HappyShopSplash(),
+      home: HappyShopAdminHome()
+      //  HappyShopSplash()
+      ,
     );
   }
 }

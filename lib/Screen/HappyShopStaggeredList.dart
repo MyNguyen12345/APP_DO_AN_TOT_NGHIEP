@@ -255,11 +255,6 @@ class HappyShopStaggeredList extends GetView<ProductCategoryController> {
   final ProductController productController = Get.put(ProductController());
   final ProductCategoryController productCategoryController =
       Get.put(ProductCategoryController());
-  // final CategoryDetailController categoryDetailController =
-  //     Get.put(CategoryDetailController());
-
-  // final CategoryIdController categoryIdController =
-  //     Get.put(CategoryIdController());
 
   Animation? buttonSqueezeanimation;
   late AnimationController buttonController;
@@ -311,7 +306,7 @@ class HappyShopStaggeredList extends GetView<ProductCategoryController> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text(
-                            category,
+                            "Danh Mục",
                             style: Theme.of(context).textTheme.headline6,
                           ),
                           InkWell(

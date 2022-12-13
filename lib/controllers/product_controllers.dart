@@ -39,3 +39,18 @@ class ProductCategoryController extends GetxController
     }
   }
 }
+class GetProductUserIdController extends GetxController
+    with StateMixin<List<ProductModel>> {
+  final provider = Get.put(ProductModelProvider());
+  Future<bool> getProductUserId(int userId) async {
+    final Response res = await provider.getProductsUserId(userId);
+    if (res.hasError) {
+      change(null, status: RxStatus.error(res.statusText));
+      return false;
+    } else {
+      change(res.body, status: RxStatus.success());
+      return true;
+    }
+  }
+}
+

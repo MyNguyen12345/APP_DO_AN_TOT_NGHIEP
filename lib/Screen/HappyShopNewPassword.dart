@@ -7,17 +7,15 @@ import 'package:smartkit/Helper/HappyShopColor.dart';
 import 'package:smartkit/Helper/HappyShopString.dart';
 
 import 'HappyShopHome.dart';
-import 'HappyShopNewPassword.dart';
 
-class HappyShopForgotPassword extends StatefulWidget {
-  HappyShopForgotPassword({Key? key}) : super(key: key);
+class HappyShopNewPassword extends StatefulWidget {
+  HappyShopNewPassword({Key? key}) : super(key: key);
 
   @override
-  _HappyShopForgotPasswordState createState() =>
-      _HappyShopForgotPasswordState();
+  _HappyShopNewPasswordState createState() => _HappyShopNewPasswordState();
 }
 
-class _HappyShopForgotPasswordState extends State<HappyShopForgotPassword>
+class _HappyShopNewPasswordState extends State<HappyShopNewPassword>
     with TickerProviderStateMixin {
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -96,7 +94,7 @@ class _HappyShopForgotPasswordState extends State<HappyShopForgotPassword>
           borderRadius: new BorderRadius.all(const Radius.circular(50.0)),
         ),
         child: buttonSqueezeanimation.value > 75.0
-            ? Text("Lấy lại mật khẩu",
+            ? Text("Tiếp tục",
                 textAlign: TextAlign.center,
                 style: Theme.of(context)
                     .textTheme
@@ -107,10 +105,7 @@ class _HappyShopForgotPasswordState extends State<HappyShopForgotPassword>
               ),
       ),
       onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => HappyShopNewPassword()),
-        );
+        validateAndSubmit();
       },
     );
   }
@@ -142,7 +137,7 @@ class _HappyShopForgotPasswordState extends State<HappyShopForgotPassword>
         padding: EdgeInsets.only(top: 40.0, left: 20.0, right: 20.0),
         child: Center(
           child: new Text(
-            FORGOT_PASSWORDTITILE,
+            "Tạo mật khẩu mới",
             style: Theme.of(context)
                 .textTheme
                 .headline6!
@@ -220,19 +215,39 @@ class _HappyShopForgotPasswordState extends State<HappyShopForgotPassword>
         ],
       );
 
-  setMobileNo() {
+  setMatkhaumoi() {
     return Padding(
       padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
       child: TextFormField(
-        keyboardType: TextInputType.number,
+        keyboardType: TextInputType.text,
         controller: mobileController,
         onSaved: (String? value) {
           mobile = value;
           print('Mobile no:$mobile');
         },
         decoration: InputDecoration(
-            prefixIcon: Icon(Icons.call),
-            hintText: MOBILEHINT_LBL,
+            prefixIcon: Icon(Icons.lock),
+            hintText: "Nhập Mật khẩu mới",
+            contentPadding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(10.0))),
+      ),
+    );
+  }
+
+  setMatkhaumoinext() {
+    return Padding(
+      padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
+      child: TextFormField(
+        keyboardType: TextInputType.text,
+        controller: mobileController,
+        onSaved: (String? value) {
+          mobile = value;
+          print('Mobile no:$mobile');
+        },
+        decoration: InputDecoration(
+            prefixIcon: Icon(Icons.lock),
+            hintText: "Nhập lại Mật khẩu mới",
             contentPadding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
             border:
                 OutlineInputBorder(borderRadius: BorderRadius.circular(10.0))),
@@ -259,8 +274,10 @@ class _HappyShopForgotPasswordState extends State<HappyShopForgotPassword>
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             forgotPassTxt(),
-                            setCountryCode(),
-                            setMobileNo(),
+                            // setCountryCode(),
+
+                            setMatkhaumoi(),
+                            setMatkhaumoinext(),
                             getPwdBtn(),
                           ],
                         ),
