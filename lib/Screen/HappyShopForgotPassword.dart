@@ -142,7 +142,7 @@ class _HappyShopForgotPasswordState extends State<HappyShopForgotPassword>
         padding: EdgeInsets.only(top: 40.0, left: 20.0, right: 20.0),
         child: Center(
           child: new Text(
-            FORGOT_PASSWORDTITILE,
+            "Lấy mật khẩu",
             style: Theme.of(context)
                 .textTheme
                 .headline6!
@@ -232,7 +232,7 @@ class _HappyShopForgotPasswordState extends State<HappyShopForgotPassword>
         },
         decoration: InputDecoration(
             prefixIcon: Icon(Icons.call),
-            hintText: MOBILEHINT_LBL,
+            hintText: "Số điện thoại",
             contentPadding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
             border:
                 OutlineInputBorder(borderRadius: BorderRadius.circular(10.0))),

@@ -79,9 +79,6 @@ class _HappyShopPeofileState extends State<HappyShopPeofile>
 
   // Future<void> getUserId() async {
 
-   
-
-
   Future<Null> _playAnimation() async {
     try {
       await buttonController!.forward();
@@ -134,8 +131,7 @@ class _HappyShopPeofileState extends State<HappyShopPeofile>
     return ScreenTypeLayout(
       mobile: Form(
         key: _formkey,
-        child: 
-        SingleChildScrollView(
+        child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Column(
@@ -189,7 +185,8 @@ class _HappyShopPeofileState extends State<HappyShopPeofile>
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(50),
                         child: CachedNetworkImage(
-                          imageUrl: "https://happyshop1233.herokuapp.com/" + userController.state!.avatar,
+                          imageUrl: "https://happyshop1233.herokuapp.com/" +
+                              userController.state!.avatar,
                           fit: BoxFit.fill,
                           width: 100,
                           height: 100,
@@ -427,7 +424,7 @@ class _HappyShopPeofileState extends State<HappyShopPeofile>
             addressC.text = v;
           }),
           onSaved: (String? value) {
-            addressC.text= value!;
+            addressC.text = value!;
           },
           decoration: InputDecoration(
             // hintText: userController.state!.dateJoin,
@@ -454,7 +451,7 @@ class _HappyShopPeofileState extends State<HappyShopPeofile>
 
   @override
   Widget build(BuildContext context) {
-     nameC.text = userController.state!.username;
+    nameC.text = userController.state!.username;
     genderC.text = userController.state!.gender;
     mobileC.text = userController.state!.phone.toString();
     addressC.text = userController.state!.address;

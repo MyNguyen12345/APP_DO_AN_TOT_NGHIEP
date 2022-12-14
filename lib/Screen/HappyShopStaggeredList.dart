@@ -21,231 +21,6 @@ import '../controllers/product_controllers.dart';
 import 'HappyShopHome.dart';
 import 'HappyShopStaggeredList.dart';
 
-List sectList = [
-  {
-    'section': "Offers on men's Fashion",
-    'style': "default",
-    'productList': [
-      {
-        'tag': "1",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_a.png",
-        'name': "Printed Men Round Neck Maroon T-Shirt",
-        'descprice': "2500",
-        'price': "3500",
-        'rating': "4.5",
-        'noOfRating': "90"
-      },
-      {
-        'tag': "2",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_b.png",
-        'name': "Printed Men Round Neck Yellow, Black T-Shirt",
-        'descprice': "1000",
-        'price': "1200",
-        'rating': "2.5",
-        'noOfRating': "50"
-      },
-      {
-        'tag': "3",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_c.png",
-        'name': "Solid Men Round Neck Grey T-Shirt",
-        'descprice': "1300",
-        'price': "1400",
-        'rating': "3.5",
-        'noOfRating': "45"
-      },
-      {
-        'tag': "4",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_d.png",
-        'name': "Men Regular Fit Solid Casual Shirt",
-        'descprice': "1700",
-        'price': "2000",
-        'rating': "4.5",
-        'noOfRating': "150"
-      },
-      {
-        'tag': "1",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_a.png",
-        'name': "Printed Men Round Neck Maroon T-Shirt",
-        'descprice': "2500",
-        'price': "3500",
-        'rating': "4.5",
-        'noOfRating': "90"
-      },
-      {
-        'tag': "2",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_b.png",
-        'name': "Printed Men Round Neck Yellow, Black T-Shirt",
-        'descprice': "1000",
-        'price': "1200",
-        'rating': "2.5",
-        'noOfRating': "50"
-      },
-      {
-        'tag': "3",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_c.png",
-        'name': "Solid Men Round Neck Grey T-Shirt",
-        'descprice': "1300",
-        'price': "1400",
-        'rating': "3.5",
-        'noOfRating': "45"
-      },
-      {
-        'tag': "4",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/man_d.png",
-        'name': "Men Regular Fit Solid Casual Shirt",
-        'descprice': "1700",
-        'price': "2000",
-        'rating': "4.5",
-        'noOfRating': "150"
-      },
-    ]
-  },
-  {
-    'section': "Walk in Style",
-    'style': "style_1",
-    'productList': [
-      {
-        'tag': "5",
-        'img':
-            "https://smartkit.wrteam.in/smartkit/happyshop/collections_a.png",
-        'name': "Nike",
-        'descprice': "2500",
-        'price': "3500",
-        'rating': "4.5",
-        'noOfRating': "90"
-      },
-      {
-        'tag': "6",
-        'img':
-            "https://smartkit.wrteam.in/smartkit/happyshop/collections_b.png",
-        'name': "Bag",
-        'descprice': "1000",
-        'price': "1200",
-        'rating': "2.5",
-        'noOfRating': "50"
-      },
-      {
-        'tag': "7",
-        'img':
-            "https://smartkit.wrteam.in/smartkit/happyshop/collections_c.png",
-        'name': "Puma Shoes",
-        'descprice': "1300",
-        'price': "1400",
-        'rating': "3.5",
-        'noOfRating': "45"
-      },
-      {
-        'tag': "8",
-        'img':
-            "https://smartkit.wrteam.in/smartkit/happyshop/collections_d.png",
-        'name': "NIkeShoes",
-        'descprice': "1700",
-        'price': "2000",
-        'rating': "4.5",
-        'noOfRating': "150"
-      },
-    ]
-  },
-  {
-    'section': "Women's Fashion",
-    'style': "style_2",
-    'productList': [
-      {
-        'tag': "9",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/woman_a.png",
-        'name': "Casual Roll-up Sleeve Solid Women Top",
-        'descprice': "2500",
-        'price': "3500",
-        'rating': "4.5",
-        'noOfRating': "90"
-      },
-      {
-        'tag': "10",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/woman_b.png",
-        'name': "Casual Sleeveless Solid Women Top",
-        'descprice': "1000",
-        'price': "1200",
-        'rating': "2.5",
-        'noOfRating': "50"
-      },
-      {
-        'tag': "11",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/woman_c.png",
-        'name': "Casual 3/4 Sleeve Solid Women Maroon Top",
-        'descprice': "1300",
-        'price': "1400",
-        'rating': "3.5",
-        'noOfRating': "45"
-      },
-      {
-        'tag': "12",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/woman_d.png",
-        'name': "Casual Petal Sleeve Solid Women Yellow Top",
-        'descprice': "1700",
-        'price': "2000",
-        'rating': "4.5",
-        'noOfRating': "150"
-      },
-    ]
-  },
-  {
-    'section': "Top Brands",
-    'style': "style_3",
-    'productList': [
-      {
-        'tag': "13",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_1.png",
-        'name': "Nike",
-      },
-      {
-        'tag': "14",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_2.png",
-        'name': "Reebok",
-      },
-      {
-        'tag': "15",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_3.png",
-        'name': "Tommy Hilfiger",
-      },
-      {
-        'tag': "16",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_4.png",
-        'name': "Levi's",
-      },
-      {
-        'tag': "17",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_5.png",
-        'name': "U.S.Polo",
-      },
-      {
-        'tag': "18",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_6.png",
-        'name': "Fila",
-      },
-      {
-        'tag': "19",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_7.png",
-        'name': "Vans",
-      },
-      {
-        'tag': "20",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_8.png",
-        'name': "Polo",
-      },
-      {
-        'tag': "21",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_9.png",
-        'name': "Calvin Klein",
-      },
-      {
-        'tag': "22",
-        'img': "https://smartkit.wrteam.in/smartkit/happyshop/brands_10.png",
-        'name': "Superdry",
-      },
-    ]
-  },
-];
-
 class HappyShopStaggeredList extends GetView<ProductCategoryController> {
   HappyShopStaggeredList({Key? key, required this.categoryModel})
       : super(key: key);
@@ -326,13 +101,14 @@ class HappyShopStaggeredList extends GetView<ProductCategoryController> {
                     ),
                     Container(
                       height: 100,
-                      child: ListView.builder(
-                        itemCount: categoryModel!.categoryDetail.length,
-                        scrollDirection: Axis.horizontal,
-                        shrinkWrap: true,
-                        physics: BouncingScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return InkWell(
+                      child: controller.obx(
+                        (state) => ListView.builder(
+                          itemCount: categoryModel!.categoryDetail.length,
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          physics: BouncingScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return InkWell(
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Column(
@@ -343,52 +119,41 @@ class HappyShopStaggeredList extends GetView<ProductCategoryController> {
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 5.0),
                                       child: new ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(25.0),
-                                        child: new ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(25.0),
-                                            child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(50),
-                                                child: CachedNetworkImage(
-                                                  imageUrl:
-                                                      "https://happyshop1233.herokuapp.com/" +
-                                                          categoryModel!
-                                                              .categoryDetail[
-                                                                  index]
-                                                              .categoryDetailIcon,
-                                                  fit: BoxFit.fill,
-                                                  width: 50,
-                                                  height: 50,
-                                                ))
-                                            //  new CachedNetworkImage(
-                                            //   imageUrl:
-                                            //       "https://smartkit.wrteam.in/smartkit/happyshop/cat_1.png",
-                                            //   // " https://datn123.herokuapp.com/"+categoryController.state![index].categoryIcon,
-                                            //   height: 50.0,
-                                            //   width: 50.0,
-                                            //   fit: BoxFit.cover,
-                                            // ),
-                                            ),
-                                        // new CachedNetworkImage(
-                                        //   imageUrl:
-                                        //       "https://smartkit.wrteam.in/smartkit/happyshop/cat_1.png",
-                                        //   // " https://datn123.herokuapp.com/"+categoryController.state![index].categoryIcon,
-                                        //   height: 50.0,
-                                        //   width: 50.0,
-                                        //   fit: BoxFit.cover,
-                                        // ),
-                                      ),
+                                          borderRadius:
+                                              BorderRadius.circular(25.0),
+                                          child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                              child: CachedNetworkImage(
+                                                imageUrl:
+                                                    "https://happyshop1233.herokuapp.com/" +
+                                                        categoryModel!
+                                                            .categoryDetail[
+                                                                index]
+                                                            .categoryDetailIcon,
+                                                fit: BoxFit.fill,
+                                                width: 50,
+                                                height: 50,
+                                              ))
+                                          //  new CachedNetworkImage(
+                                          //   imageUrl:
+                                          //       "https://smartkit.wrteam.in/smartkit/happyshop/cat_1.png",
+                                          //   // " https://datn123.herokuapp.com/"+categoryController.state![index].categoryIcon,
+                                          //   height: 50.0,
+                                          //   width: 50.0,
+                                          //   fit: BoxFit.cover,
+                                          // ),
+                                          ),
                                     ),
                                     Container(
                                       child: Text(
                                         categoryModel!.categoryDetail[index]
                                             .categoryDetailName,
                                         textAlign: TextAlign.center,
-                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(fontSize: 15),
+                                        // overflow: TextOverflow.ellipsis,
                                       ),
-                                      width: 50,
+                                      width: 65,
                                     ),
                                   ],
                                 ),
@@ -396,12 +161,12 @@ class HappyShopStaggeredList extends GetView<ProductCategoryController> {
                               onTap: () {
                                 listProduct(categoryModel!
                                     .categoryDetail[index].categoryDetailId);
-                              });
-                        },
+                              },
+                            );
+                          },
+                        ),
                       ),
                     ),
-
-                    // Most popular //
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
                       child: _getHeading("Sản phẩm bán chạy"),
@@ -432,6 +197,11 @@ class HappyShopStaggeredList extends GetView<ProductCategoryController> {
                                           ),
                                         ),
                                         child: ItemCard(
+                                          voucher: productCategoryController
+                                              .state![index].priceDeposit
+                                              .toInt(),
+                                          status: productCategoryController
+                                              .state![index].productStatus,
                                           imagurl:
                                               "https://happyshop1233.herokuapp.com/" +
                                                   productCategoryController
@@ -441,7 +211,7 @@ class HappyShopStaggeredList extends GetView<ProductCategoryController> {
                                           price: productCategoryController
                                               .state![index].priceProduct,
                                           rating: productCategoryController
-                                              .state![index].amountProduct,
+                                              .state![index].rating,
                                           shadow: false,
                                         ),
                                       );
@@ -667,12 +437,16 @@ class ItemCard extends StatefulWidget {
     this.itemname,
     this.price,
     this.shadow,
+    this.status,
+    this.voucher,
   }) : super(key: key);
 
   final String? imagurl, itemname;
   final bool? shadow;
-  final int? rating;
+  final double? rating;
   final double? price;
+  final String? status;
+  final int? voucher;
 
   @override
   _ItemCardState createState() => _ItemCardState();
@@ -733,11 +507,64 @@ class _ItemCardState extends State<ItemCard> {
                   ],
                 ),
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.width / 60,
+              // SizedBox(
+              //   height: MediaQuery.of(context).size.width / 60,
+              // ),
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Expanded(
+                          flex: 5,
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 255, 15, 7),
+                                borderRadius: BorderRadius.circular(20)),
+                            child: Text(
+                              widget.status!.toString(),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .overline!
+                                  .copyWith(
+                                      color: Color.fromARGB(255, 255, 255, 255),
+                                      fontSize: 16.0,
+                                      letterSpacing: 0.5),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 50),
+                        Expanded(
+                          flex: 2,
+                          child: Text(
+                            widget.voucher!.toString() + '%',
+                            style: Theme.of(context)
+                                .textTheme
+                                .overline!
+                                .copyWith(
+                                    color: Color.fromARGB(255, 250, 51, 20),
+                                    fontSize: 16.0,
+                                    letterSpacing: 0.5,
+                                    fontWeight: FontWeight.bold),
+
+                            maxLines: 1,
+
+                            // overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
+
               Padding(
-                padding: const EdgeInsets.all(0.0),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
@@ -769,21 +596,6 @@ class _ItemCardState extends State<ItemCard> {
               )
             ],
           ),
-          // onTap: () {
-          //   Navigator.of(context).push(
-          //     PageRouteBuilder(
-          //       transitionDuration: Duration(milliseconds: 1000),
-          //       pageBuilder: (BuildContext context, Animation<double> animation,
-          //           Animation<double> secondaryAnimation) {
-          //         return HappyShopProductDetail(
-          //           imgurl: widget.imagurl,
-          //           tag: widget.tag,
-          //         );
-          //       },
-          //       reverseTransitionDuration: Duration(milliseconds: 800),
-          //     ),
-          //   );
-          // },
         ),
       ),
     );

@@ -19,7 +19,8 @@ class HappyShopSingUp extends StatefulWidget {
   _HappyShopSingUpState createState() => _HappyShopSingUpState();
 }
 
-class _HappyShopSingUpState extends State<HappyShopSingUp> with TickerProviderStateMixin {
+class _HappyShopSingUpState extends State<HappyShopSingUp>
+    with TickerProviderStateMixin {
   bool? _showPassword = false;
   bool visible = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -51,7 +52,10 @@ class _HappyShopSingUpState extends State<HappyShopSingUp> with TickerProviderSt
   Future<void> validatanimations() async {
     await buttonController!.reverse();
     Future.delayed(Duration(milliseconds: 500)).then((_) async {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HappyShopMobailVerification()));
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => HappyShopMobailVerification()));
     });
   }
 
@@ -86,7 +90,11 @@ class _HappyShopSingUpState extends State<HappyShopSingUp> with TickerProviderSt
 
   back() {
     return BoxDecoration(
-      gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [primaryLight2, primaryLight3], stops: [0, 1]),
+      gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [primaryLight2, primaryLight3],
+          stops: [0, 1]),
     );
   }
 
@@ -107,7 +115,11 @@ class _HappyShopSingUpState extends State<HappyShopSingUp> with TickerProviderSt
     return Padding(
         padding: EdgeInsets.only(top: 25.0),
         child: Center(
-          child: new Text(USER_REGISTRATION, style: Theme.of(context).textTheme.headline6!.copyWith(color: lightblack)),
+          child: new Text("Đăng ký tài khoản",
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6!
+                  .copyWith(color: lightblack)),
         ));
   }
 
@@ -126,7 +138,8 @@ class _HappyShopSingUpState extends State<HappyShopSingUp> with TickerProviderSt
             prefixIconConstraints: BoxConstraints(minWidth: 40, maxHeight: 20),
             isDense: true,
             contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(7.0))),
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(7.0))),
       ),
     );
   }
@@ -139,7 +152,9 @@ class _HappyShopSingUpState extends State<HappyShopSingUp> with TickerProviderSt
         child: Container(
           width: width,
           height: 40,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(7.0), border: Border.all(color: darkgrey)),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(7.0),
+              border: Border.all(color: darkgrey)),
           child: CountryCodePicker(
               showCountryOnly: false,
               searchDecoration: InputDecoration(
@@ -211,11 +226,12 @@ class _HappyShopSingUpState extends State<HappyShopSingUp> with TickerProviderSt
         },
         decoration: InputDecoration(
             prefixIcon: Icon(Icons.call_outlined),
-            hintText: MOBILEHINT_LBL,
+            hintText: "Nhập số điện thoại",
             prefixIconConstraints: BoxConstraints(minWidth: 40, maxHeight: 20),
             isDense: true,
             contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(7.0))),
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(7.0))),
       ),
     );
   }
@@ -235,7 +251,8 @@ class _HappyShopSingUpState extends State<HappyShopSingUp> with TickerProviderSt
             prefixIconConstraints: BoxConstraints(minWidth: 40, maxHeight: 20),
             isDense: true,
             contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(7.0))),
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(7.0))),
       ),
     );
   }
@@ -250,11 +267,12 @@ class _HappyShopSingUpState extends State<HappyShopSingUp> with TickerProviderSt
         onSaved: (val) => password = val,
         decoration: InputDecoration(
             prefixIcon: Icon(Icons.lock_outline),
-            hintText: PASSHINT_LBL,
+            hintText: "Nhập mật khẩu",
             prefixIconConstraints: BoxConstraints(minWidth: 40, maxHeight: 20),
             isDense: true,
             contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(7.0))),
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(7.0))),
       ),
     );
   }
@@ -276,14 +294,18 @@ class _HappyShopSingUpState extends State<HappyShopSingUp> with TickerProviderSt
                 });
               },
             ),
-            Text(SHOW_PASSWORD, style: Theme.of(context).textTheme.bodyText1!.copyWith(color: lightblack2))
+            Text("Hiện mật khẩu",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText1!
+                    .copyWith(color: lightblack2))
           ],
         ));
   }
 
   verifyBtn() {
     return AppBtn(
-      title: VERIFY_MOBILE_NUMBER,
+      title: "Đăng ký",
       btnAnim: buttonSqueezeanimation,
       btnCntrl: buttonController,
       onBtnSelected: () async {
@@ -298,7 +320,14 @@ class _HappyShopSingUpState extends State<HappyShopSingUp> with TickerProviderSt
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text(ALREADY_A_CUSTOMER, style: Theme.of(context).textTheme.bodyText1!.copyWith(color: lightblack)),
+          Text("Nếu bạn đã có mật khẩu",
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText1!
+                  .copyWith(color: lightblack)),
+          SizedBox(
+            width: 10,
+          ),
           InkWell(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
@@ -306,8 +335,9 @@ class _HappyShopSingUpState extends State<HappyShopSingUp> with TickerProviderSt
                 ));
               },
               child: Text(
-                LOG_IN_LBL,
-                style: Theme.of(context).textTheme.bodyText1!.copyWith(color: primary, decoration: TextDecoration.underline),
+                "Đăng nhập",
+                style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    color: primary, decoration: TextDecoration.underline),
               ))
         ],
       ),
@@ -328,16 +358,17 @@ class _HappyShopSingUpState extends State<HappyShopSingUp> with TickerProviderSt
                 child: Form(
                   key: _formkey,
                   child: Card(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
                     margin: EdgeInsets.all(20.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         registerTxt(),
-                        setUserName(),
+                        // setUserName(),
                         setCountryCode(),
                         setMobileNo(),
-                        setEmail(),
+                        // setEmail(),
                         setPass(),
                         showPass(),
                         verifyBtn(),
@@ -371,7 +402,8 @@ class _HappyShopSingUpState extends State<HappyShopSingUp> with TickerProviderSt
   @override
   void initState() {
     super.initState();
-    buttonController = new AnimationController(duration: new Duration(milliseconds: 2000), vsync: this);
+    buttonController = new AnimationController(
+        duration: new Duration(milliseconds: 2000), vsync: this);
 
     buttonSqueezeanimation = new Tween(
       begin: deviceWidth * 0.7,

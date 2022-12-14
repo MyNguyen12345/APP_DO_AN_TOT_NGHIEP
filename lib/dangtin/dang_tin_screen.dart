@@ -133,7 +133,7 @@ class _DangTinScreenState extends State<DangTinScreen> {
                       const SizedBox(
                         height: 10,
                       ),
-                      const Text('Đăng từ 01 ảnh đến 10 ảnh')
+                      const Text('Đăng từ 01 ảnh đến 5 ảnh')
                     ]),
                   ),
                 ),

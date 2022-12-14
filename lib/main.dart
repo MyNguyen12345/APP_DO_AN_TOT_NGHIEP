@@ -38,9 +38,9 @@ class MyApp extends StatelessWidget {
         Get.put(LoginProvider());
         Get.put(LoginController());
       }),
-      home: HappyShopAdminHome()
-      //  HappyShopSplash()
-      ,
+      home:
+           HappyShopAdminHome()
+          // HappyShopSplash(),
     );
   }
 }

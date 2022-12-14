@@ -60,7 +60,7 @@ class PlaningGrid extends StatelessWidget {
                                 overflow: TextOverflow.ellipsis),
                           ),
                           Text(
-                            " Tổng Số người dùng hiện tại",
+                            " Số người dùng",
                             style: TextStyle(
                               color: Color.fromARGB(255, 255, 255, 255),
                               fontSize:
@@ -127,7 +127,7 @@ class PlaningGrid extends StatelessWidget {
                                 overflow: TextOverflow.ellipsis),
                           ),
                           Text(
-                            "Số người đặt hàng",
+                            "Số người hoạt động",
                             style: TextStyle(
                               color: Color.fromARGB(255, 255, 255, 255),
                               fontSize:
@@ -194,7 +194,7 @@ class PlaningGrid extends StatelessWidget {
                                 overflow: TextOverflow.ellipsis),
                           ),
                           Text(
-                            "planing[index].subHeading",
+                            "Tỷ lệ đặt hàng",
                             style: TextStyle(
                               color: Color.fromARGB(255, 255, 255, 255),
                               fontSize:
@@ -241,7 +241,7 @@ class PlaningGrid extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10)),
                             height: 55,
                             width: 55,
-                            child: Icon(Icons.accessible_forward),
+                            child: Icon(Icons.card_travel),
                           )
                         ],
                       ),
@@ -261,7 +261,7 @@ class PlaningGrid extends StatelessWidget {
                                 overflow: TextOverflow.ellipsis),
                           ),
                           Text(
-                            "planing[index].subHeading",
+                            "Số người đặt hàng",
                             style: TextStyle(
                               color: Color.fromARGB(255, 255, 255, 255),
                               fontSize:

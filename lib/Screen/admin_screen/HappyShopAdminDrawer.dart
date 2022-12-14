@@ -13,6 +13,11 @@ import 'package:smartkit/Screen/HappyShopSingUp.dart';
 import 'package:smartkit/Screen/HappyShopTrackOrder.dart';
 import 'package:smartkit/Screen/HappyShopProfile.dart';
 
+import 'HappShopAdminPost.dart';
+import 'HappyShopAdminAppBar.dart';
+import 'HappyShopAdminHome.dart';
+import 'HappyShopAdminUser.dart';
+
 class HappyShopAdminDrawer extends StatelessWidget {
   const HappyShopAdminDrawer({
     Key? key,
@@ -35,7 +40,7 @@ class HappyShopAdminDrawer extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => HappyShopHome(),
+                  builder: (context) => HappyShopAdminHome(),
                 ),
               );
             },
@@ -52,7 +57,7 @@ class HappyShopAdminDrawer extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => HappyShopPeofile(),
+                  builder: (context) => HappShopAdminUser(),
                 ),
               );
             },
@@ -69,7 +74,7 @@ class HappyShopAdminDrawer extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => HappyShopNotification(
+                  builder: (context) => HappyShopAdminPost(
                     appbar: true,
                   ),
                 ),

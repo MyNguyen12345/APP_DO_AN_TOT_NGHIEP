@@ -217,106 +217,6 @@ class HappyShopHomeTab extends GetView<ProductController> {
                         ),
                       ),
                     ),
-                    // New arrival for men's //
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                      child: _getHeading("Top Brands"),
-                    ),
-
-                    // Collections //
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                      child: _getHeading("Collections"),
-                    ),
-                    ScreenTypeLayout(
-                      mobile: Container(
-                        height: MediaQuery.of(context).size.width / 2,
-                        child: ListView.builder(
-                          itemCount: sectList[1]['productList'].length,
-                          shrinkWrap: true,
-                          physics: BouncingScrollPhysics(),
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            return Card(
-                              margin: EdgeInsets.only(
-                                  left: index == 0 ? 15.0 : 5.0,
-                                  right: index == 3 ? 15.0 : 0.0),
-                              elevation: 0.0,
-                              child: InkWell(
-                                child: Container(
-                                  height: MediaQuery.of(context).size.width / 3,
-                                  width:
-                                      MediaQuery.of(context).size.width / 2.8,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      image: DecorationImage(
-                                        image: CachedNetworkImageProvider(
-                                          sectList[1]['productList'][index]
-                                              ['img'],
-                                        ),
-                                        fit: BoxFit.fill,
-                                      )),
-                                ),
-                                onTap: () {
-                                  // Navigator.pushReplacement(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //     builder: (context) =>
-                                  //         HappyShopStaggeredList(),
-                                  //   ),
-                                  // );
-                                  // Navigator.push(
-                                  //   context,
-                                  //   PageRouteBuilder(transitionDuration: Duration(seconds: 1), pageBuilder: (_, __, ___) => HappyShopStaggeredList()),
-                                  // );
-                                },
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                      desktop: CollectionsGridDektop(
-                        widget: ListView.builder(
-                          itemCount: sectList[1]['productList'].length,
-                          shrinkWrap: true,
-                          physics: BouncingScrollPhysics(),
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            return Card(
-                              margin: EdgeInsets.only(
-                                  left: index == 0 ? 15.0 : 5.0,
-                                  right: index == 3 ? 15.0 : 0.0),
-                              elevation: 0.0,
-                              child: InkWell(
-                                child: Container(
-                                  height: MediaQuery.of(context).size.width / 3,
-                                  width:
-                                      MediaQuery.of(context).size.width / 4.2,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      image: DecorationImage(
-                                        image: CachedNetworkImageProvider(
-                                          sectList[1]['productList'][index]
-                                              ['img'],
-                                        ),
-                                        fit: BoxFit.fill,
-                                      )),
-                                ),
-                                onTap: () {
-                                  // Navigator.pushReplacement(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //     builder: (context) =>
-                                  //         HappyShopStaggeredList(),
-                                  //   ),
-                                  // );
-                                },
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ),
                   ],
                 )
               ],
@@ -359,7 +259,6 @@ class HappyShopHomeTab extends GetView<ProductController> {
       ),
     );
   }
-
 
   List<T?> map<T>(List homeSliderList, Function handler) {
     List<T?> result = [];

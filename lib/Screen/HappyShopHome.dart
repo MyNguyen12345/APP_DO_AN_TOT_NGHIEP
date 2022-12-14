@@ -6,11 +6,13 @@ import 'package:smartkit/Screen/HappyShopFavrite.dart';
 import 'package:smartkit/Screen/HappyShopHomeTab.dart';
 import 'package:smartkit/Screen/HappyShopNotification.dart';
 import 'package:smartkit/Screen/HappyShopTrackOrder.dart';
+import 'package:smartkit/controllers/category_controller.dart';
 import 'package:smartkit/widget/HappyShopAppBar.dart';
 import 'package:smartkit/widget/HappyShopDrawer.dart';
 import 'package:get/get.dart';
 
 import '../dangtin/dang_tin_screen.dart';
+import '../models/category_model.dart';
 
 class HappyShopHome extends StatefulWidget {
   HappyShopHome({Key? key}) : super(key: key);
@@ -22,6 +24,8 @@ class HappyShopHome extends StatefulWidget {
 class _HappyShopHomeState extends State<HappyShopHome> {
   late List<Widget> happyShopBottomeTab;
   int _curSelected = 0;
+
+  final CategoryController categoryController = Get.put(CategoryController());
 
   @override
   void initState() {
@@ -98,14 +102,32 @@ class _HappyShopHomeState extends State<HappyShopHome> {
                                 child: new Center(
                                   child: new ListView.builder(
                                       padding: const EdgeInsets.all(8),
-                                      itemCount: 10,
+                                      itemCount:
+                                          categoryController.state?.length,
                                       itemBuilder:
                                           (BuildContext context, int index) {
                                         return ListTile(
-                                          leading: const Icon(Icons.photo),
-                                          title: const Text('Bất đống sản'),
+                                          leading: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(50),
+                                            child: Container(
+                                              width: 30,
+                                              height: 30,
+                                              child: Image.network(
+                                                "https://happyshop1233.herokuapp.com/" +
+                                                    categoryController
+                                                        .state![index]
+                                                        .categoryIcon,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                          title: Text(categoryController
+                                              .state![index].categoryName),
                                           onTap: () {
-                                            danhmucsanphambottomshet();
+                                            danhmucsanphambottomshet(
+                                                categoryController
+                                                    .state![index]);
                                           },
                                           trailing:
                                               Icon(Icons.arrow_forward_ios),
@@ -312,7 +334,7 @@ class _HappyShopHomeState extends State<HappyShopHome> {
     );
   }
 
-  Future danhmucsanphambottomshet() {
+  Future danhmucsanphambottomshet(CategoryModel categoryModel) {
     return showModalBottomSheet(
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
@@ -346,11 +368,24 @@ class _HappyShopHomeState extends State<HappyShopHome> {
                       child: new Center(
                         child: new ListView.builder(
                             padding: const EdgeInsets.all(8),
-                            itemCount: 10,
+                            itemCount: categoryModel.categoryDetail.length,
                             itemBuilder: (BuildContext context, int index) {
                               return ListTile(
-                                leading: const Icon(Icons.photo),
-                                title: const Text('Bất đống sản'),
+                                leading: ClipRRect(
+                                  borderRadius: BorderRadius.circular(50),
+                                  child: Container(
+                                    width: 30,
+                                    height: 30,
+                                    child: Image.network(
+                                      "https://happyshop1233.herokuapp.com/" +
+                                          categoryModel.categoryDetail[index]
+                                              .categoryDetailIcon,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                title: Text(categoryModel
+                                    .categoryDetail[index].categoryDetailName),
                                 onTap: () {
                                   Navigator.push(
                                     context,
