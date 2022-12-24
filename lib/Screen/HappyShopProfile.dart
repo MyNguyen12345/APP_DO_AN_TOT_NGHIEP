@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,9 +11,12 @@ import 'package:smartkit/Helper/HappyShopColor.dart';
 import 'package:smartkit/Helper/HappyShopString.dart';
 import 'package:smartkit/Screen/HappyShopCart.dart';
 import 'package:smartkit/widget/HappyShopbtn.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../controllers/user_controller.dart';
 import 'HappyShopHome.dart';
+
+class texteditGetx extends GetxController {}
 
 class HappyShopPeofile extends StatefulWidget {
   HappyShopPeofile({Key? key}) : super(key: key);
@@ -21,6 +27,24 @@ class HappyShopPeofile extends StatefulWidget {
 
 class _HappyShopPeofileState extends State<HappyShopPeofile>
     with TickerProviderStateMixin {
+  //chon anh
+  File? _image;
+  final ImagePicker _picker = ImagePicker();
+  //chon anh
+  FocusNode textFieldFocusNode = FocusNode();
+  FocusNode searchFocusNode = FocusNode();
+  //chon anh
+  Future getImage() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (image == null) {
+      return;
+    }
+    final ImageTemporary = File(image.path);
+    setState(() {
+      this._image = ImageTemporary;
+    });
+  }
+
   String? name, email, mobile, city, area, pincode, address, image;
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
@@ -79,6 +103,63 @@ class _HappyShopPeofileState extends State<HappyShopPeofile>
 
   // Future<void> getUserId() async {
 
+  setAddress() {
+    return Padding(
+        padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
+        child: Row(
+          children: [
+            Expanded(
+              child: TextFormField(
+                // validator: (value) =>
+                //     value!.isEmpty ? userController.state!.address : null,
+                keyboardType: TextInputType.text,
+                controller: addressC,
+                style: Theme.of(this.context)
+                    .textTheme
+                    .subtitle1!
+                    .copyWith(color: darkgrey),
+                onChanged: (v) => setState(() {
+                  address = v;
+                }),
+                onSaved: (String? value) {
+                  address = value;
+                },
+                decoration: InputDecoration(
+                  // hintText: userController.state!.address,
+                  hintStyle: Theme.of(this.context)
+                      .textTheme
+                      .subtitle1!
+                      .copyWith(color: darkgrey),
+                  filled: true,
+                  fillColor: Colors.white,
+                  contentPadding: new EdgeInsets.only(right: 30.0, left: 30.0),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(width: 10),
+            Container(
+              width: 60,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  border: Border.all(color: white),
+                  color: white),
+              child: IconButton(
+                icon: new Icon(Icons.my_location),
+                onPressed: () async {},
+              ),
+            )
+          ],
+        ));
+  }
+
   Future<Null> _playAnimation() async {
     try {
       await buttonController!.forward();
@@ -94,7 +175,7 @@ class _HappyShopPeofileState extends State<HappyShopPeofile>
 
   Future<void> checkNetwork() async {
     buttonController!.reverse();
-    print(nameUser);
+    // print(nameUser);
     Get.to(HappyShopPeofile());
   }
 
@@ -127,52 +208,6 @@ class _HappyShopPeofileState extends State<HappyShopPeofile>
     );
   }
 
-  _showContent() {
-    return ScreenTypeLayout(
-      mobile: Form(
-        key: _formkey,
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Column(
-              children: <Widget>[
-                profileImage(),
-                setUserName(),
-                setEmail(),
-                setMobileNo(),
-                setAddress(),
-                setPincode(),
-                updateBtn(),
-              ],
-            ),
-          ),
-        ),
-      ),
-      desktop: Container(
-        width: MediaQuery.of(context).size.width / 2,
-        child: Form(
-          key: _formkey,
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Column(
-                children: <Widget>[
-                  profileImage(),
-                  setUserName(),
-                  setEmail(),
-                  setMobileNo(),
-                  setAddress(),
-                  setPincode(),
-                  updateBtn(),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
   profileImage() {
     return Container(
         padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 30.0),
@@ -184,13 +219,21 @@ class _HappyShopPeofileState extends State<HappyShopPeofile>
                     backgroundColor: primary,
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(50),
-                        child: CachedNetworkImage(
-                          imageUrl: "https://happyshop1233.herokuapp.com/" +
-                              userController.state!.avatar,
-                          fit: BoxFit.fill,
-                          width: 100,
-                          height: 100,
-                        )))
+                        child: _image != null
+                            ? Image.file(
+                                _image!,
+                                width: 250,
+                                height: 250,
+                                fit: BoxFit.cover,
+                              )
+                            : CachedNetworkImage(
+                                imageUrl:
+                                    "https://happyshop1233.herokuapp.com/" +
+                                        userController.state!.avatar,
+                                fit: BoxFit.fill,
+                                width: 100,
+                                height: 100,
+                              )))
                 : CircleAvatar(
                     radius: 50,
                     backgroundColor: primary,
@@ -208,15 +251,12 @@ class _HappyShopPeofileState extends State<HappyShopPeofile>
                   height: 30,
                   width: 30,
                   child: IconButton(
-                    icon: Icon(
-                      Icons.edit,
-                      color: primary,
-                      size: 15,
-                    ),
-                    onPressed: () {
-                      setState(() {});
-                    },
-                  ),
+                      icon: Icon(
+                        Icons.edit,
+                        color: primary,
+                        size: 15,
+                      ),
+                      onPressed: getImage),
                   decoration: BoxDecoration(
                       color: white,
                       borderRadius: BorderRadius.all(
@@ -330,7 +370,7 @@ class _HappyShopPeofileState extends State<HappyShopPeofile>
             email = value;
           },
           decoration: InputDecoration(
-            // hintText: userController.state!.gender,
+            hintText: userController.state!.gender,
             hintStyle: Theme.of(this.context)
                 .textTheme
                 .subtitle1!
@@ -350,61 +390,6 @@ class _HappyShopPeofileState extends State<HappyShopPeofile>
         ),
       ),
     );
-  }
-
-  setAddress() {
-    return Padding(
-        padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
-        child: Row(
-          children: [
-            Expanded(
-              child: TextFormField(
-                keyboardType: TextInputType.text,
-                controller: addressC,
-                style: Theme.of(this.context)
-                    .textTheme
-                    .subtitle1!
-                    .copyWith(color: darkgrey),
-                onChanged: (v) => setState(() {
-                  address = v;
-                }),
-                onSaved: (String? value) {
-                  address = value;
-                },
-                decoration: InputDecoration(
-                  // hintText: userController.state!.address,
-                  hintStyle: Theme.of(this.context)
-                      .textTheme
-                      .subtitle1!
-                      .copyWith(color: darkgrey),
-                  filled: true,
-                  fillColor: Colors.white,
-                  contentPadding: new EdgeInsets.only(right: 30.0, left: 30.0),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(width: 10),
-            Container(
-              width: 60,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  border: Border.all(color: white),
-                  color: white),
-              child: IconButton(
-                icon: new Icon(Icons.my_location),
-                onPressed: () async {},
-              ),
-            )
-          ],
-        ));
   }
 
   setPincode() {
@@ -449,6 +434,52 @@ class _HappyShopPeofileState extends State<HappyShopPeofile>
     );
   }
 
+  _showContent() {
+    return ScreenTypeLayout(
+      mobile: Form(
+        key: _formkey,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Column(
+              children: <Widget>[
+                profileImage(),
+                setUserName(),
+                setEmail(),
+                setMobileNo(),
+                setAddress(),
+                setPincode(),
+                updateBtn(),
+              ],
+            ),
+          ),
+        ),
+      ),
+      desktop: Container(
+        width: MediaQuery.of(context).size.width / 2,
+        child: Form(
+          key: _formkey,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Column(
+                children: <Widget>[
+                  profileImage(),
+                  setUserName(),
+                  setEmail(),
+                  setMobileNo(),
+                  setAddress(),
+                  setPincode(),
+                  updateBtn(),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     nameC.text = userController.state!.username;
@@ -456,6 +487,7 @@ class _HappyShopPeofileState extends State<HappyShopPeofile>
     mobileC.text = userController.state!.phone.toString();
     addressC.text = userController.state!.address;
     dateC.text = userController.state!.dateJoin;
+
     return WillPopScope(
       onWillPop: () {
         return Navigator.pushReplacement(

@@ -112,6 +112,7 @@ dependencies:
   path_provider: ^2.0.8
   websafe_svg: ^2.1.0+1
   scrollable_table_view: ^1.0.0
+  image_picker: ^0.8.6
 
   # ////////// eStudy Packages //////////
 

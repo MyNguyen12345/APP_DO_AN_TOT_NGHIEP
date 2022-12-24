@@ -83,7 +83,7 @@ class _ButtomBarState extends State<ButtomBar> {
                                       fontWeight: FontWeight.bold),
                                 ),
                                 onTap: () {
-                                  danhmucsanphambottomshet();
+                                  // danhmucsanphambottomshet();
                                 },
                                 // trailing: Icon(Icons.arrow_forward_ios),
                               ),
@@ -91,7 +91,7 @@ class _ButtomBarState extends State<ButtomBar> {
                                 leading: const Icon(Icons.photo),
                                 title: const Text('Bất đống sản'),
                                 onTap: () {
-                                  danhmucsanphambottomshet();
+                                  // danhmucsanphambottomshet();
                                 },
                                 trailing: Icon(Icons.arrow_forward_ios),
                               ),
@@ -131,72 +131,72 @@ class _ButtomBarState extends State<ButtomBar> {
     );
   }
 
-  Future danhmucsanphambottomshet() {
-    return showModalBottomSheet(
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30), topRight: Radius.circular(30))),
-        context: context,
-        builder: (context) {
-          return Container(
-            // MediaQuery.of(context).size.height * 0.9
-            height: MediaQuery.of(context).size.height,
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  'Chọn danh mục',
-                  style: TextStyle(
-                      color: Colors.deepOrange,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
-                ),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    ListTile(
-                      leading: const Icon(Icons.photo),
-                      title: const Text('gà chó mèo...'),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const DangTinScreen()),
-                        );
-                      },
-                      trailing: Icon(Icons.arrow_forward_ios),
-                    ),
-                    ListTile(
-                      leading: new Icon(Icons.music_note),
-                      title: new Text(' Xe cộ'),
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      trailing: Icon(Icons.arrow_forward_ios),
-                    ),
-                    ListTile(
-                      leading: new Icon(Icons.videocam),
-                      title: new Text('Đồ điện tử'),
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      trailing: Icon(Icons.arrow_forward_ios),
-                    ),
-                    ListTile(
-                      leading: new Icon(Icons.share),
-                      title: new Text('Thú Cưng'),
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      trailing: Icon(Icons.arrow_forward_ios),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          );
-        });
-  }
+  // Future danhmucsanphambottomshet() {
+  //   return showModalBottomSheet(
+  //       shape: const RoundedRectangleBorder(
+  //           borderRadius: BorderRadius.only(
+  //               topLeft: Radius.circular(30), topRight: Radius.circular(30))),
+  //       context: context,
+  //       builder: (context) {
+  //         return Container(
+  //           // MediaQuery.of(context).size.height * 0.9
+  //           height: MediaQuery.of(context).size.height,
+  //           child: Column(
+  //             children: [
+  //               const SizedBox(
+  //                 height: 10,
+  //               ),
+  //               const Text(
+  //                 'Chọn danh mục',
+  //                 style: TextStyle(
+  //                     color: Colors.deepOrange,
+  //                     fontSize: 20,
+  //                     fontWeight: FontWeight.bold),
+  //               ),
+  //               Column(
+  //                 mainAxisSize: MainAxisSize.min,
+  //                 children: <Widget>[
+  //                   ListTile(
+  //                     leading: const Icon(Icons.photo),
+  //                     title: const Text('gà chó mèo...'),
+  //                     onTap: () {
+  //                       Navigator.push(
+  //                         context,
+  //                         MaterialPageRoute(
+  //                             builder: (context) =>  DangTinScreen()),
+  //                       );
+  //                     },
+  //                     trailing: Icon(Icons.arrow_forward_ios),
+  //                   ),
+  //                   ListTile(
+  //                     leading: new Icon(Icons.music_note),
+  //                     title: new Text(' Xe cộ'),
+  //                     onTap: () {
+  //                       Navigator.pop(context);
+  //                     },
+  //                     trailing: Icon(Icons.arrow_forward_ios),
+  //                   ),
+  //                   ListTile(
+  //                     leading: new Icon(Icons.videocam),
+  //                     title: new Text('Đồ điện tử'),
+  //                     onTap: () {
+  //                       Navigator.pop(context);
+  //                     },
+  //                     trailing: Icon(Icons.arrow_forward_ios),
+  //                   ),
+  //                   ListTile(
+  //                     leading: new Icon(Icons.share),
+  //                     title: new Text('Thú Cưng'),
+  //                     onTap: () {
+  //                       Navigator.pop(context);
+  //                     },
+  //                     trailing: Icon(Icons.arrow_forward_ios),
+  //                   ),
+  //                 ],
+  //               ),
+  //             ],
+  //           ),
+  //         );
+  //       });
+  // }
 }

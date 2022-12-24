@@ -16,18 +16,18 @@ import '../controllers/product_controllers.dart';
 import 'HappyShopHomeTab.dart';
 import 'HappyShopProductDetail.dart';
 
-class HappyShopUser extends GetView<GetProductUserIdController> {
+class HappyShopUser extends GetView<GetProductUserIdStatusController> {
   HappyShopUser(this.userId, {Key? key}) : super(key: key);
   final int userId;
   final GetUserIdController getUserIdController =
       Get.put(GetUserIdController());
-  final GetProductUserIdController getProductUserIdController =
-      Get.put(GetProductUserIdController());
+  final GetProductUserIdStatusController  getProductUserIdStatusController =
+      Get.put(GetProductUserIdStatusController());
   final storage = const FlutterSecureStorage();
 
   Future<void> getUserId() async {
     await getUserIdController.fetchUserId(userId);
-    await getProductUserIdController.getProductUserId(userId);
+    await getProductUserIdStatusController.listProductStatus(userId);
     print(userId);
   }
 
@@ -36,134 +36,145 @@ class HappyShopUser extends GetView<GetProductUserIdController> {
     Get.lazyPut(
       () => GetUserIdController(),
     );
-     Get.lazyPut(
+    Get.lazyPut(
       () => GetProductUserIdController(),
     );
     getUserId();
 
-    return  Scaffold(
+    return Scaffold(
         appBar: getAppBar("User Shop", context),
         body: SingleChildScrollView(
           child: Column(
             children: [
               controller.obx((state) => InkWell(
-                child: Container(
-                  height: 130,
-                  decoration:
-                      BoxDecoration(color: Color.fromARGB(97, 7, 197, 235)),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      InkWell(
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(50),
-                            child: CachedNetworkImage(
-                              imageUrl: "https://happyshop1233.herokuapp.com/" +
-                                  getUserIdController.state!.avatar,
-                              height: 70,
-                              width: 70,
-                              fit: BoxFit.fill,
-                            )),
-                        onTap: () {
-                          print("bam duoc");
-                        },
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              getUserIdController.state!.username,
-                              style:
-                                  TextStyle(color: Colors.pink, fontSize: 15),
-                            ),
-                            Row(
+                    child: Container(
+                      height: 130,
+                      decoration:
+                          BoxDecoration(color: Color.fromARGB(97, 7, 197, 235)),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          InkWell(
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(50),
+                                child: CachedNetworkImage(
+                                  imageUrl:
+                                      "https://happyshop1233.herokuapp.com/" +
+                                          getUserIdController.state!.avatar,
+                                  height: 70,
+                                  width: 70,
+                                  fit: BoxFit.fill,
+                                )),
+                            onTap: () {
+                              print("bam duoc");
+                            },
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Icon(
-                                  Icons.star,
-                                  color: Colors.yellow,
-                                  size: 20,
-                                ),
                                 Text(
-                                  " (" + "120" + ")",
-                                  // style: Theme.of(context).textTheme.overline,
+                                  getUserIdController.state!.username,
+                                  style: TextStyle(
+                                      color: Colors.pink, fontSize: 15),
+                                ),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.star,
+                                      color: Colors.yellow,
+                                      size: 20,
+                                    ),
+                                    Text(
+                                      " (" + "120" + ")",
+                                      // style: Theme.of(context).textTheme.overline,
+                                    ),
+                                    Icon(
+                                      Icons.phone,
+                                      color: Colors.yellow,
+                                      size: 20,
+                                    ),
+                                    Text(
+                                      "0" +
+                                          getUserIdController.state!.phone
+                                              .toString(),
+                                      // style: Theme.of(context).textTheme.overline,
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Container(
+                                  width: 250,
+                                  height: 40,
+                                  child: TextField(
+                                    decoration: InputDecoration(
+                                        prefixIcon: Icon(
+                                          Icons.search,
+                                          size: 15,
+                                        ),
+                                        border: OutlineInputBorder(),
+                                        hintText: 'Nhập tên vật phẩm',
+                                        hintStyle: TextStyle(fontSize: 10)),
+                                  ),
                                 ),
                               ],
                             ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Container(
-                              width: 250,
-                              height: 40,
-                              child: TextField(
-                                decoration: InputDecoration(
-                                    prefixIcon: Icon(
-                                      Icons.search,
-                                      size: 15,
-                                    ),
-                                    border: OutlineInputBorder(),
-                                    hintText: 'Nhập tên vật phẩm',
-                                    hintStyle: TextStyle(fontSize: 10)),
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-                // onTap: (() {
-                //   Get.to(HappyShopUser());
-                // }),
-              )),
+                    ),
+                    // onTap: (() {
+                    //   Get.to(HappyShopUser());
+                    // }),
+                  )),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 child: ScreenTypeLayout(
                   mobile: Container(
-                    //                   controller.obx(
-                    // (state) => ListView.separated(
-                    child: controller.obx((state) =>  GridView.count(
-                        padding: EdgeInsets.only(top: 5),
-                        crossAxisCount: 2,
-                        shrinkWrap: true,
-                        childAspectRatio: 0.7,
-                        physics: NeverScrollableScrollPhysics(),
-                        children: List.generate(
-                          getProductUserIdController.state!.length,
-                          (index) {
-                            return InkWell(
-                              onTap: () => Get.to(
-                                HappyShopProductDetail(
-                                  productModel: state![index],
+                      //                   controller.obx(
+                      // (state) => ListView.separated(
+                      child: controller.obx((state) => GridView.count(
+                          padding: EdgeInsets.only(top: 5),
+                          crossAxisCount: 2,
+                          shrinkWrap: true,
+                          childAspectRatio: 0.7,
+                          physics: NeverScrollableScrollPhysics(),
+                          children: List.generate(
+                            getProductUserIdStatusController.state!.length,
+                            (index) {
+                              return InkWell(
+                                onTap: () => Get.to(
+                                  HappyShopProductDetail(
+                                    productModel: state![index],
+                                  ),
                                 ),
-                              ),
-                              child: ItemCard(
-                                voucher: getProductUserIdController
-                                    .state![index].priceDeposit
-                                    .toInt(),
-                                status: getProductUserIdController
-                                    .state![index].productStatus,
-                                imagurl:
-                                    "https://happyshop1233.herokuapp.com/" +
-                                        getProductUserIdController.state![index].avatar,
-                                itemname:
-                                    getProductUserIdController.state![index].productName,
-                                price: getProductUserIdController
-                                    .state![index].priceProduct,
-                                rating: getProductUserIdController.state![index].rating,
-                                shadow: false,
-                              ),
-                            );
-                          },
-                        )
-                        ))
-                        
-                  ),
+                                child: ItemCard(
+                                  voucher: getProductUserIdStatusController
+                                      .state![index].priceDeposit
+                                      .toInt(),
+                                  status: getProductUserIdStatusController
+                                      .state![index].productStatus,
+                                  imagurl:
+                                      "https://happyshop1233.herokuapp.com/" +
+                                          getProductUserIdStatusController
+                                              .state![index].avatar,
+                                  itemname: getProductUserIdStatusController
+                                      .state![index].productName,
+                                  price: getProductUserIdStatusController
+                                      .state![index].priceProduct,
+                                  rating: getProductUserIdStatusController
+                                      .state![index].rating,
+                                  shadow: false,
+                                ),
+                              );
+                            },
+                          )))),
                 ),
               ),
             ],

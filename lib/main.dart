@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:smartkit/Helper/HappyShopColor.dart';
 import 'package:smartkit/Screen/HappyShopHomeTab.dart';
 import 'package:smartkit/Screen/HappyShopLogin.dart';
+import 'package:smartkit/Screen/HappyShopProductPriview.dart';
 import 'package:smartkit/Screen/HappyShopTrackOrder.dart';
 import 'package:smartkit/controllers/login_controller.dart';
 import 'package:smartkit/controllers/product_controllers.dart';
@@ -39,8 +40,9 @@ class MyApp extends StatelessWidget {
         Get.put(LoginController());
       }),
       home:
-           HappyShopAdminHome()
-          // HappyShopSplash(),
+          //  HappyShopAdminHome()
+          HappyShopSplash(),
+          // HappyShopProductPreview()
     );
   }
 }

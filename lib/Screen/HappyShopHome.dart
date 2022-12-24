@@ -4,9 +4,11 @@ import 'package:like_button/like_button.dart';
 import 'package:smartkit/Helper/HappyShopColor.dart';
 import 'package:smartkit/Screen/HappyShopFavrite.dart';
 import 'package:smartkit/Screen/HappyShopHomeTab.dart';
+import 'package:smartkit/Screen/HappyShopMyShop.dart';
 import 'package:smartkit/Screen/HappyShopNotification.dart';
 import 'package:smartkit/Screen/HappyShopTrackOrder.dart';
 import 'package:smartkit/controllers/category_controller.dart';
+import 'package:smartkit/data/data.dart';
 import 'package:smartkit/widget/HappyShopAppBar.dart';
 import 'package:smartkit/widget/HappyShopDrawer.dart';
 import 'package:get/get.dart';
@@ -24,6 +26,7 @@ class HappyShopHome extends StatefulWidget {
 class _HappyShopHomeState extends State<HappyShopHome> {
   late List<Widget> happyShopBottomeTab;
   int _curSelected = 0;
+  final Data data = Get.put(Data());
 
   final CategoryController categoryController = Get.put(CategoryController());
 
@@ -33,7 +36,7 @@ class _HappyShopHomeState extends State<HappyShopHome> {
     _curSelected = 0;
     happyShopBottomeTab = [
       HappyShopHomeTab(),
-      HappyShopFavrite(
+      HappyShopMyShop(
         appbar: false,
       ),
       HappyShopNotification(
@@ -75,68 +78,55 @@ class _HappyShopHomeState extends State<HappyShopHome> {
                           topRight: Radius.circular(30))),
                   context: context,
                   builder: (builder) {
-                    return SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: 10,
+                    return Column(
+                      children: [
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Text(
+                          'Chọn danh mục',
+                          style: TextStyle(
+                              color: Colors.deepOrange,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        new Expanded(
+                          // height: 500,
+                          // color: Colors
+                          // .transparent, //could change this to Color(0xFF737373),
+                          //so you don't have to change MaterialApp canvasColor
+                          child: new Center(
+                            child: new ListView.builder(
+                                padding: const EdgeInsets.all(8),
+                                shrinkWrap: true,
+                                itemCount: categoryController.state?.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return ListTile(
+                                    leading: ClipRRect(
+                                      borderRadius: BorderRadius.circular(50),
+                                      child: Container(
+                                        width: 30,
+                                        height: 30,
+                                        child: Image.network(
+                                          "https://happyshop1233.herokuapp.com/" +
+                                              categoryController
+                                                  .state![index].categoryIcon,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    title: Text(categoryController
+                                        .state![index].categoryName),
+                                    onTap: () {
+                                      danhmucsanphambottomshet(
+                                          categoryController.state![index]);
+                                    },
+                                    trailing: Icon(Icons.arrow_forward_ios),
+                                  );
+                                }),
                           ),
-                          const Text(
-                            'Chọn danh mục',
-                            style: TextStyle(
-                                color: Colors.deepOrange,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          new Container(
-                            height: 500,
-                            color: Colors
-                                .transparent, //could change this to Color(0xFF737373),
-                            //so you don't have to change MaterialApp canvasColor
-                            child: new Container(
-                                decoration: new BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: new BorderRadius.only(
-                                        topLeft: const Radius.circular(10.0),
-                                        topRight: const Radius.circular(10.0))),
-                                child: new Center(
-                                  child: new ListView.builder(
-                                      padding: const EdgeInsets.all(8),
-                                      itemCount:
-                                          categoryController.state?.length,
-                                      itemBuilder:
-                                          (BuildContext context, int index) {
-                                        return ListTile(
-                                          leading: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(50),
-                                            child: Container(
-                                              width: 30,
-                                              height: 30,
-                                              child: Image.network(
-                                                "https://happyshop1233.herokuapp.com/" +
-                                                    categoryController
-                                                        .state![index]
-                                                        .categoryIcon,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                          ),
-                                          title: Text(categoryController
-                                              .state![index].categoryName),
-                                          onTap: () {
-                                            danhmucsanphambottomshet(
-                                                categoryController
-                                                    .state![index]);
-                                          },
-                                          trailing:
-                                              Icon(Icons.arrow_forward_ios),
-                                        );
-                                      }),
-                                )),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     );
                   });
             }),
@@ -387,11 +377,12 @@ class _HappyShopHomeState extends State<HappyShopHome> {
                                 title: Text(categoryModel
                                     .categoryDetail[index].categoryDetailName),
                                 onTap: () {
+                                  data.categoryDetailId = categoryModel
+                                      .categoryDetail[index].categoryDetailId;
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            const DangTinScreen()),
+                                        builder: (context) => DangTinScreen()),
                                   );
                                 },
                                 trailing: Icon(Icons.arrow_forward_ios),

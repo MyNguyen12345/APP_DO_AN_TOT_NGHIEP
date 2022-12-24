@@ -144,40 +144,40 @@ class _HappyShopSingUpState extends State<HappyShopSingUp>
     );
   }
 
-  setCountryCode() {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height * 0.9;
-    return Padding(
-        padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 10.0),
-        child: Container(
-          width: width,
-          height: 40,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(7.0),
-              border: Border.all(color: darkgrey)),
-          child: CountryCodePicker(
-              showCountryOnly: false,
-              searchDecoration: InputDecoration(
-                hintText: COUNTRY_CODE_LBL,
-                fillColor: primary,
-              ),
-              showOnlyCountryWhenClosed: false,
-              initialSelection: 'IN',
-              dialogSize: Size(width, height),
-              alignLeft: true,
-              builder: _buildCountryPicker,
-              onChanged: (CountryCode countryCode) {
-                countrycode = countryCode.toString().replaceFirst("+", "");
-                print("New Country selected: " + countryCode.toString());
-                countryName = countryCode.name;
-              },
-              onInit: (code) {
-                print("on init ${code!.name} ${code.dialCode} ${code.name}");
-                countrycode = code.toString().replaceFirst("+", "");
-                print("New Country selected: " + code.toString());
-              }),
-        ));
-  }
+  // setCountryCode() {
+  //   double width = MediaQuery.of(context).size.width;
+  //   double height = MediaQuery.of(context).size.height * 0.9;
+  //   return Padding(
+  //       padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 10.0),
+  //       child: Container(
+  //         width: width,
+  //         height: 40,
+  //         decoration: BoxDecoration(
+  //             borderRadius: BorderRadius.circular(7.0),
+  //             border: Border.all(color: darkgrey)),
+  //         child: CountryCodePicker(
+  //             showCountryOnly: false,
+  //             searchDecoration: InputDecoration(
+  //               hintText: COUNTRY_CODE_LBL,
+  //               fillColor: primary,
+  //             ),
+  //             showOnlyCountryWhenClosed: false,
+  //             initialSelection: 'IN',
+  //             dialogSize: Size(width, height),
+  //             alignLeft: true,
+  //             builder: _buildCountryPicker,
+  //             onChanged: (CountryCode countryCode) {
+  //               countrycode = countryCode.toString().replaceFirst("+", "");
+  //               print("New Country selected: " + countryCode.toString());
+  //               countryName = countryCode.name;
+  //             },
+  //             onInit: (code) {
+  //               print("on init ${code!.name} ${code.dialCode} ${code.name}");
+  //               countrycode = code.toString().replaceFirst("+", "");
+  //               print("New Country selected: " + code.toString());
+  //             }),
+  //       ));
+  // }
 
   Widget _buildCountryPicker(CountryCode? country) => Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -366,7 +366,7 @@ class _HappyShopSingUpState extends State<HappyShopSingUp>
                       children: <Widget>[
                         registerTxt(),
                         // setUserName(),
-                        setCountryCode(),
+                        // setCountryCode(),
                         setMobileNo(),
                         // setEmail(),
                         setPass(),
@@ -381,20 +381,6 @@ class _HappyShopSingUpState extends State<HappyShopSingUp>
             ],
           ),
         ),
-      ),
-      desktop: SingupDesktop(
-        fromkey: _formkey,
-        listwidget: [
-          registerTxt(),
-          setUserName(),
-          setCountryCode(),
-          setMobileNo(),
-          setEmail(),
-          setPass(),
-          showPass(),
-          verifyBtn(),
-          loginTxt(),
-        ],
       ),
     );
   }

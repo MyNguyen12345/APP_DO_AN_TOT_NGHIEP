@@ -16,6 +16,7 @@ import 'package:smartkit/widget/HappyShopbtn.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../controllers/user_controller.dart';
 import 'HappyShopSingUp.dart';
+import 'admin_screen/HappyShopAdminHome.dart';
 
 class HappyShopLogin extends StatefulWidget {
   HappyShopLogin({Key? key}) : super(key: key);
@@ -203,7 +204,12 @@ class _HappyShopLoginState extends State<HappyShopLogin>
       await storage.write(
           key: 'userId', value: userController.state!.userId.toString());
       await storage.write(key: 'phone', value: phone.toString());
-      Get.to(HappyShopHome());
+      if(loginController.state?.roleName=='ROLE_USER'){
+           Get.to(HappyShopHome());
+      }else{
+           Get.to(HappyShopAdminHome());
+      }
+   
     }
   }
 

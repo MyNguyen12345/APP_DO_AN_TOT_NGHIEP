@@ -1,16 +1,22 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
+
 import 'package:dropdown_textfield/dropdown_textfield.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:multiple_images_picker/multiple_images_picker.dart';
-
+import 'package:http_parser/http_parser.dart';
+import 'package:smartkit/Screen/HappyShopHomeTab.dart';
+import 'package:smartkit/data/data.dart';
 import '../Helper/HappyShopColor.dart';
 import 'dang_tin_chi_tiet.dart';
+import 'package:get/get.dart' as GET;
 
 class DangTinScreen extends StatefulWidget {
-  const DangTinScreen({Key? key}) : super(key: key);
+  DangTinScreen({Key? key}) : super(key: key);
 
   @override
   State<DangTinScreen> createState() => _DangTinScreenState();
@@ -18,8 +24,10 @@ class DangTinScreen extends StatefulWidget {
 
 class _DangTinScreenState extends State<DangTinScreen> {
   List<Asset> images = [];
+  List<MultipartFile> listImage = [];
   FocusNode textFieldFocusNode = FocusNode();
   FocusNode searchFocusNode = FocusNode();
+  final Data data = GET.Get.put(Data());
 
   Widget buildGridView() {
     return GridView.count(
@@ -66,6 +74,18 @@ class _DangTinScreenState extends State<DangTinScreen> {
     setState(() {
       images = resultList;
     });
+  }
+
+  Future<void> saveImage() async {
+    for (var i = 0; i < images.length; i++) {
+      ByteData byteData = await images[i].getByteData();
+      List<int> imageData = byteData.buffer.asUint8List();
+      MultipartFile multipartFile = MultipartFile.fromBytes(imageData,
+          filename: images[i].name, contentType: MediaType('image', 'jpeg'));
+      listImage.add(multipartFile);
+    }
+    data.listImage = listImage;
+    data.images = images;
   }
 
   //  Future upload(File imageFile)async{
@@ -146,8 +166,9 @@ class _DangTinScreenState extends State<DangTinScreen> {
               height: 20,
             ),
             Expanded(child: buildGridView()),
-            ElevatedButton(
+           ElevatedButton(
               onPressed: () async {
+                saveImage();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -168,165 +189,19 @@ class _DangTinScreenState extends State<DangTinScreen> {
                   height: 40.0,
                   padding: EdgeInsets.only(left: 15.0, right: 15.0),
                   alignment: Alignment.center,
-                  child: Text(
+                  child:
+                   Text(
                     "Tiếp theo",
                     style: TextStyle(color: Colors.white),
                     textAlign: TextAlign.center,
                   ),
                 ),
               ),
-            ),
+            )
+           ,
           ],
         ));
   }
 
-  Future chondiachibottomshet() {
-    return showModalBottomSheet(
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30), topRight: Radius.circular(30))),
-        context: context,
-        builder: (context) {
-          return SizedBox(
-            // MediaQuery.of(context).size.height * 0.9
-            height: MediaQuery.of(context).size.height,
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text(
-                  'Chọn địa chỉ',
-                  style: TextStyle(
-                      color: Colors.deepOrange,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            "tỉnh/ thành phố *",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.deepOrange),
-                          ),
-                          DropDownTextField(
-                            clearOption: true,
-                            textFieldFocusNode: textFieldFocusNode,
-                            searchFocusNode: searchFocusNode,
-                            searchAutofocus: true,
-                            dropDownItemCount: 8,
-                            searchShowCursor: false,
-                            enableSearch: true,
-                            searchKeyboardType: TextInputType.number,
-                            dropDownList: const [
-                              DropDownValueModel(
-                                  name: 'name1', value: "value1"),
-                              DropDownValueModel(
-                                  name: 'name2',
-                                  value: "value2",
-                                  toolTipMsg:
-                                      "DropDownButton is a widget that we can use to select one unique value from a set of values"),
-                              DropDownValueModel(
-                                  name: 'name3', value: "value3"),
-                              DropDownValueModel(
-                                  name: 'name4',
-                                  value: "value4",
-                                  toolTipMsg:
-                                      "DropDownButton is a widget that we can use to select one unique value from a set of values"),
-                              DropDownValueModel(
-                                  name: 'name5', value: "value5"),
-                              DropDownValueModel(
-                                  name: 'name6', value: "value6"),
-                              DropDownValueModel(
-                                  name: 'name7', value: "value7"),
-                              DropDownValueModel(
-                                  name: 'name8', value: "value8"),
-                            ],
-                            onChanged: (val) {},
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            "Quận/ huyện/ thị xã *",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.deepOrange),
-                          ),
-                          DropDownTextField(
-                            clearOption: true,
-                            textFieldFocusNode: textFieldFocusNode,
-                            searchFocusNode: searchFocusNode,
-                            searchAutofocus: true,
-                            dropDownItemCount: 8,
-                            searchShowCursor: false,
-                            enableSearch: true,
-                            searchKeyboardType: TextInputType.number,
-                            dropDownList: const [
-                              DropDownValueModel(
-                                  name: 'name1', value: "value1"),
-                              DropDownValueModel(
-                                  name: 'name2',
-                                  value: "value2",
-                                  toolTipMsg:
-                                      "DropDownButton is a widget that we can use to select one unique value from a set of values"),
-                              DropDownValueModel(
-                                  name: 'name3', value: "value3"),
-                              DropDownValueModel(
-                                  name: 'name4',
-                                  value: "value4",
-                                  toolTipMsg:
-                                      "DropDownButton is a widget that we can use to select one unique value from a set of values"),
-                              DropDownValueModel(
-                                  name: 'name5', value: "value5"),
-                              DropDownValueModel(
-                                  name: 'name6', value: "value6"),
-                              DropDownValueModel(
-                                  name: 'name7', value: "value7"),
-                              DropDownValueModel(
-                                  name: 'name8', value: "value8"),
-                            ],
-                            onChanged: (val) {},
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      TextField(
-                        maxLines: 2,
-                        decoration: InputDecoration(
-                          hintText: " Nhập địa chỉ cụ thể",
-                          hintStyle: const TextStyle(color: Colors.deepOrange),
-                          fillColor: Colors.grey[300],
-                          filled: true,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            // borderSide: BorderSide(
-                            //   width: 0,
-                            //   style: BorderStyle.none,
-                            // ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          );
-        });
-  }
+  
 }

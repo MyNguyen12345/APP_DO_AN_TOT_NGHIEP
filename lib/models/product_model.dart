@@ -21,8 +21,9 @@ class ProductModel {
     required this.priceProduct,
     required this.priceDeposit,
     required this.listImage,
-     required this.rating,
+    required this.rating,
     required this.userRating,
+    required this.postStatus
   });
 
   int productId;
@@ -32,6 +33,7 @@ class ProductModel {
   String productStatus;
   String avatar;
   String description;
+  String postStatus;
   int amountProduct;
   double priceProduct;
   double priceDeposit;
@@ -52,8 +54,9 @@ class ProductModel {
         amountProduct: json["amountProduct"],
         priceProduct: json["priceProduct"],
         priceDeposit: json["priceDeposit"],
-            rating: json["rating"],
+        rating: json["rating"],
         userRating: json["userRating"],
+        postStatus: json["postStatus"],
         listImage: List<ListImage>.from(
             json["listImage"].map((x) => ListImage.fromJson(x))),
       ));
@@ -74,8 +77,9 @@ class ProductModel {
     data['priceProduct'] = this.priceProduct;
     data['description'] = this.description;
     data['priceDeposit'] = this.priceDeposit;
-      data['userRating'] = this.userRating;
+    data['userRating'] = this.userRating;
     data['rating'] = this.rating;
+     data['postStatus'] = this.postStatus;
     data['listImage'] = List<dynamic>.from(listImage.map((x) => x.toJson()));
     return data;
   }

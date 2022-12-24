@@ -100,7 +100,7 @@ class HappyShopStaggeredList extends GetView<ProductCategoryController> {
                       ),
                     ),
                     Container(
-                      height: 100,
+                      height: 150,
                       child: controller.obx(
                         (state) => ListView.builder(
                           itemCount: categoryModel!.categoryDetail.length,

@@ -2,9 +2,12 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:smartkit/Helper/HappyShopColor.dart';
 import 'package:smartkit/Helper/HappyShopString.dart';
+import 'package:smartkit/controllers/register_controller.dart';
+import 'package:smartkit/data/data.dart';
 
 import 'HappyShopHome.dart';
 import 'HappyShopNewPassword.dart';
@@ -28,10 +31,21 @@ class _HappyShopForgotPasswordState extends State<HappyShopForgotPassword>
   late Animation buttonSqueezeanimation;
   late AnimationController buttonController;
 
+  var boolean = false.obs;
+  String get phone => mobileController.text;
+
+  final ForgotPasswordController forgotPasswordController =
+      Get.put(ForgotPasswordController());
+  final Data data = Get.put(Data());
   @override
   void dispose() {
     buttonController.dispose();
     super.dispose();
+  }
+
+  Future<void> findByPhone() async {
+    await forgotPasswordController.findByPhone(int.parse(phone));
+    data.phone = int.parse(phone);
   }
 
   @override
@@ -107,10 +121,16 @@ class _HappyShopForgotPasswordState extends State<HappyShopForgotPassword>
               ),
       ),
       onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => HappyShopNewPassword()),
-        );
+        boolean.value = false;
+        findByPhone();
+        if (forgotPasswordController.state == true) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => HappyShopNewPassword()),
+          );
+        } else {
+          boolean.value = true;
+        }
       },
     );
   }
@@ -151,7 +171,7 @@ class _HappyShopForgotPasswordState extends State<HappyShopForgotPassword>
         ));
   }
 
-  setCountryCode() {
+  thongbao() {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Padding(
@@ -159,30 +179,10 @@ class _HappyShopForgotPasswordState extends State<HappyShopForgotPassword>
         child: Container(
           width: width,
           height: 49,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              border: Border.all(color: darkgrey)),
-          child: CountryCodePicker(
-              showCountryOnly: false,
-              searchDecoration: InputDecoration(
-                hintText: COUNTRY_CODE_LBL,
-                fillColor: primary,
-              ),
-              showOnlyCountryWhenClosed: false,
-              initialSelection: 'IN',
-              alignLeft: true,
-              dialogSize: Size(width, height),
-              builder: _buildCountryPicker,
-              onChanged: (CountryCode countryCode) {
-                countrycode = countryCode.toString().replaceFirst("+", "");
-                print("New Country selected: " + countryCode.toString());
-                countryName = countryCode.name;
-              },
-              onInit: (code) {
-                print("on init ${code!.name} ${code.dialCode} ${code.name}");
-                countrycode = code.toString().replaceFirst("+", "");
-                print("New Country selected: " + code.toString());
-              }),
+          child: Text(
+            "Số điện thoại của bạn không tồn tại",
+            style: TextStyle(color: pink, fontSize: 20),
+          ),
         ));
   }
 
@@ -259,9 +259,16 @@ class _HappyShopForgotPasswordState extends State<HappyShopForgotPassword>
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             forgotPassTxt(),
-                            setCountryCode(),
+                            // setCountryCode(),
                             setMobileNo(),
                             getPwdBtn(),
+                            Obx((() {
+                              if (boolean.value == true) {
+                                return thongbao();
+                              } else {
+                                return Container();
+                              }
+                            }))
                           ],
                         ),
                       ),

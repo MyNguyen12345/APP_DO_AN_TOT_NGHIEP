@@ -150,8 +150,7 @@ class HappyShopTreackOrder extends GetView<GetBillController> {
 
               // New arrival for men's //
             ],
-          )
-          ),
+          )),
     );
   }
 
@@ -265,7 +264,7 @@ class HappyShopTreackOrder extends GetView<GetBillController> {
                                         left: 15.0, right: 15.0),
                                     alignment: Alignment.center,
                                     child: Text(
-                                      "Hủy",
+                                      "Đánh giá",
                                       style: TextStyle(color: Colors.white),
                                       textAlign: TextAlign.center,
                                     ),
@@ -286,93 +285,93 @@ class HappyShopTreackOrder extends GetView<GetBillController> {
   }
 
   Widget listItem(int index, int indexDetail) {
-    return controller.obx((state) =>  Card(
-      elevation: 0.1,
-      child: InkWell(
-        child: Row(
-          children: <Widget>[
-            Container(
-              child: Image.network(
-                "https://happyshop1233.herokuapp.com/" +
-                    getBillController.state![index].listBillDetail[indexDetail]
-                        .product.avatar,
-                height: 70.0,
-                width: 70.0,
-                fit: BoxFit.cover,
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 5.0),
-                            child: Text(
-                              getBillController
-                                  .state![index]
-                                  .listBillDetail[indexDetail]
-                                  .product
-                                  .productName,
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 46, 44, 44),
-                              ),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-
-                    // cong tru
-                  ],
-                ),
-              ),
-            ),
-            Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        " X " +
-                            getBillController.state![index]
-                                .listBillDetail[indexDetail].amountBuy
-                                .toString(),
-                        // style: Theme.of(context).textTheme.overline,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                    ],
+    return controller.obx((state) => Card(
+          elevation: 0.1,
+          child: InkWell(
+            child: Row(
+              children: <Widget>[
+                Container(
+                  child: Image.network(
+                    "https://happyshop1233.herokuapp.com/" +
+                        getBillController.state![index]
+                            .listBillDetail[indexDetail].product.avatar,
+                    height: 70.0,
+                    width: 70.0,
+                    fit: BoxFit.cover,
                   ),
                 ),
-                Text(
-                  getBillController.state![index].listBillDetail[indexDetail]
-                          .product.priceProduct
-                          .toString() +
-                      " VNĐ",
-                  style: TextStyle(
-                      // decoration: TextDecoration.lineThrough,
-                      letterSpacing: 0.7,
-                      color: Colors.pink,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 5.0),
+                                child: Text(
+                                  getBillController
+                                      .state![index]
+                                      .listBillDetail[indexDetail]
+                                      .product
+                                      .productName,
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 46, 44, 44),
+                                  ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        // cong tru
+                      ],
+                    ),
+                  ),
+                ),
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            " X " +
+                                getBillController.state![index]
+                                    .listBillDetail[indexDetail].amountBuy
+                                    .toString(),
+                            // style: Theme.of(context).textTheme.overline,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Text(
+                      getBillController.state![index]
+                              .listBillDetail[indexDetail].product.priceProduct
+                              .toString() +
+                          " VNĐ",
+                      style: TextStyle(
+                          // decoration: TextDecoration.lineThrough,
+                          letterSpacing: 0.7,
+                          color: Colors.pink,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
-        splashColor: primary.withOpacity(0.2),
-        onTap: () {},
-      ),
-    ));
+            splashColor: primary.withOpacity(0.2),
+            onTap: () {},
+          ),
+        ));
   }
 
   // getDelivered(String dDate, String? cDate) {

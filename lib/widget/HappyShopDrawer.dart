@@ -7,6 +7,7 @@ import 'package:smartkit/Screen/HappyShopCart.dart';
 import 'package:smartkit/Screen/HappyShopFavrite.dart';
 import 'package:smartkit/Screen/HappyShopHome.dart';
 import 'package:smartkit/Screen/HappyShopLogin.dart';
+import 'package:smartkit/Screen/HappyShopMyShop.dart';
 import 'package:smartkit/Screen/HappyShopNotification.dart';
 import 'package:smartkit/Screen/HappyShopOrderUser.dart';
 import 'package:smartkit/Screen/HappyShopSingUp.dart';
@@ -129,14 +130,14 @@ class HappyShopDrawer extends StatelessWidget {
             img: true,
             imgurl:
                 "https://smartkit.wrteam.in/smartkit/happyshop/pro_favourite.svg",
-            title: "Yêu thích",
+            title: "Cửa hàng của bạn",
             icon: Icons.favorite,
             route: () {
               Navigator.of(context).pop();
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => HappyShopFavrite(
+                  builder: (context) => HappyShopMyShop(
                     appbar: true,
                   ),
                 ),

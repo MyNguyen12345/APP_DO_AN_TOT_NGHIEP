@@ -40,7 +40,6 @@ class HappyShopCart extends GetView<GetProductCartController> {
   var promotion = 0.0.obs;
   var price = 0.0.obs;
 
-  
   Future<void> cong(int count, int amount) async {
     if (count > amount) {
       count = amount;
@@ -179,169 +178,167 @@ class HappyShopCart extends GetView<GetProductCartController> {
   }
 
   _showContent() {
-    return controller
-        .obx((state) => getProductCartController.state![0].listCart.length == 0
-            ? cartEmpty()
-            : ScreenTypeLayout(
-                mobile: Column(
-                  children: <Widget>[
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: getProductCartController.state?.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return controller.obx((state) => Column(
+    return controller.obx((state) => getProductCartController.state?.length == 0
+        ? cartEmpty()
+        : ScreenTypeLayout(
+            mobile: Column(
+              children: <Widget>[
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: getProductCartController.state?.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return controller.obx((state) => Column(
+                            children: [
+                              Column(
                                 children: [
-                                  Column(
-                                    children: [
-                                      InkWell(
-                                        child: Container(
-                                          child: Row(
-                                            children: [
-                                              InkWell(
-                                                child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            25.0),
-                                                    child: CachedNetworkImage(
-                                                      imageUrl:
-                                                          "https://happyshop1233.herokuapp.com/" +
-                                                              getProductCartController
-                                                                  .state![index]
-                                                                  .user
-                                                                  .avatar,
-                                                      height: 50,
-                                                      width: 50,
-                                                      fit: BoxFit.fill,
-                                                    )),
-                                                onTap: () {
-                                                  print("bam duoc");
-                                                },
-                                              ),
-                                              Text(
-                                                getProductCartController
-                                                    .state![index]
-                                                    .user
-                                                    .username,
-                                                style: TextStyle(
-                                                    color: Colors.pink,
-                                                    fontSize: 15),
-                                              ),
-                                              Spacer(),
-                                              Text(
-                                                "Xem",
-                                                style: TextStyle(
-                                                    color: Colors.pink),
-                                              ),
-                                              Icon(
-                                                Icons.arrow_right,
-                                                color: Colors.pink,
-                                              ),
-                                              SizedBox(
-                                                width: 10,
-                                              )
-                                            ],
+                                  InkWell(
+                                    child: Container(
+                                      child: Row(
+                                        children: [
+                                          InkWell(
+                                            child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(25.0),
+                                                child: CachedNetworkImage(
+                                                  imageUrl:
+                                                      "https://happyshop1233.herokuapp.com/" +
+                                                          getProductCartController
+                                                              .state![index]
+                                                              .user
+                                                              .avatar,
+                                                  height: 50,
+                                                  width: 50,
+                                                  fit: BoxFit.fill,
+                                                )),
+                                            onTap: () {
+                                              print("bam duoc");
+                                            },
                                           ),
-                                        ),
-                                        onTap: (() {
-                                          Get.to(HappyShopUser(getProductCartController.state![index].user.userId));
-                                        }),
+                                          Text(
+                                            getProductCartController
+                                                .state![index].user.username,
+                                            style: TextStyle(
+                                                color: Colors.pink,
+                                                fontSize: 15),
+                                          ),
+                                          Spacer(),
+                                          Text(
+                                            "Xem",
+                                            style:
+                                                TextStyle(color: Colors.pink),
+                                          ),
+                                          Icon(
+                                            Icons.arrow_right,
+                                            color: Colors.pink,
+                                          ),
+                                          SizedBox(
+                                            width: 10,
+                                          )
+                                        ],
                                       ),
-                                    ],
-                                  ),
-                                  ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: getProductCartController
-                                        .state![index].listCart.length,
-                                    physics: BouncingScrollPhysics(),
-                                    itemBuilder: (context, indexCart) {
-                                      return listItem(index, indexCart);
-                                    },
+                                    ),
+                                    onTap: (() {
+                                      Get.to(HappyShopUser(
+                                          getProductCartController
+                                              .state![index].user.userId));
+                                    }),
                                   ),
                                 ],
-                              ));
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          top: 28, bottom: 8.0, left: 35, right: 35),
-                      child: Row(
-                        children: <Widget>[
-                          Text(
-                            "Tổng tiền",
-                          ),
-                          Spacer(),
-                          Obx(() => Text(totalPrice.value.toString())),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 35, right: 35, top: 8, bottom: 8),
-                      child: Row(
-                        children: <Widget>[
-                          Text(
-                            "Khuyến mãi",
-                          ),
-                          Spacer(),
-                          Obx(() => Text(promotion.value.toString())),
-                        ],
-                      ),
-                    ),
-                    Divider(
-                      color: Colors.black,
-                      thickness: 1,
-                      indent: 20,
-                      endIndent: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          top: 8.0, bottom: 8, left: 35, right: 35),
-                      child: Row(
-                        children: <Widget>[
-                          Text(
-                            "Còn lại",
-                            // style: Theme.of(context)
-                            //     .textTheme
-                            //     .subtitle1!
-                            //     .copyWith(fontWeight: FontWeight.bold),
-                          ),
-                          Spacer(),
-                          Obx(
-                            () => Text(price.value.toString()),
-
-                            // style: Theme.of(context)
-                            //     .textTheme
-                            //     .subtitle1!
-                            //     .copyWith(fontWeight: FontWeight.bold),
-                          )
-                        ],
-                      ),
-                    ),
-                    Obx(() {
-                      if (bool.value) {
-                        return InkWell(
-                          splashColor: Colors.white,
-                          onTap: () {
-                            Get.to(HappyShopCheckout());
-                          },
-                          child: Container(
-                            height: 55,
-                            decoration: back(),
-                            width: double.infinity,
-                            child: Center(
-                                child: Text(
-                              "Đặt hàng",
-                            )),
-                          ),
-                        );
-                      } else {
-                        return Container();
-                      }
-                    }),
-                  ],
+                              ),
+                              ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: getProductCartController
+                                    .state![index].listCart.length,
+                                physics: BouncingScrollPhysics(),
+                                itemBuilder: (context, indexCart) {
+                                  return listItem(index, indexCart);
+                                },
+                              ),
+                            ],
+                          ));
+                    },
+                  ),
                 ),
-              ));
+                Padding(
+                  padding: const EdgeInsets.only(
+                      top: 28, bottom: 8.0, left: 35, right: 35),
+                  child: Row(
+                    children: <Widget>[
+                      Text(
+                        "Tổng tiền",
+                      ),
+                      Spacer(),
+                      Obx(() => Text(totalPrice.value.toString())),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 35, right: 35, top: 8, bottom: 8),
+                  child: Row(
+                    children: <Widget>[
+                      Text(
+                        "Khuyến mãi",
+                      ),
+                      Spacer(),
+                      Obx(() => Text(promotion.value.toString())),
+                    ],
+                  ),
+                ),
+                Divider(
+                  color: Colors.black,
+                  thickness: 1,
+                  indent: 20,
+                  endIndent: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      top: 8.0, bottom: 8, left: 35, right: 35),
+                  child: Row(
+                    children: <Widget>[
+                      Text(
+                        "Còn lại",
+                        // style: Theme.of(context)
+                        //     .textTheme
+                        //     .subtitle1!
+                        //     .copyWith(fontWeight: FontWeight.bold),
+                      ),
+                      Spacer(),
+                      Obx(
+                        () => Text(price.value.toString()),
+
+                        // style: Theme.of(context)
+                        //     .textTheme
+                        //     .subtitle1!
+                        //     .copyWith(fontWeight: FontWeight.bold),
+                      )
+                    ],
+                  ),
+                ),
+                Obx(() {
+                  if (bool.value) {
+                    return InkWell(
+                      splashColor: Colors.white,
+                      onTap: () {
+                        Get.to(HappyShopCheckout());
+                      },
+                      child: Container(
+                        height: 55,
+                        decoration: back(),
+                        width: double.infinity,
+                        child: Center(
+                            child: Text(
+                          "Đặt hàng",
+                        )),
+                      ),
+                    );
+                  } else {
+                    return Container();
+                  }
+                }),
+              ],
+            ),
+          ));
   }
 
   Widget listItem(int index, int indexCart) {
@@ -363,7 +360,6 @@ class HappyShopCart extends GetView<GetProductCartController> {
                     list[index][indexCart].seleted.value = val ?? false;
                     list[index].refresh();
                     payPrice();
-                
                   },
                 ),
               ),
@@ -538,16 +534,7 @@ class HappyShopCart extends GetView<GetProductCartController> {
   }
 
   cartEmpty() {
-    return Center(
-      child: SingleChildScrollView(
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          // noCartImage(context),
-          // noCartText(context),
-          // noCartDec(context),
-          shopNow()
-        ]),
-      ),
-    );
+    return Text("giỏ hàng rỗng");
   }
 
   noCartImage(BuildContext context) {

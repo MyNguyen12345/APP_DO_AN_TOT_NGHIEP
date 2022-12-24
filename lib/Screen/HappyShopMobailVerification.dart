@@ -12,12 +12,28 @@ class HappyShopMobailVerification extends StatefulWidget {
   HappyShopMobailVerification({Key? key}) : super(key: key);
 
   @override
-  _HappyShopMobailVerificationState createState() => _HappyShopMobailVerificationState();
+  _HappyShopMobailVerificationState createState() =>
+      _HappyShopMobailVerificationState();
 }
 
-class _HappyShopMobailVerificationState extends State<HappyShopMobailVerification> with TickerProviderStateMixin {
+class _HappyShopMobailVerificationState
+    extends State<HappyShopMobailVerification> with TickerProviderStateMixin {
   final dataKey = new GlobalKey();
-  String? password, mobile, username, email, id, city, area, pincode, address, mobileno, countrycode, name, latitude, longitude, dob;
+  String? password,
+      mobile,
+      username,
+      email,
+      id,
+      city,
+      area,
+      pincode,
+      address,
+      mobileno,
+      countrycode,
+      name,
+      latitude,
+      longitude,
+      dob;
   String? otp;
   bool isCodeSent = false;
   String signature = "";
@@ -31,7 +47,8 @@ class _HappyShopMobailVerificationState extends State<HappyShopMobailVerificatio
   void initState() {
     super.initState();
     getSingature();
-    buttonController = new AnimationController(duration: new Duration(milliseconds: 2000), vsync: this);
+    buttonController = new AnimationController(
+        duration: new Duration(milliseconds: 2000), vsync: this);
 
     buttonSqueezeanimation = new Tween(
       begin: deviceWidth * 0.7,
@@ -52,7 +69,7 @@ class _HappyShopMobailVerificationState extends State<HappyShopMobailVerificatio
 
   verifyBtn() {
     return AppBtn(
-        title: VERIFY_AND_PROCEED,
+        title: "Xác nhận",
         btnAnim: buttonSqueezeanimation,
         btnCntrl: buttonController,
         onBtnSelected: () async {
@@ -75,7 +92,8 @@ class _HappyShopMobailVerificationState extends State<HappyShopMobailVerificatio
   Future<void> checkNetwork() async {
     _playAnimation();
     Future.delayed(Duration(milliseconds: 500)).then((_) async {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HappyShopHome()));
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => HappyShopHome()));
       await buttonController!.reverse();
     });
   }
@@ -109,7 +127,11 @@ class _HappyShopMobailVerificationState extends State<HappyShopMobailVerificatio
     return Padding(
         padding: EdgeInsets.only(top: 30.0, left: 20.0, right: 20.0),
         child: Center(
-          child: new Text(MOBILE_NUMBER_VARIFICATION, style: Theme.of(context).textTheme.headline6!.copyWith(color: lightblack)),
+          child: new Text("Xác thực số điện thoại",
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6!
+                  .copyWith(color: lightblack)),
         ));
   }
 
@@ -117,7 +139,11 @@ class _HappyShopMobailVerificationState extends State<HappyShopMobailVerificatio
     return Padding(
         padding: EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
         child: Center(
-          child: new Text(ENTER_YOUR_OTP_SENT_TO, style: Theme.of(context).textTheme.headline6!.copyWith(color: lightblack, fontStyle: FontStyle.normal)),
+          child: new Text("Nhập mã OTP gởi tới",
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6!
+                  .copyWith(color: lightblack, fontStyle: FontStyle.normal)),
         ));
   }
 
@@ -125,7 +151,11 @@ class _HappyShopMobailVerificationState extends State<HappyShopMobailVerificatio
     return Padding(
       padding: EdgeInsets.only(bottom: 0.0, left: 20.0, right: 20.0, top: 10.0),
       child: Center(
-        child: Text("0123456789", style: Theme.of(context).textTheme.headline6!.copyWith(color: lightblack)),
+        child: Text("0349495519",
+            style: Theme.of(context)
+                .textTheme
+                .headline6!
+                .copyWith(color: lightblack)),
       ),
     );
   }
@@ -151,19 +181,24 @@ class _HappyShopMobailVerificationState extends State<HappyShopMobailVerificatio
 
   resendText() {
     return Padding(
-      padding: EdgeInsets.only(bottom: 20.0, left: 20.0, right: 20.0, top: 25.0),
+      padding:
+          EdgeInsets.only(bottom: 20.0, left: 20.0, right: 20.0, top: 25.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             DIDNT_GET_THE_CODE,
-            style: Theme.of(context).textTheme.bodyText1!.copyWith(color: lightblack2, fontWeight: FontWeight.normal),
+            style: Theme.of(context)
+                .textTheme
+                .bodyText1!
+                .copyWith(color: lightblack2, fontWeight: FontWeight.normal),
           ),
           InkWell(
               onTap: () {},
               child: Text(
-                RESEND_OTP,
-                style: Theme.of(context).textTheme.bodyText1!.copyWith(color: primary, decoration: TextDecoration.underline),
+                "Gởi lại OTP",
+                style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    color: primary, decoration: TextDecoration.underline),
               ))
         ],
       ),
@@ -182,7 +217,8 @@ class _HappyShopMobailVerificationState extends State<HappyShopMobailVerificatio
                     width: width,
                     padding: EdgeInsets.only(top: 50.0),
                     child: Card(
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
                       margin: EdgeInsets.all(20.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -204,7 +240,11 @@ class _HappyShopMobailVerificationState extends State<HappyShopMobailVerificatio
 
   back() {
     return BoxDecoration(
-      gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [primaryLight2, primaryLight3], stops: [0, 1]),
+      gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [primaryLight2, primaryLight3],
+          stops: [0, 1]),
     );
   }
 

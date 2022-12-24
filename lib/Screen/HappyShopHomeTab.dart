@@ -209,6 +209,7 @@ class HappyShopHomeTab extends GetView<ProductController> {
                                       itemname: state[index].productName,
                                       price: state[index].priceProduct,
                                       rating: state[index].rating,
+                
                                       shadow: false,
                                     ),
                                   );
@@ -279,7 +280,7 @@ class ItemCard extends StatefulWidget {
     this.price,
     this.shadow,
     this.status,
-    this.voucher,
+    this.voucher, 
   }) : super(key: key);
 
   final String? imagurl, itemname;
@@ -434,7 +435,8 @@ class _ItemCardState extends State<ItemCard> {
                     ),
                   ],
                 ),
-              )
+              ),
+            
             ],
           ),
         ),

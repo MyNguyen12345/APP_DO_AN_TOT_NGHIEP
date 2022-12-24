@@ -2,9 +2,13 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:smartkit/Helper/HappyShopColor.dart';
 import 'package:smartkit/Helper/HappyShopString.dart';
+import 'package:smartkit/Screen/HappyShopLogin.dart';
+import 'package:smartkit/controllers/register_controller.dart';
+import 'package:smartkit/data/data.dart';
 
 import 'HappyShopHome.dart';
 
@@ -21,11 +25,16 @@ class _HappyShopNewPasswordState extends State<HappyShopNewPassword>
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   bool isCodeSent = false;
   String? mobile, name, email, id, otp, countrycode, countryName;
-  final mobileController = TextEditingController();
-  final ccodeController = TextEditingController();
+  final passC = TextEditingController();
+  final passC1 = TextEditingController();
   late Animation buttonSqueezeanimation;
   late AnimationController buttonController;
+  final ForgotPasswordController forgotPasswordController =
+      Get.put(ForgotPasswordController());
+  final Data data = Get.put(Data());
 
+  String get pass => passC.text;
+  String get pass1 => passC1.text;
   @override
   void dispose() {
     buttonController.dispose();
@@ -105,7 +114,13 @@ class _HappyShopNewPasswordState extends State<HappyShopNewPassword>
               ),
       ),
       onPressed: () {
-        validateAndSubmit();
+        if (pass == pass1) {
+          forgotPasswordController.forgotPass(data.phone, pass);
+           Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => HappyShopLogin()),
+          );
+        }
       },
     );
   }
@@ -220,7 +235,7 @@ class _HappyShopNewPasswordState extends State<HappyShopNewPassword>
       padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
       child: TextFormField(
         keyboardType: TextInputType.text,
-        controller: mobileController,
+        controller: passC,
         onSaved: (String? value) {
           mobile = value;
           print('Mobile no:$mobile');
@@ -240,7 +255,7 @@ class _HappyShopNewPasswordState extends State<HappyShopNewPassword>
       padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
       child: TextFormField(
         keyboardType: TextInputType.text,
-        controller: mobileController,
+        controller: passC1,
         onSaved: (String? value) {
           mobile = value;
           print('Mobile no:$mobile');
